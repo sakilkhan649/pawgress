@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'light_theme.dart';
-import 'dark_theme.dart';
+
 
 class AppTheme {
   // static ThemeData get lightTheme => LightTheme.theme;

@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pawgress/config/themes/app_theme.dart';
 
-
 class CustomText extends StatelessWidget {
   final String text;
   final TextAlign? textAlign;
@@ -41,10 +40,10 @@ class CustomText extends StatelessWidget {
       overflow: overflow,
       maxLines: maxLines,
       style:
-      textStyle ??
+          textStyle ??
           baseStyle.copyWith(
             fontFamily:
-            fontFamily ?? 'Inter', // Default to 'Inter', or use custom font
+                fontFamily ?? 'Inter', // Default to 'Inter', or use custom font
           ),
     );
   }

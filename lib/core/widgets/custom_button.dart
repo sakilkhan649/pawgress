@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pawgress/config/themes/app_theme.dart';
 
-
 class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
@@ -15,6 +14,8 @@ class CustomButton extends StatelessWidget {
   final Color? borderColor;
   final double? fontSize;
   final FontWeight? fontWeight;
+  final Gradient? gradient;
+  final Widget? child;
 
   const CustomButton({
     super.key,
@@ -28,38 +29,41 @@ class CustomButton extends StatelessWidget {
     this.borderColor,
     this.fontSize,
     this.fontWeight,
+    this.gradient,
+    this.child,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: width,
+      decoration: BoxDecoration(
+        gradient: gradient,
+        borderRadius: BorderRadius.circular(16.r),
+        color: gradient == null ? (backgroundColor ?? AppTheme.primaryColor) : null,
+        border: borderColor != null ? Border.all(color: borderColor!) : null,
+      ),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor ?? AppTheme.primaryColor,
-          foregroundColor: textColor ?? AppTheme.textColor,
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
           elevation: 0,
-          padding:
-          padding ??
-              EdgeInsets.symmetric(vertical: 12.h), // Adjust padding if needed
+          padding: padding ?? EdgeInsets.symmetric(vertical: 16.h),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.r),
-            side: borderColor != null
-                ? BorderSide(color: borderColor!)
-                : BorderSide.none,
+            borderRadius: BorderRadius.circular(16.r),
           ),
         ),
-        child: Text(
-          text,
-          style:
-          style ??
-              GoogleFonts.inter(
-                fontSize: fontSize ?? 16.sp, // Default font size with scaling
-                fontWeight: fontWeight ?? FontWeight.w600,
-                color: textColor ?? AppTheme.textColor,
-              ),
-        ),
+        child: child ??
+            Text(
+              text,
+              style: style ??
+                  GoogleFonts.inter(
+                    fontSize: fontSize ?? 18.sp,
+                    fontWeight: fontWeight ?? FontWeight.w600,
+                    color: textColor ?? Colors.white,
+                  ),
+            ),
       ),
     );
   }

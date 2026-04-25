@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pawgress/config/themes/app_theme.dart';
 
-
 class CustomTextField extends StatelessWidget {
   final String hintText;
   final String label;
@@ -43,6 +42,16 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    /// ✅ ONE BORDER FOR ALL STATES
+    final outlineBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16.r),
+      borderSide: const BorderSide(
+        color: Color(0xff6D6767),
+        width: 1.2,
+      ),
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -70,23 +79,24 @@ class CustomTextField extends StatelessWidget {
           keyboardType: keyboardType,
           onTap: onTap,
           onChanged: onChanged,
+          inputFormatters: inputFormatters,
 
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 15.sp,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w500,
             color: AppTheme.textColor,
           ),
 
           decoration: InputDecoration(
             hintText: hintText,
-            hintStyle: GoogleFonts.manrope(
+            hintStyle: GoogleFonts.inter(
               fontSize: 15.sp,
-              fontWeight: FontWeight.w400,
-              color: Color(0xff8E8E93),
+              fontWeight: FontWeight.w500,
+              color: const Color(0xff8E8E93),
             ),
 
             contentPadding: EdgeInsets.symmetric(
-              vertical: 14.h,
+              vertical: 15.h,
               horizontal: 16.w,
             ),
 
@@ -94,32 +104,20 @@ class CustomTextField extends StatelessWidget {
             suffixIcon: suffixIcon,
 
             filled: true,
-            fillColor: fillColior ?? Color(0xffF2F2F7),
+            fillColor: fillColior ?? const Color(0xff323663),
 
-            /// ====== BORDER STATES ======
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16.r),
-              borderSide: BorderSide.none,
+            /// ✅ SAME BORDER EVERYWHERE
+            border: outlineBorder,
+            enabledBorder: outlineBorder,
+            focusedBorder: outlineBorder,
+            errorBorder: outlineBorder,
+            focusedErrorBorder: outlineBorder,
+
+            errorStyle: GoogleFonts.manrope(
+              fontSize: 11.sp,
+              color: Colors.red,
             ),
-
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16.r),
-              borderSide: BorderSide.none,
-            ),
-
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16.r),
-              borderSide: BorderSide.none,
-            ),
-
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16.r),
-              borderSide: BorderSide.none,
-            ),
-
-            errorStyle: GoogleFonts.manrope(fontSize: 11.sp, color: Colors.red),
           ),
-          inputFormatters: inputFormatters,
         ),
       ],
     );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pawgress/config/routes/app_pages.dart';
 import 'package:pawgress/config/themes/app_theme.dart';
 import 'package:pawgress/core/widgets/custom_button.dart';
 import 'package:pawgress/core/widgets/custom_image.dart';
@@ -19,24 +18,6 @@ class OnboardingView extends GetView<OnboardingController> {
         child: SafeArea(
           child: Stack(
             children: [
-              // Skip Button at Top Right
-              GestureDetector(
-                onTap: () => Get.offAllNamed(AppRoutes.LOGIN),
-                child: Positioned(
-                  top: 20.h,
-                  right: 24.w,
-                  child: GestureDetector(
-                    onTap: controller.skip,
-                    child: CustomText(
-                      text: 'Skip',
-                      fontSize: 16.sp,
-                      color: AppTheme.textLightColor,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
-
               // Content
               PageView.builder(
                 controller: controller.pageController,
@@ -83,6 +64,21 @@ class OnboardingView extends GetView<OnboardingController> {
                     ),
                   );
                 },
+              ),
+
+              // Skip Button at Top Right
+              Positioned(
+                top: 20.h,
+                right: 24.w,
+                child: GestureDetector(
+                  onTap: controller.skip,
+                  child: CustomText(
+                    text: 'Skip',
+                    fontSize: 16.sp,
+                    color: AppTheme.textLightColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
 
               // Bottom Buttons

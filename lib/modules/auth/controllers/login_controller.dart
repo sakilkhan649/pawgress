@@ -1,5 +1,9 @@
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  // Add login logic here
+  var isPasswordVisible = false.obs;
+
+  void togglePasswordVisibility() {
+    isPasswordVisible.value = !isPasswordVisible.value;
+  }
 }

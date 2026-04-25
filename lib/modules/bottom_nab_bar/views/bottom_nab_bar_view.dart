@@ -1,160 +1,98 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:flutter_svg/svg.dart';
-// import 'package:get/get.dart';
-// import '../../../config/constants/image_paths.dart';
-// import '../../../config/themes/app_theme.dart';
-// import '../controllers/bottom_nab_bar_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
+import '../../../config/constants/image_paths.dart';
+import '../../../config/themes/app_theme.dart';
+import '../../home/views/home_view.dart';
+import '../../lessons/views/lessons_view.dart';
+import '../../profile/views/profile_view.dart';
+import '../../progress/views/progress_view.dart';
+import '../../schedule/views/schedule_view.dart';
+import '../controllers/bottom_nab_bar_controller.dart';
 
-// class BottomNabBarView extends StatelessWidget {
-//   const BottomNabBarView({super.key});
+class BottomNabBarView extends GetView<BottomNabBarController> {
+  const BottomNabBarView({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final nav = Get.find<BottomNabBarController>();
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => Scaffold(
+        extendBody: true,
+        body: IndexedStack(
+          index: controller.currentIndex.value,
+          children: const [
+            HomeView(),
+            LessonsView(),
+            ProgressView(),
+            ScheduleView(),
+            ProfileView(),
+          ],
+        ),
+        bottomNavigationBar: const CustomBottomBar(),
+      ),
+    );
+  }
+}
 
-//     return Obx(
-//           () => Scaffold(
-//         extendBody: true,
-//         body: SafeArea(
-//           top: false,
-//           child: IndexedStack(
-//             index: nav.currentIndex.value,
-//             children: const [
-//               HomeScreen(),
-//               LibraryScreen(),
-//               CalendarPage(),
-//               ProfilePage(),
-//             ],
-//           ),
-//         ),
-//         bottomNavigationBar: const SafeArea(
-//           top: false,
-//           bottom: true,
-//           child: CustomBottomBar(),
-//         ),
-//       ),
-//     );
-//   }
-// }
+class CustomBottomBar extends GetView<BottomNabBarController> {
+  const CustomBottomBar({super.key});
 
-// class CustomBottomBar extends StatelessWidget {
-//   const CustomBottomBar({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.w),
+      decoration: BoxDecoration(
+        color: AppTheme.purple2,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
+      ),
+      child: SafeArea(
+        top: false,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _buildNavItem(0, ImagePaths.homeIcon, 'HOME'),
+            _buildNavItem(1, ImagePaths.lessonsIcon, 'LESSONS'),
+            _buildNavItem(2, ImagePaths.progressIcon, 'PROGRESS'),
+            _buildNavItem(3, ImagePaths.scheduleIcon, 'SCHEDULE'),
+            _buildNavItem(4, ImagePaths.profileIcon, 'PROFILE'),
+          ],
+        ),
+      ),
+    );
+  }
 
-//   final nav = Get.find<BottomNabBarController>();
+  Widget _buildNavItem(int index, String iconPath, String label) {
+    return Obx(() {
+      final isSelected = controller.currentIndex.value == index;
+      final color = isSelected ? AppTheme.teal2 : AppTheme.greyBrown;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: 80.h,
-//       decoration: const BoxDecoration(
-//         color: Color(0xffF2F2F7),
-//       ),
-//       child: Stack(
-//         alignment: Alignment.center,
-//         children: [
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             children: [
-//               _icon(ImagePaths.homeIcon, 0),
-//               _icon(ImagePaths.libraryIcon, 1),
-//               const SizedBox(width: 70),
-//               _icon(ImagePaths.calenderIcon, 2),
-//               _profileIcon(3),
-//             ],
-//           ),
-
-//           // Center Floating Button
-//           Positioned(
-//             top: -20.h,
-//             child: GestureDetector(
-//               onTap: () => Get.to(
-//                     () => NewPreferenceCard(isPrivate: false),
-//                 transition: Transition.downToUp,
-//               ),
-//               child: _centerButton(),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget _icon(String svgPath, int index) {
-//     return InkWell(
-//       onTap: () => nav.changePage(index),
-//       child: SizedBox(
-//         height: 26.w,
-//         width: 26.w,
-//         child: SvgPicture.asset(
-//           svgPath,
-//           width: 26.w,
-//           height: 26.w,
-//           color: nav.currentIndex.value == index
-//               ? AppTheme.primaryColor
-//               : const Color(0xff99A1AF),
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _profileIcon(int index) {
-//     return GestureDetector(
-//       onTap: () => nav.changePage(index),
-//       child: Container(
-//         width: 35.w,
-//         height: 35.w,
-//         decoration: BoxDecoration(
-//           shape: BoxShape.circle,
-//           border: Border.all(
-//             color: nav.currentIndex.value == index
-//                 ? AppTheme.primaryColor
-//                 : Colors.white,
-//             width: 2.w,
-//           ),
-//         ),
-//         padding: EdgeInsets.all(3.w),
-//         child: Container(
-//           decoration: BoxDecoration(
-//             shape: BoxShape.circle,
-//             image: DecorationImage(
-//               image: Image.network('https://picsum.photos/250?image=9').image,
-//               fit: BoxFit.cover,
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _centerButton() {
-//     return Container(
-//       height: 64.w,
-//       width: 64.w,
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.circular(16.r),
-//         gradient: const LinearGradient(
-//           begin: Alignment.topCenter,
-//           end: Alignment.bottomCenter,
-//           colors: [
-//             Color(0xff9945FF),
-//             Color(0xff8B3EFF),
-//             Color(0xff7B35DD),
-//           ],
-//         ),
-//         boxShadow: const [
-//           BoxShadow(
-//             color: Color(0xff9945FF),
-//             offset: Offset(0, 8),
-//             blurRadius: 12,
-//             spreadRadius: -4,
-//           ),
-//         ],
-//       ),
-//       child: const Center(
-//         child: Icon(Icons.add_outlined, color: Colors.white, size: 35),
-//       ),
-//     );
-//   }
-// }
+      return GestureDetector(
+        onTap: () => controller.changePage(index),
+        behavior: HitTestBehavior.opaque,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SvgPicture.asset(
+              iconPath,
+              width: 24.w,
+              height: 24.w,
+              colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+            ),
+            SizedBox(height: 6.h),
+            Text(
+              label,
+              style: TextStyle(
+                color: color,
+                fontSize: 10.sp,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                letterSpacing: 0.5,
+              ),
+            ),
+          ],
+        ),
+      );
+    });
+  }
+}

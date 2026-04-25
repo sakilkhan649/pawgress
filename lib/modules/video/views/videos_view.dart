@@ -1,0 +1,247 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../../../config/constants/image_paths.dart';
+import '../../../config/routes/app_pages.dart';
+import '../../../config/themes/app_theme.dart';
+import '../../../data/models/library_model.dart';
+import '../controllers/video_controller.dart';
+
+class VideoView extends GetView<VideoController> {
+  const VideoView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFF1E1528),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Padding(
+          padding: EdgeInsets.all(8.w),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Color(0xFF454565),
+              shape: BoxShape.circle,
+            ),
+            child: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
+              onPressed: () => Get.back(),
+              padding: EdgeInsets.zero,
+            ),
+          ),
+        ),
+        title: Text(
+          'Video Library',
+          style: GoogleFonts.manrope(
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w700,
+            color: Colors.white,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 16.w),
+            child: CircleAvatar(
+              radius: 18.r,
+              backgroundImage: AssetImage(ImagePaths.onboardingImage),
+            ),
+          ),
+        ],
+        centerTitle: false,
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+            child: _buildSearchBar(),
+          ),
+          _buildFilterChips(),
+          SizedBox(height: 16.h),
+          Expanded(
+            child: Obx(() {
+              final videos = controller.filteredVideos;
+              return ListView.separated(
+                padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 24.h),
+                itemCount: videos.length,
+                separatorBuilder: (context, index) => SizedBox(height: 20.h),
+                itemBuilder: (context, index) {
+                  return _buildVideoCard(videos[index]);
+                },
+              );
+            }),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSearchBar() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      height: 50.h,
+      decoration: BoxDecoration(
+        color: const Color(0xFF2C2843).withOpacity(0.5),
+        borderRadius: BorderRadius.circular(12.r),
+        border: Border.all(color: const Color(0xFF454565)),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.search, color: const Color(0xFF8B7882), size: 20.sp),
+          SizedBox(width: 12.w),
+          Expanded(
+            child: TextField(
+              onChanged: controller.setSearch,
+              style: GoogleFonts.manrope(color: Colors.white, fontSize: 14.sp),
+              decoration: InputDecoration(
+                hintText: 'Search video...',
+                hintStyle: GoogleFonts.manrope(color: const Color(0xFF8B7882), fontSize: 14.sp),
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+  Widget _buildFilterChips() {
+    final categories = ['All', 'Basic', 'Advanced', 'Behavior'];
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.symmetric(horizontal: 24.w),
+      child: Row(
+        children: categories.map((category) {
+          return Obx(
+            () {
+              final isSelected = controller.selectedCategory.value == category;
+              return GestureDetector(
+                onTap: () => controller.setCategory(category),
+                child: Container(
+                  margin: EdgeInsets.only(right: 12.w),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.r),
+                    border: Border.all(
+                      color: isSelected ? Colors.transparent : AppTheme.teal2,
+                    ),
+                    gradient: isSelected ? AppTheme.secondaryGradient : null,
+                  ),
+                  child: Text(
+                    category,
+                    style: GoogleFonts.manrope(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                      color: isSelected ? Colors.white : AppTheme.teal2,
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  Widget _buildVideoCard(LibraryModel video) {
+    return GestureDetector(
+      onTap: () => Get.toNamed(AppRoutes.playVideoView, arguments: video),
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xFF2C2843),
+          borderRadius: BorderRadius.circular(20.r),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+                  child: Image.asset(
+                    video.thumbnail,
+                    width: double.infinity,
+                    height: 180.h,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Positioned(
+                  top: 12.h,
+                  left: 12.w,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                    decoration: BoxDecoration(
+                      color: AppTheme.teal2,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    child: Text(
+                      video.category.toUpperCase(),
+                      style: GoogleFonts.manrope(
+                        fontSize: 10.sp,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 12.h,
+                  right: 12.w,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(6.r),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.access_time, color: Colors.white, size: 12.sp),
+                        SizedBox(width: 4.w),
+                        Text(
+                          video.duration,
+                          style: GoogleFonts.manrope(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(16.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    video.title,
+                    style: GoogleFonts.manrope(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 4.h),
+                  Text(
+                    video.description,
+                    style: GoogleFonts.manrope(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                      color: const Color(0xFFD7CEC8),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

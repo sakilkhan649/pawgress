@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pawgress/config/routes/app_pages.dart';
+import '../../../data/models/onboarding_model.dart';
 
 class OnboardingController extends GetxController {
   final PageController pageController = PageController();
   var currentPage = 0.obs;
 
-  final List<OnboardingContent> contents = [
-    OnboardingContent(
+  final List<OnboardingModel> contents = [
+    OnboardingModel(
       title: 'Your Pup\'s Glow-Up Starts NOW!',
       description: 'Turn your playful pup into a well-trained ',
       description2: 'superstar — one trick at a time!',
       image: 'assets/images/dog_image.png',
     ),
-    OnboardingContent(
+    OnboardingModel(
       title: 'Oops! Your Dog\'s About to Get Smart',
       description: 'Because every good dog deserves',
       description2: 'great training (and a few treats)',                              
@@ -48,18 +49,5 @@ class OnboardingController extends GetxController {
   void skip() {
     Get.offAllNamed(AppRoutes.LOGIN);
   }
-}
-
-class OnboardingContent {
-  final String title;
-  final String description;
-  final String description2;
-  final String image;
-
-  OnboardingContent({
-    required this.title,
-    required this.description,
-    required this.description2,
-    required this.image,
-  });
+  
 }

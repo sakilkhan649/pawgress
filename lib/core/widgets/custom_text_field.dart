@@ -48,7 +48,7 @@ class CustomTextField extends StatelessWidget {
       borderRadius: BorderRadius.circular(16.r),
       borderSide: const BorderSide(
         color: Color(0xff6D6767),
-        width: 1.2,
+        // width: 1.2,
       ),
     );
 
@@ -61,8 +61,8 @@ class CustomTextField extends StatelessWidget {
             padding: EdgeInsets.only(bottom: 6.h),
             child: Text(
               label,
-              style: GoogleFonts.manrope(
-                fontSize: 16.sp,
+              style: GoogleFonts.inter(
+                fontSize: 13.sp,
                 fontWeight: FontWeight.w500,
                 color: AppTheme.textColor,
               ),

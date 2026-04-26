@@ -18,132 +18,124 @@ class NewPasswordView extends GetView<NewPasswordController> {
       backgroundColor: const Color(0xFF221A36), // Deep purple background
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: 50.h),
-              Center(
-                child: Image.asset(
-                  ImagePaths.appLogo,
-                  width: 140.w,
-                  height: 140.w,
-                  fit: BoxFit.contain,
-                ),
-              ),
-              SizedBox(height: 32.h),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.w),
-                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF2C2843), // Card background
-                  borderRadius: BorderRadius.circular(32.r),
-                  border: Border.all(
-                    color: Colors.white.withOpacity(0.08),
-                    width: 1,
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(height: 40.h),
+                Center(
+                  child: Image.asset(
+                    ImagePaths.appLogo,
+                    width: 268.w,
+                    height: 177.h,
+                    fit: BoxFit.contain,
                   ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Create New Password 👋',
-                      style: GoogleFonts.manrope(
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(height: 12.h),
-                    Text(
-                      'Choose a strong password to secure your account.',
-                      style: GoogleFonts.manrope(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        height: 1.5,
-                        color: const Color(0xFFD7CEC8), // AppTheme.textLightColor
-                      ),
-                    ),
-                    SizedBox(height: 32.h),
-                    
-                    // New Password Field
-                    _buildLabel('NEW PASSWORD'),
-                    SizedBox(height: 8.h),
-                    Obx(() => CustomTextField(
-                      label: '',
-                      isLabelVisible: false,
-                      hintText: '••••••••',
-                      obscureText: controller.isPasswordHidden.value,
-                      fillColior: const Color(0xFF3B3B5B), // Text field background
-                      suffixIcon: GestureDetector(
-                        onTap: controller.togglePasswordVisibility,
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 8.w),
-                          child: Icon(
-                            controller.isPasswordHidden.value
-                                ? Icons.visibility_off_outlined
-                                : Icons.visibility_outlined,
-                            color: const Color(0xFF8E8E93),
-                          ),
+                SizedBox(height: 32.h),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20.w),
+                  padding: EdgeInsets.fromLTRB(24.w, 27.h, 24.w, 50.h),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF2C2843),
+                    borderRadius: BorderRadius.circular(32.r),
+                    border: Border.all(color: const Color(0xFF6D6767)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Create New Password 👋',
+                        style: GoogleFonts.inter(
+                          fontSize: 26.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
                         ),
                       ),
-                    )),
-                    SizedBox(height: 20.h),
-                    
-                    // Confirm New Password Field
-                    _buildLabel('CONFIRM NEW PASSWORD'),
-                    SizedBox(height: 8.h),
-                    Obx(() => CustomTextField(
-                      label: '',
-                      isLabelVisible: false,
-                      hintText: '••••••••',
-                      obscureText: controller.isConfirmPasswordHidden.value,
-                      fillColior: const Color(0xFF3B3B5B),
-                      suffixIcon: GestureDetector(
-                        onTap: controller.toggleConfirmPasswordVisibility,
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 8.w),
-                          child: Icon(
-                            controller.isConfirmPasswordHidden.value
-                                ? Icons.visibility_off_outlined
-                                : Icons.visibility_outlined,
-                            color: const Color(0xFF8E8E93),
-                          ),
+                      SizedBox(height: 12.h),
+                      Text(
+                        'Choose a strong password to secure your account.',
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                          color: const Color(0xFFD7CEC8), // AppTheme.textLightColor
                         ),
                       ),
-                    )),
-                    SizedBox(height: 32.h),
-                    
-                    // Confirm Button
-                    CustomButton(
-                      text: '', // using child parameter
-                      onPressed: () {
-                        Get.toNamed(AppRoutes.success);
-                      },
-                      gradient: AppTheme.secondaryGradient,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Confirm',
-                            style: GoogleFonts.manrope(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
+                      SizedBox(height: 16.h),
+                      
+                      // New Password Field
+                      _buildLabel('NEW PASSWORD'),
+                      SizedBox(height: 8.h),
+                      Obx(() => CustomTextField(
+                        label: '',
+                        isLabelVisible: false,
+                        hintText: '',
+                        obscureText: controller.isPasswordHidden.value,
+                        fillColior: const Color(0xFF3B3B5B), // Text field background
+                        suffixIcon: GestureDetector(
+                          onTap: controller.togglePasswordVisibility,
+                          child: Padding(
+                            padding: EdgeInsets.only(right: 8.w),
+                            child: Icon(
+                              controller.isPasswordHidden.value
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                              color: const Color(0xFF8E8E93),
                             ),
                           ),
-                          SizedBox(width: 8.w),
-                          const Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                            size: 18,
+                        ),
+                      )),
+                      SizedBox(height: 20.h),
+                      
+                      // Confirm New Password Field
+                      _buildLabel('CONFIRM NEW PASSWORD'),
+                      SizedBox(height: 8.h),
+                      Obx(() => CustomTextField(
+                        label: '',
+                        isLabelVisible: false,
+                        hintText: '',
+                        obscureText: controller.isConfirmPasswordHidden.value,
+                        fillColior: const Color(0xFF3B3B5B),
+                        suffixIcon: GestureDetector(
+                          onTap: controller.toggleConfirmPasswordVisibility,
+                          child: Padding(
+                            padding: EdgeInsets.only(right: 8.w),
+                            child: Icon(
+                              controller.isConfirmPasswordHidden.value
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                              color: const Color(0xFF8E8E93),
+                            ),
                           ),
-                        ],
+                        ),
+                      )),
+                      SizedBox(height: 20.h),
+                      
+                      // Confirm Button
+                      CustomButton(
+                        text: '', // using child parameter
+                        onPressed: () {
+                          Get.toNamed(AppRoutes.success);
+                        },
+                        gradient: AppTheme.secondaryGradient,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Confirm',
+                              style: GoogleFonts.manrope(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 40.h),
-            ],
+                SizedBox(height: 40.h),
+              ],
+            ),
           ),
         ),
       ),

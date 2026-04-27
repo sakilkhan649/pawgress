@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,10 +15,10 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528), // Background matches image
+      backgroundColor: const Color(0xFF211134), // Background matches image
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -31,19 +32,19 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       Text(
                         'Hello, Alex! 👋',
-                        style: GoogleFonts.manrope(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.w800,
+                        style: GoogleFonts.inter(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w700,
                           color: Colors.white,
                         ),
                       ),
                       SizedBox(height: 4.h),
                       Text(
                         'Let\'s train Buddy today',
-                        style: GoogleFonts.manrope(
+                        style: GoogleFonts.inter(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w400,
-                          color: const Color(0xFFD7CEC8),
+                          color: const Color(0xFFECEDEE),
                         ),
                       ),
                     ],
@@ -51,9 +52,9 @@ class HomeView extends GetView<HomeController> {
                   GestureDetector(
                     onTap: () => Get.toNamed(AppRoutes.notificationView),
                     child: Container(
-                      padding: EdgeInsets.all(10.w),
+                      padding: EdgeInsets.all(12.w),
                       decoration: const BoxDecoration(
-                        color: Color(0xFF3B3B5B),
+                        color: Color(0xFF3F4066),
                         shape: BoxShape.circle,
                       ),
                       child: Stack(
@@ -65,14 +66,18 @@ class HomeView extends GetView<HomeController> {
                             size: 24.sp,
                           ),
                           Positioned(
-                            right: 2.w,
-                            top: 2.h,
+                            right: -6.w,
+                            top: -13.h,
                             child: Container(
-                              width: 8.w,
-                              height: 8.w,
-                              decoration: const BoxDecoration(
+                              width: 12.w,
+                              height: 12.w,
+                              decoration: BoxDecoration(
                                 color: Colors.redAccent,
                                 shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: const Color(0xFFFFFFFF),
+                                  width: 2.w,
+                                ),
                               ),
                             ),
                           ),
@@ -82,34 +87,45 @@ class HomeView extends GetView<HomeController> {
                   ),
                 ],
               ),
-              SizedBox(height: 24.h),
+              SizedBox(height: 28.h),
 
               // Stats Row
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildStatCard(
-                    icon: Icons.check_circle_outline,
-                    value: '12/15',
-                    label: 'Tasks Complete',
+                  Expanded(
+                    child: _buildStatCard(
+                      icon: ImagePaths.completeIcon,
+                      value: '12/15',
+                      label: 'Tasks Complete',
+                    ),
                   ),
-                  _buildStatCard(
-                    icon: Icons.timer_outlined,
-                    value: '8.5',
-                    label: 'Training Hours',
+                  SizedBox(width: 10.w),
+                  Expanded(
+                    child: _buildStatCard(
+                      icon: ImagePaths.hoursIcon,
+                      value: '8.5',
+                      label: 'Training Hours',
+                    ),
                   ),
-                  _buildStatCard(
-                    icon: Icons.check_circle_outline,
-                    value: '78%',
-                    label: 'Progress',
+                  SizedBox(width: 10.w),
+                  Expanded(
+                    child: _buildStatCard(
+                      icon: ImagePaths.completeIcon,
+                      value: '78%',
+                      label: 'Progress',
+                    ),
                   ),
                 ],
               ),
-              SizedBox(height: 32.h),
+              SizedBox(height: 30.h),
 
               // Today's Tasks
-              _buildSectionHeader(title: "Today's Tasks", actionText: 'View All'),
-              SizedBox(height: 16.h),
+              _buildSectionHeader(
+                title: "Today's Tasks",
+                actionText: 'View All',
+              ),
+              SizedBox(height: 18.h),
               _buildTaskCard(
                 icon: Icons.record_voice_over_outlined,
                 title: 'Practice "Sit" command',
@@ -124,7 +140,10 @@ class HomeView extends GetView<HomeController> {
               SizedBox(height: 32.h),
 
               // Upcoming Sessions
-              _buildSectionHeader(title: "Upcoming Sessions", actionText: 'View Calendar'),
+              _buildSectionHeader(
+                title: "Upcoming Sessions",
+                actionText: 'View Calendar',
+              ),
               SizedBox(height: 16.h),
               _buildSessionCard(
                 tag: 'BASIC OBEDIENCE',
@@ -208,20 +227,27 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _buildStatCard({required IconData icon, required String value, required String label}) {
+  Widget _buildStatCard({
+    required String icon,
+    required String value,
+    required String label,
+  }) {
     return Container(
-      width: 105.w, 
-      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 12.w),
+      padding: EdgeInsets.fromLTRB(14.w, 12.h, 10.w, 8.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: const Color(0xFF999999)),
         gradient: const LinearGradient(
-          colors: [Color(0xFF21E0A1), Color(0xFF2490CD)], // Green to Blue gradient
+          colors: [
+            Color(0xFF02E379),
+            Color(0xFF1B8BB6),
+          ], // Green to Blue gradient
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF21E0A1).withOpacity(0.2),
+            color: const Color(0xFF02E379).withOpacity(0.2),
             blurRadius: 8.r,
             offset: const Offset(0, 4),
           ),
@@ -230,23 +256,28 @@ class HomeView extends GetView<HomeController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: Colors.white, size: 20.sp),
-          SizedBox(height: 8.h),
+          SvgPicture.asset(
+            icon,
+            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+            height: 24.w,
+            width: 24.w,
+          ),
+          SizedBox(height: 4.h),
           Text(
             value,
-            style: GoogleFonts.manrope(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w800,
+            style: GoogleFonts.inter(
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
               color: Colors.white,
             ),
           ),
           SizedBox(height: 2.h),
           Text(
             label,
-            style: GoogleFonts.manrope(
+            style: GoogleFonts.inter(
               fontSize: 10.sp,
               fontWeight: FontWeight.w500,
-              color: Colors.white.withOpacity(0.9),
+              color: Colors.white,
             ),
           ),
         ],
@@ -254,13 +285,16 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _buildSectionHeader({required String title, required String actionText}) {
+  Widget _buildSectionHeader({
+    required String title,
+    required String actionText,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           title,
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 18.sp,
             fontWeight: FontWeight.w700,
             color: Colors.white,
@@ -268,33 +302,37 @@ class HomeView extends GetView<HomeController> {
         ),
         Text(
           actionText,
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 12.sp,
-            fontWeight: FontWeight.w700,
-            color: AppTheme.teal2,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF01E378),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildTaskCard({required IconData icon, required String title, required String subtitle}) {
+  Widget _buildTaskCard({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+  }) {
     return Container(
-      padding: EdgeInsets.all(16.w),
+      padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2843),
+        color: const Color(0xFF3B3459).withValues(alpha: 0.60),
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: const Color(0xFF454565)),
+        border: Border.all(color: const Color(0xFF0BC38F).withValues(alpha: 0.60)),
       ),
       child: Row(
         children: [
           Container(
             padding: EdgeInsets.all(10.w),
             decoration: const BoxDecoration(
-              color: Color(0xFF3B3B5B),
+              color: Color(0xFF0DBB95),
               shape: BoxShape.circle,
             ),
-            child: Icon(icon, color: AppTheme.teal2, size: 20.sp),
+            child: Icon(icon, color: Colors.white, size: 20.sp),
           ),
           SizedBox(width: 16.w),
           Expanded(
@@ -303,46 +341,54 @@ class HomeView extends GetView<HomeController> {
               children: [
                 Text(
                   title,
-                  style: GoogleFonts.manrope(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w700,
+                  style: GoogleFonts.inter(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
                 ),
                 SizedBox(height: 4.h),
                 Text(
                   subtitle,
-                  style: GoogleFonts.manrope(
-                    fontSize: 12.sp,
+                  style: GoogleFonts.inter(
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
-                    color: const Color(0xFFD7CEC8),
+                    color: const Color(0xFFC7BFBA),
                   ),
                 ),
               ],
             ),
           ),
-          Icon(Icons.radio_button_unchecked, color: AppTheme.teal2, size: 24.sp),
+          Icon(
+            Icons.radio_button_unchecked,
+            color: Color(0xFF0DBB95),
+            size: 24.sp,
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildSessionCard({required String tag, required String title, required String time}) {
+  Widget _buildSessionCard({
+    required String tag,
+    required String title,
+    required String time,
+  }) {
     return Container(
-      padding: EdgeInsets.all(12.w),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2843),
+        color: const Color(0xFF3B3459).withValues(alpha: 0.60),
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: const Color(0xFF454565)),
+        border: Border.all(color: const Color(0xFF0BC38F).withValues(alpha: 0.60)),
       ),
       child: Row(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12.r),
             child: Image.asset(
-              ImagePaths.onboardingImage,
+              ImagePaths.dogProfileImage,
               width: 80.w,
-              height: 80.w,
+              height: 96.h,
               fit: BoxFit.cover,
             ),
           ),
@@ -359,19 +405,18 @@ class HomeView extends GetView<HomeController> {
                   ),
                   child: Text(
                     tag,
-                    style: GoogleFonts.manrope(
-                      fontSize: 8.sp,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 0.5,
-                      color: AppTheme.teal2,
+                    style: GoogleFonts.inter(
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xFF02CE88),
                     ),
                   ),
                 ),
                 SizedBox(height: 8.h),
                 Text(
                   title,
-                  style: GoogleFonts.manrope(
-                    fontSize: 14.sp,
+                  style: GoogleFonts.inter(
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
@@ -379,25 +424,33 @@ class HomeView extends GetView<HomeController> {
                 SizedBox(height: 8.h),
                 Row(
                   children: [
-                    Icon(Icons.calendar_today_outlined, color: const Color(0xFFD7CEC8), size: 12.sp),
+                    Icon(
+                      Icons.calendar_today_outlined,
+                      color: const Color(0xFFC0BAB5),
+                      size: 12.sp,
+                    ),
                     SizedBox(width: 4.w),
                     Text(
                       time.split('    ')[0],
                       style: GoogleFonts.manrope(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w500,
-                        color: const Color(0xFFD7CEC8),
+                        color: const Color(0xFFC0BAB5),
                       ),
                     ),
                     SizedBox(width: 12.w),
-                    Icon(Icons.access_time_outlined, color: const Color(0xFFD7CEC8), size: 12.sp),
+                    Icon(
+                      Icons.access_time_outlined,
+                      color: const Color(0xFFC0BAB5),
+                      size: 12.sp,
+                    ),
                     SizedBox(width: 4.w),
                     Text(
                       time.split('    ')[1],
                       style: GoogleFonts.manrope(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w500,
-                        color: const Color(0xFFD7CEC8),
+                        color: const Color(0xFFC0BAB5),
                       ),
                     ),
                   ],
@@ -410,13 +463,17 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _buildQuickActionCard({required IconData icon, required String title, required String subtitle}) {
+  Widget _buildQuickActionCard({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+  }) {
     return Container(
-      padding: EdgeInsets.all(16.w),
+      padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2843),
+        color: const Color(0xFF3B3459).withValues(alpha: 0.60),
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: const Color(0xFF454565)),
+        border: Border.all(color: const Color(0xFF0BC38F).withValues(alpha: 0.60)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -432,7 +489,7 @@ class HomeView extends GetView<HomeController> {
           SizedBox(height: 16.h),
           Text(
             title,
-            style: GoogleFonts.manrope(
+            style: GoogleFonts.inter(
               fontSize: 14.sp,
               fontWeight: FontWeight.w700,
               color: Colors.white,
@@ -441,11 +498,10 @@ class HomeView extends GetView<HomeController> {
           SizedBox(height: 4.h),
           Text(
             subtitle,
-            style: GoogleFonts.manrope(
-              fontSize: 9.sp,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 0.5,
-              color: const Color(0xFFD7CEC8),
+            style: GoogleFonts.inter(
+              fontSize: 10.sp,
+              fontWeight: FontWeight.w500,
+              color: const Color(0xFFC3C0BE),
             ),
           ),
         ],

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import '../../../config/constants/image_paths.dart';
 import '../../../config/themes/app_theme.dart';
 import '../../home/views/home_view.dart';
@@ -44,8 +43,14 @@ class CustomBottomBar extends GetView<BottomNabBarController> {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.w),
       decoration: BoxDecoration(
-        color: AppTheme.purple2,
+        color: Color(0xFF211134),
         borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
+        border: Border(
+          top: BorderSide(
+            color: const Color.fromARGB(255, 141, 139, 145).withValues(alpha: 0.20),
+            width: 1,
+          ),
+        ),
       ),
       child: SafeArea(
         top: false,

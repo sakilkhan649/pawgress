@@ -15,7 +15,7 @@ class ScheduleView extends GetView<ScheduleController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528),
+      backgroundColor: const Color(0xFF211134),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -35,7 +35,7 @@ class ScheduleView extends GetView<ScheduleController> {
         ),
         title: Text(
           'Schedule',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 20.sp,
             fontWeight: FontWeight.w700,
             color: Colors.white,
@@ -44,7 +44,7 @@ class ScheduleView extends GetView<ScheduleController> {
         centerTitle: false,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -52,7 +52,7 @@ class ScheduleView extends GetView<ScheduleController> {
             SizedBox(height: 32.h),
             Text(
               'Upcoming Sessions',
-              style: GoogleFonts.manrope(
+              style: GoogleFonts.inter(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
@@ -69,6 +69,7 @@ class ScheduleView extends GetView<ScheduleController> {
                 return _buildSessionCard(session);
               },
             ),
+            SizedBox(height: 100.h),
           ],
         ),
       ),
@@ -77,10 +78,10 @@ class ScheduleView extends GetView<ScheduleController> {
 
   Widget _buildCalendarCard() {
     return Container(
-      padding: EdgeInsets.all(20.w),
+      padding: EdgeInsets.all(24.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2843),
-        borderRadius: BorderRadius.circular(24.r),
+        color: const Color(0xFF30264B),
+        borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(
         children: [
@@ -98,14 +99,14 @@ class ScheduleView extends GetView<ScheduleController> {
                 titleTextStyle: GoogleFonts.manrope(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w700,
-                  color: Colors.white,
+                  color: Color(0xFFE5E2E1),
                 ),
-                leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white, size: 24.sp),
-                rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white, size: 24.sp),
+                leftChevronIcon: Icon(Icons.chevron_left, color: Color(0xFFE5E2E1), size: 24.sp),
+                rightChevronIcon: Icon(Icons.chevron_right, color: Color(0xFFE5E2E1), size: 24.sp),
               ),
               daysOfWeekStyle: DaysOfWeekStyle(
-                weekdayStyle: GoogleFonts.manrope(color: const Color(0xFF8B7882), fontWeight: FontWeight.w600),
-                weekendStyle: GoogleFonts.manrope(color: const Color(0xFF8B7882), fontWeight: FontWeight.w600),
+                weekdayStyle: GoogleFonts.manrope(color: const Color(0xFF8B7882),fontSize: 12.sp, fontWeight: FontWeight.w600),
+                weekendStyle: GoogleFonts.manrope(color: const Color(0xFF8B7882),fontSize: 12.sp, fontWeight: FontWeight.w600),
               ),
               calendarStyle: CalendarStyle(
                 todayDecoration: BoxDecoration(
@@ -137,7 +138,7 @@ class ScheduleView extends GetView<ScheduleController> {
           SizedBox(height: 24.h),
           Container(
             width: double.infinity,
-            height: 56.h,
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 1.h),
             decoration: BoxDecoration(
               gradient: AppTheme.secondaryGradient,
               borderRadius: BorderRadius.circular(16.r),
@@ -153,7 +154,7 @@ class ScheduleView extends GetView<ScheduleController> {
               ),
               child: Text(
                 'Book New Session',
-                style: GoogleFonts.manrope(
+                style: GoogleFonts.inter(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w700,
                   color: const Color(0xFF1E1528),
@@ -170,17 +171,18 @@ class ScheduleView extends GetView<ScheduleController> {
     return Container(
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2843),
+        color: const Color(0xFF30264B),
         borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: const Color(0xFF493A7C)),
       ),
       child: Row(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12.r),
             child: Image.asset(
-              ImagePaths.onboardingImage,
+              ImagePaths.dogProfileImage,
               width: 80.w,
-              height: 80.w,
+              height: 96.w,
               fit: BoxFit.cover,
             ),
           ),
@@ -198,11 +200,10 @@ class ScheduleView extends GetView<ScheduleController> {
                   ),
                   child: Text(
                     session['category'],
-                    style: GoogleFonts.manrope(
-                      fontSize: 9.sp,
-                      fontWeight: FontWeight.w800,
+                    style: GoogleFonts.inter(
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.w500,
                       color: AppTheme.teal2,
-                      letterSpacing: 0.5,
                     ),
                   ),
                 ),
@@ -218,25 +219,25 @@ class ScheduleView extends GetView<ScheduleController> {
                 SizedBox(height: 8.h),
                 Row(
                   children: [
-                    Icon(Icons.calendar_today_outlined, color: const Color(0xFF8B7882), size: 14.sp),
+                    Icon(Icons.calendar_today_outlined, color: const Color(0xFFC0BAB5), size: 14.sp),
                     SizedBox(width: 4.w),
                     Text(
                       session['date'],
                       style: GoogleFonts.manrope(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
-                        color: const Color(0xFF8B7882),
+                        color: const Color(0xFFC0BAB5),
                       ),
                     ),
                     SizedBox(width: 16.w),
-                    Icon(Icons.access_time, color: const Color(0xFF8B7882), size: 14.sp),
+                    Icon(Icons.access_time, color: const Color(0xFFC0BAB5), size: 14.sp),
                     SizedBox(width: 4.w),
                     Text(
                       session['time'],
                       style: GoogleFonts.manrope(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
-                        color: const Color(0xFF8B7882),
+                        color: const Color(0xFFC0BAB5),
                       ),
                     ),
                   ],

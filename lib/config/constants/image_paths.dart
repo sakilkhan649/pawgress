@@ -16,6 +16,8 @@ class ImagePaths {
   static const String securityNotificationIcon = "assets/icons/security_notification_icon.svg";
   static const String sendSmsIcon = "assets/icons/send_sms_icon.svg";
   static const String documentSendSmsIcon = "assets/icons/document_send_sms_icon.svg";
+  static const String completeIcon = "assets/icons/complete_icon.svg";
+  static const String hoursIcon = "assets/icons/hours_icon.svg";
 
   ///<======================Images =======================>
   static const String onboardingImage = "assets/images/dog_image.png";
@@ -24,4 +26,5 @@ class ImagePaths {
   static const String editProfileImage = "assets/images/edit_profile_image.jpg";
   static const String premiumCatImage = "assets/images/premium_cat_image.png";
   static const String massageProfileImage = "assets/images/massage_profile.jpg";
+  static const String trainerProfileImage = "assets/images/traner_profile.jpg";
 }

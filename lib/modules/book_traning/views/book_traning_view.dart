@@ -13,7 +13,7 @@ class BookTrainingView extends GetView<BookTrainingController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528),
+      backgroundColor: const Color(0xFF211134),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -33,7 +33,7 @@ class BookTrainingView extends GetView<BookTrainingController> {
         ),
         title: Text(
           'Book Training',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 20.sp,
             fontWeight: FontWeight.w700,
             color: Colors.white,
@@ -42,12 +42,12 @@ class BookTrainingView extends GetView<BookTrainingController> {
         centerTitle: false,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildSectionTitle('SELECT TRAINER'),
-            SizedBox(height: 16.h),
+            SizedBox(height: 20.h),
             _buildTrainerList(),
             SizedBox(height: 32.h),
             _buildSectionTitle('SERVICE TYPE'),
@@ -78,6 +78,7 @@ class BookTrainingView extends GetView<BookTrainingController> {
             _buildFooter(),
             SizedBox(height: 24.h),
             _buildConfirmButton(),
+            SizedBox(height: 100.h),
           ],
         ),
       ),
@@ -87,11 +88,10 @@ class BookTrainingView extends GetView<BookTrainingController> {
   Widget _buildSectionTitle(String title) {
     return Text(
       title,
-      style: GoogleFonts.manrope(
+      style: GoogleFonts.inter(
         fontSize: 12.sp,
-        fontWeight: FontWeight.w800,
-        color: const Color(0xFF8B7882),
-        letterSpacing: 1.0,
+        fontWeight: FontWeight.w600,
+        color: const Color(0xFFBDCAC0),
       ),
     );
   }
@@ -119,7 +119,7 @@ class BookTrainingView extends GetView<BookTrainingController> {
                     ),
                     child: CircleAvatar(
                       radius: 30.r,
-                      backgroundImage: AssetImage(ImagePaths.onboardingImage),
+                      backgroundImage: AssetImage(ImagePaths.trainerProfileImage),
                     ),
                   ),
                   SizedBox(height: 8.h),
@@ -144,9 +144,9 @@ class BookTrainingView extends GetView<BookTrainingController> {
     return Container(
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2843),
+        color: const Color(0xFF30264B),
         borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(color: const Color(0xFF454565)),
+        border: Border.all(color: const Color(0xFF493A7C)),
       ),
       child: Row(
         children: [
@@ -165,7 +165,7 @@ class BookTrainingView extends GetView<BookTrainingController> {
               children: [
                 Text(
                   '1-on-1 Session',
-                  style: GoogleFonts.manrope(
+                  style: GoogleFonts.inter(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
@@ -174,11 +174,12 @@ class BookTrainingView extends GetView<BookTrainingController> {
                 SizedBox(height: 4.h),
                 Text(
                   'Focused behavioral training',
-                  style: GoogleFonts.manrope(
+                  style: GoogleFonts.inter(
                     fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w500,
                     color: const Color(0xFFD7CEC8),
                   ),
+                  maxLines: 2,
                 ),
               ],
             ),
@@ -188,7 +189,7 @@ class BookTrainingView extends GetView<BookTrainingController> {
             children: [
               Text(
                 '10m',
-                style: GoogleFonts.manrope(
+                style: GoogleFonts.inter(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
@@ -196,10 +197,10 @@ class BookTrainingView extends GetView<BookTrainingController> {
               ),
               Text(
                 'DURATION',
-                style: GoogleFonts.manrope(
-                  fontSize: 10.sp,
-                  fontWeight: FontWeight.w800,
-                  color: const Color(0xFF8B7882),
+                style: GoogleFonts.inter(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xFFD7CEC8),
                 ),
               ),
             ],
@@ -211,10 +212,11 @@ class BookTrainingView extends GetView<BookTrainingController> {
 
   Widget _buildDateStrip() {
     return Container(
-      padding: EdgeInsets.all(16.w),
+      padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2843),
+        color: const Color(0xFF30264B),
         borderRadius: BorderRadius.circular(20.r),
+        border: Border.all(color: const Color(0xFF493A7C)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -320,11 +322,10 @@ class BookTrainingView extends GetView<BookTrainingController> {
           children: [
             Text(
               'TOTAL PRICE',
-              style: GoogleFonts.manrope(
-                fontSize: 10.sp,
-                fontWeight: FontWeight.w800,
-                color: const Color(0xFF8B7882),
-                letterSpacing: 1.0,
+              style: GoogleFonts.inter(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w700,
+                color: const Color(0xFFBDCAC0),
               ),
             ),
             SizedBox(height: 4.h),
@@ -333,18 +334,18 @@ class BookTrainingView extends GetView<BookTrainingController> {
                 children: [
                   TextSpan(
                     text: '\$85',
-                    style: GoogleFonts.manrope(
+                    style: GoogleFonts.inter(
                       fontSize: 24.sp,
-                      fontWeight: FontWeight.w800,
-                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      color: Color(0xFFE5E2E1),
                     ),
                   ),
                   TextSpan(
                     text: ' / session',
-                    style: GoogleFonts.manrope(
+                    style: GoogleFonts.inter(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
-                      color: const Color(0xFF8B7882),
+                      color: const Color(0xFFBDCAC0),
                     ),
                   ),
                 ],
@@ -357,11 +358,10 @@ class BookTrainingView extends GetView<BookTrainingController> {
           children: [
             Text(
               'SELECTED PET',
-              style: GoogleFonts.manrope(
-                fontSize: 10.sp,
-                fontWeight: FontWeight.w800,
-                color: const Color(0xFF8B7882),
-                letterSpacing: 1.0,
+              style: GoogleFonts.inter(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w700,
+                color: const Color(0xFFBDCAC0),
               ),
             ),
             SizedBox(height: 4.h),
@@ -369,18 +369,18 @@ class BookTrainingView extends GetView<BookTrainingController> {
               children: [
                 Text(
                   'Cooper',
-                  style: GoogleFonts.manrope(
-                    fontSize: 16.sp,
+                  style: GoogleFonts.inter(
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w700,
-                    color: const Color(0xFFD7CEC8),
+                    color: const Color(0xFFFFB59F),
                   ),
                 ),
                 SizedBox(width: 6.w),
                 Container(
-                  width: 8.w,
-                  height: 8.w,
+                  width: 10.w,
+                  height: 10.w,
                   decoration: const BoxDecoration(
-                    color: Color(0xFFD7CEC8),
+                    color: Color(0xFFFFB59F),
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -395,17 +395,10 @@ class BookTrainingView extends GetView<BookTrainingController> {
   Widget _buildConfirmButton() {
     return Container(
       width: double.infinity,
-      height: 60.h,
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 1.h),
       decoration: BoxDecoration(
         gradient: AppTheme.secondaryGradient,
         borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: AppTheme.teal2.withOpacity(0.3),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-          )
-        ],
       ),
       child: ElevatedButton(
         onPressed: () {

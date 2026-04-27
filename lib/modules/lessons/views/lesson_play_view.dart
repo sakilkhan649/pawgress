@@ -13,7 +13,7 @@ class LessonPlayView extends GetView<LessonPlayController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528),
+      backgroundColor: const Color(0xFF211134),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -33,7 +33,7 @@ class LessonPlayView extends GetView<LessonPlayController> {
         ),
         title: Text(
           'Training Lesson',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 20.sp,
             fontWeight: FontWeight.w700,
             color: Colors.white,
@@ -46,7 +46,7 @@ class LessonPlayView extends GetView<LessonPlayController> {
         if (lesson == null) return const Center(child: CircularProgressIndicator());
 
         return SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -57,9 +57,9 @@ class LessonPlayView extends GetView<LessonPlayController> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20.r),
                     child: Image.asset(
-                      ImagePaths.onboardingImage,
+                      ImagePaths.dogProfileImage,
                       width: double.infinity,
-                      height: 200.h,
+                      height: 218.h,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -78,8 +78,8 @@ class LessonPlayView extends GetView<LessonPlayController> {
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.6),
-                        borderRadius: BorderRadius.circular(12.r),
+                        color: Colors.black.withOpacity(0.8),
+                        borderRadius: BorderRadius.circular(20.r),
                       ),
                       child: Text(
                         '15:30',
@@ -93,11 +93,11 @@ class LessonPlayView extends GetView<LessonPlayController> {
                   ),
                 ],
               ),
-              SizedBox(height: 24.h),
+              SizedBox(height: 10.h),
               Text(
                 lesson.title,
-                style: GoogleFonts.manrope(
-                  fontSize: 20.sp,
+                style: GoogleFonts.inter(
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w800,
                   color: Colors.white,
                 ),
@@ -105,41 +105,43 @@ class LessonPlayView extends GetView<LessonPlayController> {
               SizedBox(height: 8.h),
               Text(
                 lesson.description,
-                style: GoogleFonts.manrope(
-                  fontSize: 14.sp,
+                style: GoogleFonts.inter(
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w400,
-                  color: const Color(0xFFD7CEC8),
+                  color: const Color(0xFFAAAEB7),
                 ),
+                maxLines: 2,
               ),
               SizedBox(height: 32.h),
 
               // Repetitions Tracker
               Container(
-                padding: EdgeInsets.all(24.w),
+                padding: EdgeInsets.all(20.w),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF2C2843),
-                  borderRadius: BorderRadius.circular(24.r),
+                  color: const Color(0xFF30264B),
+                  borderRadius: BorderRadius.circular(16.r),
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Track Repetitions',
-                      style: GoogleFonts.manrope(
+                      style: GoogleFonts.inter(
                         fontSize: 16.sp,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(height: 24.h),
+                    SizedBox(height: 18.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
                           onTap: controller.decrementRepetitions,
                           child: Container(
-                            padding: EdgeInsets.all(16.w),
+                            padding: EdgeInsets.all(20.w),
                             decoration: const BoxDecoration(
-                              color: Color(0xFFD7CEC8),
+                              color: Color(0xFFF2F4F6),
                               shape: BoxShape.circle,
                             ),
                             child: Icon(Icons.remove, color: const Color(0xFF2C2843), size: 24.sp),
@@ -149,9 +151,9 @@ class LessonPlayView extends GetView<LessonPlayController> {
                           children: [
                             Text(
                               '${controller.currentRepetitions.value}/10',
-                              style: GoogleFonts.manrope(
-                                fontSize: 40.sp,
-                                fontWeight: FontWeight.w800,
+                              style: GoogleFonts.inter(
+                                fontSize: 42.sp,
+                                fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
                             ),
@@ -159,9 +161,8 @@ class LessonPlayView extends GetView<LessonPlayController> {
                               'REPETITIONS',
                               style: GoogleFonts.manrope(
                                 fontSize: 10.sp,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: 1.0,
-                                color: const Color(0xFF8B7882),
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFFAEAEAE),
                               ),
                             ),
                           ],
@@ -169,9 +170,9 @@ class LessonPlayView extends GetView<LessonPlayController> {
                         GestureDetector(
                           onTap: controller.incrementRepetitions,
                           child: Container(
-                            padding: EdgeInsets.all(16.w),
+                            padding: EdgeInsets.all(20.w),
                             decoration: BoxDecoration(
-                              color: AppTheme.teal2,
+                              color: Color(0xFF08C290),
                               shape: BoxShape.circle,
                             ),
                             child: Icon(Icons.add, color: Colors.white, size: 24.sp),
@@ -188,7 +189,7 @@ class LessonPlayView extends GetView<LessonPlayController> {
                           style: GoogleFonts.manrope(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w700,
-                            color: AppTheme.teal2,
+                            color: Color(0xFF65D187),
                           ),
                         ),
                         Text(
@@ -196,7 +197,7 @@ class LessonPlayView extends GetView<LessonPlayController> {
                           style: GoogleFonts.manrope(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w700,
-                            color: AppTheme.teal2,
+                            color: Color(0xFF65D187),
                           ),
                         ),
                       ],
@@ -206,9 +207,9 @@ class LessonPlayView extends GetView<LessonPlayController> {
                       borderRadius: BorderRadius.circular(10.r),
                       child: LinearProgressIndicator(
                         value: controller.progress,
-                        backgroundColor: const Color(0xFF454565),
+                        backgroundColor: const Color(0xFFF2F4F6),
                         valueColor: AlwaysStoppedAnimation<Color>(AppTheme.teal2),
-                        minHeight: 12.h,
+                        minHeight: 10.h,
                       ),
                     ),
                   ],

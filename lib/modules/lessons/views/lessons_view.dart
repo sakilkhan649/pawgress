@@ -13,33 +13,34 @@ class LessonsView extends GetView<LessonsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528),
+      backgroundColor: const Color(0xFF211134),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+          padding: EdgeInsets.symmetric(horizontal: 20.w,),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 24.h),
               Text(
                 'Training Lessons',
-                style: GoogleFonts.manrope(
-                  fontSize: 24.sp,
-                  fontWeight: FontWeight.w800,
+                style: GoogleFonts.inter(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w700,
                   color: Colors.white,
                 ),
               ),
               SizedBox(height: 8.h),
               Text(
                 'Continue your dog\'s learning journey',
-                style: GoogleFonts.manrope(
-                  fontSize: 14.sp,
+                maxLines: 2,
+                style: GoogleFonts.inter(
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w400,
-                  color: const Color(0xFFD7CEC8),
+                  color: const Color(0xFFECEDEE),
                 ),
               ),
               SizedBox(height: 24.h),
               _buildCategoryTabs(),
-              SizedBox(height: 24.h),
               Expanded(
                 child: Obx(
                   () => ListView.separated(
@@ -49,6 +50,7 @@ class LessonsView extends GetView<LessonsController> {
                       final lesson = controller.filteredLessons[index];
                       return _buildLessonCard(lesson);
                     },
+                    padding: EdgeInsets.only(top: 16.h, bottom: 16.h),
                   ),
                 ),
               ),
@@ -72,20 +74,20 @@ class LessonsView extends GetView<LessonsController> {
                 onTap: () => controller.selectCategory(category),
                 child: Container(
                   margin: EdgeInsets.only(right: 12.w),
-                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.r),
                     border: Border.all(
-                      color: isSelected ? Colors.transparent : AppTheme.teal2,
+                      color: isSelected ? Colors.transparent : Color(0xFF05C58D),
                     ),
                     gradient: isSelected ? AppTheme.secondaryGradient : null,
                   ),
                   child: Text(
                     category,
-                    style: GoogleFonts.manrope(
+                    style: GoogleFonts.inter(
                       fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                      color: isSelected ? Colors.white : AppTheme.teal2,
+                      fontWeight: FontWeight.w400,
+                      color: isSelected ? Colors.white :  Color(0xFF05C58D),
                     ),
                   ),
                 ),
@@ -103,115 +105,121 @@ class LessonsView extends GetView<LessonsController> {
       onTap: () => Get.toNamed(AppRoutes.lessonPlayView, arguments: lesson),
       behavior: HitTestBehavior.opaque,
       child: Container(
-        padding: EdgeInsets.all(16.w),
+        padding: EdgeInsets.all(20.w),
         decoration: BoxDecoration(
-          color: const Color(0xFF2C2843),
-          borderRadius: BorderRadius.circular(16.r),
-          border: Border.all(color: const Color(0xFF454565)),
+          color: const Color(0xFF30264B),
+          borderRadius: BorderRadius.circular(24.r),
+          border: Border.all(
+            color: const Color(0xFF65D187).withValues(alpha: 0.60),
+          ),
         ),
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(10.w),
-                  decoration: BoxDecoration(
-                    color: AppTheme.teal2,
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  child: Icon(
-                    isCompleted ? Icons.check : Icons.play_arrow,
-                    color: Colors.white,
-                    size: 24.sp,
-                  ),
-                ),
-                SizedBox(width: 16.w),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            Container(
+              padding: EdgeInsets.all(12.w),
+              decoration: BoxDecoration(
+                color: const Color(0xFF0DBB95).withValues(alpha: 0.60),
+                borderRadius: BorderRadius.circular(16.r),
+              ),
+              child: Icon(
+                isCompleted ? Icons.check : Icons.play_arrow,
+                color: Colors.white,
+                size: 24.sp,
+              ),
+            ),
+            SizedBox(width: 16.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-                            decoration: BoxDecoration(
-                              color: AppTheme.teal2.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(8.r),
-                            ),
-                            child: Text(
-                              lesson.category,
-                              style: GoogleFonts.manrope(
-                                fontSize: 10.sp,
-                                fontWeight: FontWeight.w800,
-                                color: AppTheme.teal2,
-                              ),
-                            ),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 12.w,
+                          vertical: 6.h,
+                        ),
+                        decoration: BoxDecoration(
+                          gradient: AppTheme.secondaryGradient,
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Text(
+                          lesson.category,
+                          style: GoogleFonts.inter(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
                           ),
-                          Text(
-                            lesson.duration,
-                            style: GoogleFonts.manrope(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w600,
-                              color: AppTheme.teal2,
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                      SizedBox(height: 8.h),
                       Text(
-                        lesson.title,
-                        style: GoogleFonts.manrope(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
+                        lesson.duration,
+                        style: GoogleFonts.inter(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: const Color(0xFF01E378),
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 12.h),
-            Text(
-              lesson.description,
-              style: GoogleFonts.manrope(
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w400,
-                color: const Color(0xFFD7CEC8),
-              ),
-            ),
-            SizedBox(height: 16.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  lesson.status,
-                  style: GoogleFonts.manrope(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppTheme.teal2,
+                  SizedBox(height: 12.h),
+                  Text(
+                    lesson.title,
+                    style: GoogleFonts.inter(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                Text(
-                  '${(lesson.progress * 100).toInt()}%',
-                  style: GoogleFonts.manrope(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppTheme.teal2,
+                  SizedBox(height: 8.h),
+                  Text(
+                    lesson.description,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.inter(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                      color: const Color(0xFFC7BFBA),
+                      height: 1.4,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 8.h),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10.r),
-              child: LinearProgressIndicator(
-                value: lesson.progress,
-                backgroundColor: const Color(0xFF454565),
-                valueColor: AlwaysStoppedAnimation<Color>(AppTheme.teal2),
-                minHeight: 8.h,
+                  SizedBox(height: 16.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        lesson.status,
+                        style: GoogleFonts.inter(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: const Color(0xFF01E378),
+                        ),
+                      ),
+                      Text(
+                        '${(lesson.progress * 100).toInt()}%',
+                        style: GoogleFonts.inter(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: const Color(0xFF01E378),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.h),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10.r),
+                    child: LinearProgressIndicator(
+                      value: lesson.progress,
+                      backgroundColor: Colors.white,
+                      valueColor: const AlwaysStoppedAnimation<Color>(
+                        Color(0xFF00D085),
+                      ),
+                      minHeight: 8.h,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

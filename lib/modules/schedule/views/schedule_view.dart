@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
-
 import '../../../config/routes/app_pages.dart';
 import '../../../config/constants/image_paths.dart';
 import '../../../config/themes/app_theme.dart';
@@ -18,21 +17,8 @@ class ScheduleView extends GetView<ScheduleController> {
       backgroundColor: const Color(0xFF211134),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
         elevation: 0,
-        leading: Padding(
-          padding: EdgeInsets.all(8.w),
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Color(0xFF454565),
-              shape: BoxShape.circle,
-            ),
-            child: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
-              onPressed: () => Get.back(),
-              padding: EdgeInsets.zero,
-            ),
-          ),
-        ),
         title: Text(
           'Schedule',
           style: GoogleFonts.inter(

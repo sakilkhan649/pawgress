@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../config/constants/image_paths.dart';
 import '../../../config/routes/app_pages.dart';
 import '../../../config/themes/app_theme.dart';
@@ -16,79 +15,83 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF211134), // Background matches image
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        //Header Section
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Hello, Alex! 👋',
+                  style: GoogleFonts.inter(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(height: 4.h),
+                Text(
+                  'Let\'s train Buddy today',
+                  style: GoogleFonts.inter(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
+                    color: const Color(0xFFECEDEE),
+                  ),
+                ),
+              ],
+            ),
+            GestureDetector(
+              onTap: () => Get.toNamed(AppRoutes.notificationView),
+              child: Container(
+                padding: EdgeInsets.all(12.w),
+                decoration: const BoxDecoration(
+                  color: Color(0xFF3F4066),
+                  shape: BoxShape.circle,
+                ),
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Icon(
+                      Icons.notifications_none_outlined,
+                      color: Colors.white,
+                      size: 24.sp,
+                    ),
+                    Positioned(
+                      right: -6.w,
+                      top: -13.h,
+                      child: Container(
+                        width: 12.w,
+                        height: 12.w,
+                        decoration: BoxDecoration(
+                          color: Colors.redAccent,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: const Color(0xFFFFFFFF),
+                            width: 2.w,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        centerTitle: false,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header Row
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Hello, Alex! 👋',
-                        style: GoogleFonts.inter(
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(height: 4.h),
-                      Text(
-                        'Let\'s train Buddy today',
-                        style: GoogleFonts.inter(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                          color: const Color(0xFFECEDEE),
-                        ),
-                      ),
-                    ],
-                  ),
-                  GestureDetector(
-                    onTap: () => Get.toNamed(AppRoutes.notificationView),
-                    child: Container(
-                      padding: EdgeInsets.all(12.w),
-                      decoration: const BoxDecoration(
-                        color: Color(0xFF3F4066),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Icon(
-                            Icons.notifications_none_outlined,
-                            color: Colors.white,
-                            size: 24.sp,
-                          ),
-                          Positioned(
-                            right: -6.w,
-                            top: -13.h,
-                            child: Container(
-                              width: 12.w,
-                              height: 12.w,
-                              decoration: BoxDecoration(
-                                color: Colors.redAccent,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: const Color(0xFFFFFFFF),
-                                  width: 2.w,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 28.h),
-
               // Stats Row
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -227,6 +230,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
+//Stat card
   Widget _buildStatCard({
     required String icon,
     required String value,
@@ -284,7 +288,7 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-
+//Section header
   Widget _buildSectionHeader({
     required String title,
     required String actionText,
@@ -311,7 +315,7 @@ class HomeView extends GetView<HomeController> {
       ],
     );
   }
-
+//Task Card
   Widget _buildTaskCard({
     required IconData icon,
     required String title,
@@ -322,7 +326,9 @@ class HomeView extends GetView<HomeController> {
       decoration: BoxDecoration(
         color: const Color(0xFF3B3459).withValues(alpha: 0.60),
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: const Color(0xFF0BC38F).withValues(alpha: 0.60)),
+        border: Border.all(
+          color: const Color(0xFF0BC38F).withValues(alpha: 0.60),
+        ),
       ),
       child: Row(
         children: [
@@ -368,7 +374,7 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-
+//Session Card
   Widget _buildSessionCard({
     required String tag,
     required String title,
@@ -379,7 +385,9 @@ class HomeView extends GetView<HomeController> {
       decoration: BoxDecoration(
         color: const Color(0xFF3B3459).withValues(alpha: 0.60),
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: const Color(0xFF0BC38F).withValues(alpha: 0.60)),
+        border: Border.all(
+          color: const Color(0xFF0BC38F).withValues(alpha: 0.60),
+        ),
       ),
       child: Row(
         children: [
@@ -462,7 +470,7 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-
+//Quick Action Card
   Widget _buildQuickActionCard({
     required IconData icon,
     required String title,
@@ -473,7 +481,9 @@ class HomeView extends GetView<HomeController> {
       decoration: BoxDecoration(
         color: const Color(0xFF3B3459).withValues(alpha: 0.60),
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: const Color(0xFF0BC38F).withValues(alpha: 0.60)),
+        border: Border.all(
+          color: const Color(0xFF0BC38F).withValues(alpha: 0.60),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

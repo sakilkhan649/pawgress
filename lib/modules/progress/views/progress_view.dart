@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../config/themes/app_theme.dart';
 import '../controllers/progress_controller.dart';
 
 class ProgressView extends GetView<ProgressController> {
@@ -16,20 +15,7 @@ class ProgressView extends GetView<ProgressController> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Padding(
-          padding: EdgeInsets.all(8.w),
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Color(0xFF454565),
-              shape: BoxShape.circle,
-            ),
-            child: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
-              onPressed: () => Get.back(),
-              padding: EdgeInsets.zero,
-            ),
-          ),
-        ),
+        automaticallyImplyLeading: false,
         title: Text(
           'PROGRESS',
           style: GoogleFonts.inter(
@@ -38,7 +24,6 @@ class ProgressView extends GetView<ProgressController> {
             color: Colors.white,
           ),
         ),
-        centerTitle: false,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
@@ -88,14 +73,20 @@ class ProgressView extends GetView<ProgressController> {
               decoration: BoxDecoration(
                 color: isSelected ? Color(0xFF4DAF80) : Colors.white,
                 borderRadius: BorderRadius.circular(30.r),
-                border: Border.all(color: isSelected ? Color(0xFFC1C6D7) : const Color(0xFFC1C6D7)),
+                border: Border.all(
+                  color: isSelected
+                      ? Color(0xFFC1C6D7)
+                      : const Color(0xFFC1C6D7),
+                ),
               ),
               child: Text(
                 filter,
                 style: GoogleFonts.inter(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
-                  color: isSelected ?  Color(0xFF000000) : const Color(0xFF000000),
+                  color: isSelected
+                      ? Color(0xFF000000)
+                      : const Color(0xFF000000),
                 ),
               ),
             ),

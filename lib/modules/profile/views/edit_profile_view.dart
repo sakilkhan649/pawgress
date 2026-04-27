@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pawgress/config/constants/image_paths.dart';
 
 import '../../../config/themes/app_theme.dart';
 import '../../../core/widgets/custom_button.dart';
@@ -13,7 +14,7 @@ class EditProfileView extends GetView<EditProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528), // Background matches image
+      backgroundColor: const Color(0xFF211134), // Background matches image
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -33,7 +34,7 @@ class EditProfileView extends GetView<EditProfileController> {
         ),
         title: Text(
           'Edit Profile',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 20.sp,
             fontWeight: FontWeight.w700,
             color: Colors.white,
@@ -42,7 +43,7 @@ class EditProfileView extends GetView<EditProfileController> {
         centerTitle: false,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: Column(
           children: [
             // Profile Picture
@@ -55,13 +56,13 @@ class EditProfileView extends GetView<EditProfileController> {
                         padding: EdgeInsets.all(2.w),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white, width: 2),
+                          border: Border.all(color: Colors.white, width: 4.w),
                         ),
                         child: CircleAvatar(
                           radius: 50.r,
                           backgroundColor: const Color(0xFF3B3B5B),
                           // A placeholder for the user's photo
-                          backgroundImage: const NetworkImage('https://avatar.iran.liara.run/public/boy?username=Alex'), 
+                          backgroundImage: AssetImage(ImagePaths.editProfileImage),
                         ),
                       ),
                       Positioned(
@@ -70,9 +71,9 @@ class EditProfileView extends GetView<EditProfileController> {
                         child: Container(
                           padding: EdgeInsets.all(6.w),
                           decoration: BoxDecoration(
-                            color: AppTheme.teal2,
+                            color: const Color(0xFF006E2C),
                             shape: BoxShape.circle,
-                            border: Border.all(color: const Color(0xFF1E1528), width: 2),
+                            border: Border.all(color: const Color(0xFFFFFFFF), width: 4.w),
                           ),
                           child: Icon(
                             Icons.camera_alt_outlined,
@@ -86,10 +87,10 @@ class EditProfileView extends GetView<EditProfileController> {
                   SizedBox(height: 12.h),
                   Text(
                     'Change Photo',
-                    style: GoogleFonts.manrope(
+                    style: GoogleFonts.inter(
                       fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                      color: AppTheme.teal2,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xFF01CE87),
                     ),
                   ),
                 ],
@@ -102,19 +103,19 @@ class EditProfileView extends GetView<EditProfileController> {
               label: 'FULL NAME',
               controller: controller.nameController,
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 22.h),
             _buildField(
               label: 'EMAIL',
               controller: controller.emailController,
               keyboardType: TextInputType.emailAddress,
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 22.h),
             _buildField(
               label: 'PHONE NUMBER',
               controller: controller.phoneController,
               keyboardType: TextInputType.phone,
             ),
-            SizedBox(height: 40.h),
+            SizedBox(height: 56.h),
 
             // Save Button
             CustomButton(
@@ -140,19 +141,18 @@ class EditProfileView extends GetView<EditProfileController> {
       children: [
         Text(
           label,
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 12.sp,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 1.0,
+            fontWeight: FontWeight.w600,
             color: Colors.white,
           ),
         ),
         SizedBox(height: 8.h),
         Container(
           decoration: BoxDecoration(
-            color: const Color(0xFF2C2843), // Text field background
+            color: const Color(0xFF312347), // Text field background
             borderRadius: BorderRadius.circular(12.r),
-            border: Border.all(color: const Color(0xFF454565)), // Slight border
+            border: Border.all(color: const Color(0xFF2F4876)), // Slight border
           ),
           child: TextFormField(
             controller: controller,

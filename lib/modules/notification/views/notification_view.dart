@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:pawgress/config/constants/image_paths.dart';
 import '../../../config/themes/app_theme.dart';
 import '../controllers/notification_controller.dart';
 
@@ -12,7 +13,7 @@ class NotificationView extends GetView<NotificationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528), // Background matches image
+      backgroundColor: const Color(0xFF221234), // Background matches image
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -41,22 +42,21 @@ class NotificationView extends GetView<NotificationController> {
         centerTitle: false,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: Column(
           children: [
             _buildNotificationCard(
-              icon: Icons.eco,
+              icon: ImagePaths.practiceNotificationIcon,
               iconColor: AppTheme.teal2,
               iconBgColor: AppTheme.teal2.withOpacity(0.15),
               title: 'Practice "Sit" command',
               subtitle: '10 repetitions',
               time: 'Apr 8, 2026 • 3:00 PM',
               isNew: true,
-              borderColor: AppTheme.teal2.withOpacity(0.3), // Highlighted border
             ),
             SizedBox(height: 16.h),
             _buildNotificationCard(
-              icon: Icons.access_time_filled,
+              icon: ImagePaths.sessionNotificationIcon,
               iconColor: Colors.redAccent.shade100,
               iconBgColor: Colors.redAccent.shade100.withOpacity(0.15),
               title: 'Session Booked: Basic\nObedience',
@@ -65,7 +65,7 @@ class NotificationView extends GetView<NotificationController> {
             ),
             SizedBox(height: 16.h),
             _buildNotificationCard(
-              icon: Icons.security,
+              icon: ImagePaths.securityNotificationIcon,
               iconColor: Colors.blueAccent.shade100,
               iconBgColor: Colors.blueAccent.shade100.withOpacity(0.15),
               title: 'Security Update',
@@ -79,7 +79,7 @@ class NotificationView extends GetView<NotificationController> {
   }
 
   Widget _buildNotificationCard({
-    required IconData icon,
+    required String icon,
     required Color iconColor,
     required Color iconBgColor,
     required String title,
@@ -93,7 +93,7 @@ class NotificationView extends GetView<NotificationController> {
       decoration: BoxDecoration(
         color: const Color(0xFF2C2843), // Card background
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: borderColor ?? const Color(0xFF454565)),
+        border: Border.all(color: borderColor ?? const Color(0xFF2A9483)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,12 +102,15 @@ class NotificationView extends GetView<NotificationController> {
             padding: EdgeInsets.all(12.w),
             decoration: BoxDecoration(
               color: iconBgColor,
-              shape: BoxShape.circle,
+              borderRadius: BorderRadius.circular(12.r),
             ),
-            child: Icon(
+            height: 40.h,
+            width: 40.w,
+            child: SvgPicture.asset(
               icon,
-              color: iconColor,
-              size: 24.sp,
+              height: 24.w,
+              width: 24.w,
+              colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
             ),
           ),
           SizedBox(width: 16.w),
@@ -121,7 +124,7 @@ class NotificationView extends GetView<NotificationController> {
                     Expanded(
                       child: Text(
                         title,
-                        style: GoogleFonts.manrope(
+                        style: GoogleFonts.inter(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
                           color: Colors.white,
@@ -133,9 +136,9 @@ class NotificationView extends GetView<NotificationController> {
                         padding: EdgeInsets.only(left: 8.w),
                         child: Text(
                           'NEW',
-                          style: GoogleFonts.manrope(
+                          style: GoogleFonts.inter(
                             fontSize: 10.sp,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w500,
                             letterSpacing: 0.5,
                             color: const Color(0xFFD7CEC8), // Greyish text
                           ),
@@ -146,7 +149,7 @@ class NotificationView extends GetView<NotificationController> {
                 SizedBox(height: 8.h),
                 Text(
                   subtitle,
-                  style: GoogleFonts.manrope(
+                  style: GoogleFonts.inter(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
                     color: const Color(0xFFD7CEC8),
@@ -155,8 +158,8 @@ class NotificationView extends GetView<NotificationController> {
                 SizedBox(height: 12.h),
                 Text(
                   time,
-                  style: GoogleFonts.manrope(
-                    fontSize: 12.sp,
+                  style: GoogleFonts.inter(
+                    fontSize: 11.sp,
                     fontWeight: FontWeight.w500,
                     color: const Color(0xFF8B7882), // Darker grey
                   ),

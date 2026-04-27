@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pawgress/config/routes/app_pages.dart';
-
 import '../../../config/constants/image_paths.dart';
-import '../../../config/themes/app_theme.dart';
 import '../controllers/dog_information_controller.dart';
 
 class DogInformationView extends GetView<DogInformationController> {
@@ -14,7 +13,7 @@ class DogInformationView extends GetView<DogInformationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528), // Background matches image
+      backgroundColor: const Color(0xFF211134), // Background matches image
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -34,7 +33,7 @@ class DogInformationView extends GetView<DogInformationController> {
         ),
         title: Text(
           'Dog Information',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 20.sp,
             fontWeight: FontWeight.w700,
             color: Colors.white,
@@ -43,7 +42,7 @@ class DogInformationView extends GetView<DogInformationController> {
         centerTitle: false,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: Column(
           children: [
             // Dog Picture
@@ -56,12 +55,14 @@ class DogInformationView extends GetView<DogInformationController> {
                         padding: EdgeInsets.all(2.w),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white, width: 2),
+                          border: Border.all(color: Colors.white, width: 4.w),
                         ),
                         child: CircleAvatar(
                           radius: 50.r,
                           backgroundColor: const Color(0xFF3B3B5B),
-                          backgroundImage: const AssetImage(ImagePaths.onboardingImage), 
+                          backgroundImage: const AssetImage(
+                            ImagePaths.dogProfileImage,
+                          ),
                         ),
                       ),
                       Positioned(
@@ -70,9 +71,12 @@ class DogInformationView extends GetView<DogInformationController> {
                         child: Container(
                           padding: EdgeInsets.all(6.w),
                           decoration: BoxDecoration(
-                            color: AppTheme.teal2,
+                            color: const Color(0xFF006E2C),
                             shape: BoxShape.circle,
-                            border: Border.all(color: const Color(0xFF1E1528), width: 2),
+                            border: Border.all(
+                              color: const Color(0xFFFFFFFF),
+                              width: 4.w,
+                            ),
                           ),
                           child: Icon(
                             Icons.camera_alt_outlined,
@@ -88,8 +92,8 @@ class DogInformationView extends GetView<DogInformationController> {
                     'Change Photo',
                     style: GoogleFonts.manrope(
                       fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                      color: AppTheme.teal2,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xFF01CD87),
                     ),
                   ),
                 ],
@@ -99,11 +103,13 @@ class DogInformationView extends GetView<DogInformationController> {
 
             // Dog Info Card
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
               decoration: BoxDecoration(
-                color: const Color(0xFF2C2843), // Card background
-                borderRadius: BorderRadius.circular(16.r),
-                border: Border.all(color: const Color(0xFF454565)), // Slight border
+                color: const Color(0xFF30264B), // Card background
+                borderRadius: BorderRadius.circular(12.r),
+                border: Border.all(
+                  color: const Color(0xFF2A9483),
+                ), // Slight border
               ),
               child: Row(
                 children: [
@@ -114,7 +120,7 @@ class DogInformationView extends GetView<DogInformationController> {
                         Text(
                           'Buddy',
                           style: GoogleFonts.manrope(
-                            fontSize: 18.sp,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.w800,
                             color: Colors.white,
                           ),
@@ -123,9 +129,9 @@ class DogInformationView extends GetView<DogInformationController> {
                         Text(
                           'Golden Retriever • 2 years',
                           style: GoogleFonts.manrope(
-                            fontSize: 13.sp,
-                            fontWeight: FontWeight.w600,
-                            color: AppTheme.teal2,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
+                            color: const Color(0xFF01D087),
                           ),
                         ),
                       ],
@@ -134,15 +140,15 @@ class DogInformationView extends GetView<DogInformationController> {
                   GestureDetector(
                     onTap: () => Get.toNamed(AppRoutes.editDogInformationView),
                     child: Container(
-                      padding: EdgeInsets.all(10.w),
+                      padding: EdgeInsets.all(12.w),
                       decoration: const BoxDecoration(
-                        color: Color(0xFF3B3B5B), // Lighter circle
+                        color: Color(0xFF2E374E), // Lighter circle
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(
-                        Icons.edit_square,
-                        color: Colors.white,
-                        size: 20.sp,
+                      child: SvgPicture.asset(
+                        ImagePaths.editIcon,
+                        height: 24.w,
+                        width: 24.w,
                       ),
                     ),
                   ),

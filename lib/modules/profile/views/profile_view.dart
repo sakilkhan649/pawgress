@@ -13,10 +13,10 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528), // Background matched with image
+      backgroundColor: const Color(0xFF211134), // Background matched with image
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 70.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -27,7 +27,7 @@ class ProfileView extends StatelessWidget {
               _buildSectionTwo(),
               SizedBox(height: 20.h),
               _buildSectionThree(),
-              SizedBox(height: 40.h),
+              SizedBox(height: 100.h),
               _buildLogoutButton(),
               SizedBox(height: 100.h), // Bottom nav bar padding
             ],
@@ -40,19 +40,19 @@ class ProfileView extends StatelessWidget {
   Widget _buildTopCard() {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24.r),
-        border: Border.all(color: Colors.white.withOpacity(0.1)),
+        borderRadius: BorderRadius.circular(12.r),
+        border: Border.all(color: Color(0xFF4E8A6B)),
         gradient: RadialGradient(
           center: Alignment.topRight,
           radius: 1.5,
           colors: [
-            const Color(0xFF06C190).withOpacity(0.35), // Greenish glow
+            const Color(0xFF06C190).withOpacity(0.25), // Greenish glow
             const Color(0xFF2C2843),
           ],
-          stops: const [0.0, 0.8],
+          stops: const [0.0, 0.4],
         ),
       ),
-      padding: EdgeInsets.all(20.w),
+      padding: EdgeInsets.fromLTRB(14.w, 14.h, 14.w, 22.h),
       child: Column(
         children: [
           // User Avatar
@@ -60,7 +60,7 @@ class ProfileView extends StatelessWidget {
             padding: EdgeInsets.all(3.w),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: Colors.white, width: 2),
+              border: Border.all(color: Colors.white, width: 4),
               boxShadow: [
                 BoxShadow(
                   color: Colors.white.withOpacity(0.3),
@@ -69,80 +69,78 @@ class ProfileView extends StatelessWidget {
                 ),
               ],
             ),
+            //user profile image
             child: CircleAvatar(
               radius: 40.r,
               backgroundColor: const Color(0xFF3B3B5B),
-              child: Icon(Icons.person, size: 40.r, color: Colors.white),
+              child: Image.asset(ImagePaths.profileImage),
             ),
           ),
           SizedBox(height: 16.h),
-          
+
           // User Name
           Text(
             'Alex Johnson',
             style: GoogleFonts.manrope(
-              fontSize: 20.sp,
+              fontSize: 18.sp,
               fontWeight: FontWeight.w800,
               color: Colors.white,
             ),
           ),
           SizedBox(height: 4.h),
-          
+
           // User Email
           Text(
             'alex.johnson@pettech.com',
-            style: GoogleFonts.manrope(
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w600,
-              color: AppTheme.teal2,
+            style: GoogleFonts.inter(
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w500,
+              color: Color(0xFF1ED760),
             ),
           ),
           SizedBox(height: 20.h),
 
           // Dog Info Inner Card
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
             decoration: BoxDecoration(
-              color: const Color(0xFF454565),
-              borderRadius: BorderRadius.circular(16.r),
+              color: const Color(0xFF4A526E),
+              borderRadius: BorderRadius.circular(12.r),
+              border: Border.all(color: Color(0xFF717A96)),
             ),
             child: Row(
               children: [
                 CircleAvatar(
-                  radius: 20.r,
-                  backgroundImage: const AssetImage(ImagePaths.onboardingImage),
+                  radius: 25.r,
+                  backgroundImage: const AssetImage(ImagePaths.dogProfileImage),
                   backgroundColor: Colors.transparent,
                 ),
-                SizedBox(width: 12.w),
+                SizedBox(width: 10.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Buddy, Golden Retriever',
-                        style: GoogleFonts.manrope(
+                        style: GoogleFonts.inter(
                           fontSize: 14.sp,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w500,
                           color: Colors.white,
                         ),
                       ),
                       SizedBox(height: 2.h),
                       Text(
                         '2 years',
-                        style: GoogleFonts.manrope(
+                        style: GoogleFonts.inter(
                           fontSize: 12.sp,
-                          fontWeight: FontWeight.w500,
-                          color: AppTheme.textLightColor,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
                         ),
                       ),
                     ],
                   ),
                 ),
-                Icon(
-                  Icons.pets,
-                  color: AppTheme.teal2,
-                  size: 24.sp,
-                ),
+                Icon(Icons.pets, color: Color(0xFF1ED760), size: 24.sp),
               ],
             ),
           ),
@@ -159,14 +157,14 @@ class ProfileView extends StatelessWidget {
           _buildListItem(
             icon: Icons.person_outline,
             title: 'Edit Profile',
-            iconColor: AppTheme.teal2,
+            iconColor: Color(0xFF40973A),
             onTap: () => Get.toNamed(AppRoutes.editProfileView),
           ),
           _buildDivider(),
           _buildListItem(
             icon: Icons.pets_outlined, // Better icon for dog info
             title: 'Dog Information',
-            iconColor: AppTheme.teal2,
+            iconColor: Color(0xFF40973A),
             onTap: () => Get.toNamed(AppRoutes.dogInformationView),
           ),
         ],
@@ -182,21 +180,21 @@ class ProfileView extends StatelessWidget {
           _buildListItem(
             icon: Icons.notifications_none_outlined,
             title: 'Notifications',
-            iconColor: AppTheme.greyBrown,
+            iconColor: Color(0xFF6C7B6B),
             onTap: () => Get.toNamed(AppRoutes.notificationView),
           ),
           _buildDivider(),
           _buildListItem(
             icon: Icons.shield_outlined,
             title: 'Privacy',
-            iconColor: AppTheme.greyBrown,
+            iconColor: Color(0xFF6C7B6B),
             onTap: () => Get.toNamed(AppRoutes.privacyView),
           ),
           _buildDivider(),
           _buildListItem(
             icon: Icons.verified_user_outlined,
             title: 'Condition',
-            iconColor: AppTheme.greyBrown,
+            iconColor: Color(0xFF6C7B6B),
             onTap: () => Get.toNamed(AppRoutes.conditionView),
           ),
         ],
@@ -210,7 +208,7 @@ class ProfileView extends StatelessWidget {
       child: _buildListItem(
         icon: Icons.help_outline,
         title: 'Support',
-        iconColor: AppTheme.greyBrown,
+        iconColor: Color(0xFF6C7B6B),
         onTap: () => Get.toNamed(AppRoutes.supportView),
       ),
     );
@@ -219,8 +217,8 @@ class ProfileView extends StatelessWidget {
   BoxDecoration _sectionDecoration() {
     return BoxDecoration(
       color: const Color(0xFF2C2843),
-      borderRadius: BorderRadius.circular(16.r),
-      border: Border.all(color: Colors.white.withOpacity(0.05)),
+      borderRadius: BorderRadius.circular(12.r),
+      border: Border.all(color: Color(0xFF4E8A6B)),
     );
   }
 
@@ -234,15 +232,15 @@ class ProfileView extends StatelessWidget {
       leading: Icon(icon, color: iconColor, size: 24.sp),
       title: Text(
         title,
-        style: GoogleFonts.manrope(
-          fontSize: 15.sp,
-          fontWeight: FontWeight.w700,
+        style: GoogleFonts.inter(
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w600,
           color: Colors.white,
         ),
       ),
       trailing: Icon(
         Icons.chevron_right_rounded,
-        color: AppTheme.greyBrown,
+        color: Color(0xFFBBCBB8),
         size: 24.sp,
       ),
       contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
@@ -253,22 +251,19 @@ class ProfileView extends StatelessWidget {
   }
 
   Widget _buildDivider() {
-    return Divider(
-      color: Colors.white.withOpacity(0.05),
-      height: 1,
-      thickness: 1,
-      indent: 56.w, // Aligns divider with text
-    );
+    return Divider(color: const Color(0xFF4E8A6B), height: 1, thickness: 1);
   }
 
   Widget _buildLogoutButton() {
     return ElevatedButton(
       onPressed: _showLogoutDialog,
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF8B7882), // Brownish muted color
-        padding: EdgeInsets.symmetric(vertical: 16.h),
+        backgroundColor: const Color(
+          0xFFFFDAD6,
+        ).withOpacity(0.53), // Brownish muted color
+        padding: EdgeInsets.symmetric(vertical: 20.h),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.circular(12.r),
         ),
         elevation: 0,
       ),
@@ -277,7 +272,7 @@ class ProfileView extends StatelessWidget {
         children: [
           Icon(
             Icons.logout_rounded,
-            color: const Color(0xFFE05252), // Red icon
+            color: const Color(0xFFBA1A1A), // Red icon
             size: 24.sp,
           ),
           SizedBox(width: 8.w),
@@ -286,7 +281,7 @@ class ProfileView extends StatelessWidget {
             style: GoogleFonts.manrope(
               fontSize: 16.sp,
               fontWeight: FontWeight.w700,
-              color: const Color(0xFFE05252), // Red text
+              color: const Color(0xFFBA1A1A), // Red text
             ),
           ),
         ],
@@ -326,7 +321,10 @@ class ProfileView extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF1982C4), // Blue
-                      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 10.h),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 24.w,
+                        vertical: 10.h,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.r),
                       ),
@@ -353,7 +351,10 @@ class ProfileView extends StatelessWidget {
                     onPressed: () => Get.back(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFD62828), // Red
-                      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 10.h),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 24.w,
+                        vertical: 10.h,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.r),
                       ),

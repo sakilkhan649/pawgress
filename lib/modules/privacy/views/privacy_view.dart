@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../config/themes/app_theme.dart';
 import '../controllers/privacy_controller.dart';
 
@@ -12,7 +11,7 @@ class PrivacyView extends GetView<PrivacyController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528), // Background matches image
+      backgroundColor: const Color(0xFF211134), // Background matches image
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -32,7 +31,7 @@ class PrivacyView extends GetView<PrivacyController> {
         ),
         title: Text(
           'Privacy Policy',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 20.sp,
             fontWeight: FontWeight.w700,
             color: Colors.white,
@@ -41,35 +40,34 @@ class PrivacyView extends GetView<PrivacyController> {
         centerTitle: false,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 14.h),
             Text(
               'SAFETY FIRST',
-              style: GoogleFonts.manrope(
+              style: GoogleFonts.inter(
                 fontSize: 12.sp,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 1.2,
-                color: const Color(0xFFD7CEC8),
+                fontWeight: FontWeight.w700,
+                color: const Color(0xFFB5FFE6),
               ),
             ),
             SizedBox(height: 8.h),
             RichText(
               text: TextSpan(
-                style: GoogleFonts.manrope(
-                  fontSize: 32.sp,
-                  fontWeight: FontWeight.w800,
-                  height: 1.2,
+                style: GoogleFonts.inter(
+                  fontSize: 36.sp,
+                  fontWeight: FontWeight.w700,
                 ),
                 children: [
                   const TextSpan(
                     text: 'Your Trust is\n',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Color(0xFFCCEAFF)),
                   ),
                   TextSpan(
                     text: 'Our Priority.',
-                    style: TextStyle(color: AppTheme.teal2),
+                    style: TextStyle(color: Color(0xFF4CAF80)),
                   ),
                 ],
               ),
@@ -78,14 +76,13 @@ class PrivacyView extends GetView<PrivacyController> {
             Text(
               'We designed our policies to be as clear and caring as the service we provide to your furry companions.',
               style: GoogleFonts.manrope(
-                fontSize: 15.sp,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w400,
-                color: const Color(0xFFD7CEC8),
-                height: 1.5,
+                color: const Color(0xFFFAFFFC),
               ),
             ),
             SizedBox(height: 32.h),
-            
+
             _buildPrivacyCard(
               icon: Icons.folder_outlined,
               title: 'Data Collection',
@@ -98,11 +95,28 @@ class PrivacyView extends GetView<PrivacyController> {
                     height: 1.5,
                   ),
                   children: const [
-                    TextSpan(text: 'To provide a personalized experience for your pets, we collect essential identifiers such as your '),
-                    TextSpan(text: 'Full Name, Email Address', style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white)),
+                    TextSpan(
+                      text:
+                          'To provide a personalized experience for your pets, we collect essential identifiers such as your ',
+                    ),
+                    TextSpan(
+                      text: 'Full Name, Email Address',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                    ),
                     TextSpan(text: ', and comprehensive '),
-                    TextSpan(text: 'Pet Profiles', style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white)),
-                    TextSpan(text: ' (including health history and preferences).'),
+                    TextSpan(
+                      text: 'Pet Profiles',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                    ),
+                    TextSpan(
+                      text: ' (including health history and preferences).',
+                    ),
                   ],
                 ),
               ),
@@ -141,11 +155,10 @@ class PrivacyView extends GetView<PrivacyController> {
               title: 'Third-Party Sharing',
               content: Text(
                 'We maintain a strict "No-Sale" policy. Your data is never sold to advertisers. We only share essential details with verified pet care providers you explicitly book through our platform.',
-                style: GoogleFonts.manrope(
-                  fontSize: 13.sp,
+                style: GoogleFonts.inter(
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
-                  color: const Color(0xFFD7CEC8),
-                  height: 1.5,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -164,44 +177,45 @@ class PrivacyView extends GetView<PrivacyController> {
     return Container(
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2843), // Card background
-        borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: const Color(0xFF454565)), // Slight border
+        color: const Color(0xFF372848), // Card background
+        borderRadius: BorderRadius.circular(12.r),
+        border: Border.all(color: const Color(0xFF9FC17E).withOpacity(0.80)),
       ),
-      child: Column(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.all(12.w),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF3B3B5B), // Lighter purple
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                child: Icon(
-                  icon,
-                  color: Colors.white,
-                  size: 20.sp,
-                ),
-              ),
-              SizedBox(width: 16.w),
-              Expanded(
-                child: Text(
+          Container(
+            padding: EdgeInsets.all(12.w),
+            decoration: BoxDecoration(
+              color: const Color(0xFF3B3B5B), // Lighter purple
+              borderRadius: BorderRadius.circular(12.r),
+            ),
+            child: Icon(icon, color: Colors.white, size: 20.sp),
+          ),
+          SizedBox(width: 16.w),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
                   title,
-                  style: GoogleFonts.manrope(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w700,
+                  style: GoogleFonts.inter(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
                 ),
-              ),
-            ],
+                content,
+              ],
+            ),
           ),
-          SizedBox(height: 16.h),
-          content,
         ],
       ),
     );
   }
+
+
+
 }

@@ -12,12 +12,12 @@ class PlayVideoView extends GetView<PlayVideoController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528),
+      backgroundColor: const Color(0xFF211134),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
-          padding: EdgeInsets.all(8.w),
+          padding: EdgeInsets.only(left: 20.w),
           child: Container(
             decoration: const BoxDecoration(
               color: Color(0xFF454565),
@@ -32,7 +32,7 @@ class PlayVideoView extends GetView<PlayVideoController> {
         ),
         title: Text(
           'Video Library',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 20.sp,
             fontWeight: FontWeight.w700,
             color: Colors.white,
@@ -43,7 +43,7 @@ class PlayVideoView extends GetView<PlayVideoController> {
             padding: EdgeInsets.only(right: 16.w),
             child: CircleAvatar(
               radius: 18.r,
-              backgroundImage: AssetImage(ImagePaths.onboardingImage),
+              backgroundImage: AssetImage(ImagePaths.dogProfileImage),
             ),
           ),
         ],
@@ -51,9 +51,10 @@ class PlayVideoView extends GetView<PlayVideoController> {
       ),
       body: Column(
         children: [
+          SizedBox(height: 10.h),
           _buildVideoPlayer(),
           Padding(
-            padding: EdgeInsets.all(24.w),
+            padding: EdgeInsets.all(20.w),
             child: _buildVideoDetailsCard(),
           ),
         ],
@@ -93,8 +94,8 @@ class PlayVideoView extends GetView<PlayVideoController> {
             child: Container(
               padding: EdgeInsets.all(8.w),
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(8.r),
+                color: Colors.white.withOpacity(0.15),
+                borderRadius: BorderRadius.circular(30.r),
               ),
               child: Icon(Icons.fullscreen, color: Colors.white, size: 20.sp),
             ),
@@ -176,18 +177,18 @@ class PlayVideoView extends GetView<PlayVideoController> {
 
   Widget _buildVideoDetailsCard() {
     return Container(
-      padding: EdgeInsets.all(24.w),
+      padding: EdgeInsets.all(10.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2843),
-        borderRadius: BorderRadius.circular(24.r),
-        border: Border.all(color: const Color(0xFF454565)),
+        color: const Color(0xFF372848),
+        borderRadius: BorderRadius.circular(20.r),
+        border: Border.all(color: const Color(0xFFFFFFFF).withOpacity(0.10)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             controller.video.title,
-            style: GoogleFonts.manrope(
+            style: GoogleFonts.inter(
               fontSize: 22.sp,
               fontWeight: FontWeight.w800,
               color: Colors.white,
@@ -196,14 +197,13 @@ class PlayVideoView extends GetView<PlayVideoController> {
           SizedBox(height: 12.h),
           Text(
             'Learn how to train your dog to sit using positive reinforcement techniques that build trust and focus.',
-            style: GoogleFonts.manrope(
-              fontSize: 14.sp,
+            style: GoogleFonts.inter(
+              fontSize: 18.sp,
               fontWeight: FontWeight.w400,
-              color: const Color(0xFFD7CEC8),
-              height: 1.5,
+              color: const Color(0xFFEDEDED),
             ),
           ),
-          SizedBox(height: 24.h),
+          SizedBox(height: 16.h),
           Row(
             children: [
               CircleAvatar(
@@ -214,28 +214,28 @@ class PlayVideoView extends GetView<PlayVideoController> {
               Text(
                 'By ${controller.video.trainerName}',
                 style: GoogleFonts.manrope(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                  color: const Color(0xFFD7CEC8),
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                  color: const Color(0xFFD9D9D9),
                 ),
               ),
               const Spacer(),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF53D49D).withOpacity(0.15),
-                  borderRadius: BorderRadius.circular(12.r),
+                  color: const Color(0xFF77DAA7),
+                  borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.access_time, color: const Color(0xFF53D49D), size: 16.sp),
+                    Icon(Icons.access_time, color: const Color(0xFF474554), size: 13.sp),
                     SizedBox(width: 6.w),
                     Text(
                       'Duration: ${controller.video.duration} min',
-                      style: GoogleFonts.manrope(
+                      style: GoogleFonts.inter(
                         fontSize: 12.sp,
-                        fontWeight: FontWeight.w700,
-                        color: const Color(0xFF53D49D),
+                        fontWeight: FontWeight.w500,
+                        color: const Color(0xFF474554),
                       ),
                     ),
                   ],
@@ -247,20 +247,20 @@ class PlayVideoView extends GetView<PlayVideoController> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
             decoration: BoxDecoration(
-              color: const Color(0xFF53D49D).withOpacity(0.2),
-              borderRadius: BorderRadius.circular(14.r),
+              color: const Color(0xFF77DAA7),
+              borderRadius: BorderRadius.circular(30.r),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.bar_chart, color: const Color(0xFF53D49D), size: 18.sp),
+                Icon(Icons.bar_chart, color: const Color(0xFF474554), size: 18.sp),
                 SizedBox(width: 8.w),
                 Text(
                   controller.video.category,
-                  style: GoogleFonts.manrope(
+                  style: GoogleFonts.inter(
                     fontSize: 14.sp,
-                    fontWeight: FontWeight.w700,
-                    color: const Color(0xFF53D49D),
+                    fontWeight: FontWeight.w500,
+                    color: const Color(0xFF474554),
                   ),
                 ),
               ],

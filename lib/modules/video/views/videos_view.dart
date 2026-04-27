@@ -14,12 +14,12 @@ class VideoView extends GetView<VideoController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528),
+      backgroundColor: const Color(0xFF211134),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
-          padding: EdgeInsets.all(8.w),
+          padding: EdgeInsets.only(left: 20.w),
           child: Container(
             decoration: const BoxDecoration(
               color: Color(0xFF454565),
@@ -34,7 +34,7 @@ class VideoView extends GetView<VideoController> {
         ),
         title: Text(
           'Video Library',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 20.sp,
             fontWeight: FontWeight.w700,
             color: Colors.white,
@@ -45,7 +45,7 @@ class VideoView extends GetView<VideoController> {
             padding: EdgeInsets.only(right: 16.w),
             child: CircleAvatar(
               radius: 18.r,
-              backgroundImage: AssetImage(ImagePaths.onboardingImage),
+              backgroundImage: AssetImage(ImagePaths.dogProfileImage),
             ),
           ),
         ],
@@ -54,18 +54,17 @@ class VideoView extends GetView<VideoController> {
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
             child: _buildSearchBar(),
           ),
           _buildFilterChips(),
-          SizedBox(height: 16.h),
           Expanded(
             child: Obx(() {
               final videos = controller.filteredVideos;
               return ListView.separated(
-                padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 24.h),
+                padding: EdgeInsets.only(left: 20.w, right: 20.w,top: 16.h, bottom: 40.h),
                 itemCount: videos.length,
-                separatorBuilder: (context, index) => SizedBox(height: 20.h),
+                separatorBuilder: (context, index) => SizedBox(height: 16.h),
                 itemBuilder: (context, index) {
                   return _buildVideoCard(videos[index]);
                 },
@@ -79,24 +78,23 @@ class VideoView extends GetView<VideoController> {
 
   Widget _buildSearchBar() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      height: 50.h,
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 0.h),
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2843).withOpacity(0.5),
+        color: const Color(0xFF2A2141),
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: const Color(0xFF454565)),
+        border: Border.all(color: const Color(0xFF4E8A6B)),
       ),
       child: Row(
         children: [
-          Icon(Icons.search, color: const Color(0xFF8B7882), size: 20.sp),
-          SizedBox(width: 12.w),
+          Icon(Icons.search, color: const Color(0xFFDBC4C4), size: 24.sp),
+          SizedBox(width: 10.w),
           Expanded(
             child: TextField(
               onChanged: controller.setSearch,
               style: GoogleFonts.manrope(color: Colors.white, fontSize: 14.sp),
               decoration: InputDecoration(
                 hintText: 'Search video...',
-                hintStyle: GoogleFonts.manrope(color: const Color(0xFF8B7882), fontSize: 14.sp),
+                hintStyle: GoogleFonts.manrope(color: const Color(0xFFDBC4C4), fontSize: 14.sp),
                 border: InputBorder.none,
               ),
             ),
@@ -121,20 +119,20 @@ class VideoView extends GetView<VideoController> {
                 onTap: () => controller.setCategory(category),
                 child: Container(
                   margin: EdgeInsets.only(right: 12.w),
-                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.r),
                     border: Border.all(
-                      color: isSelected ? Colors.transparent : AppTheme.teal2,
+                      color: isSelected ? Colors.transparent : Color(0xFF05C58D),
                     ),
                     gradient: isSelected ? AppTheme.secondaryGradient : null,
                   ),
                   child: Text(
                     category,
-                    style: GoogleFonts.manrope(
+                    style: GoogleFonts.inter(
                       fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                      color: isSelected ? Colors.white : AppTheme.teal2,
+                      fontWeight: FontWeight.w500,
+                      color: isSelected ? Colors.white : Color(0xFF05C58D),
                     ),
                   ),
                 ),
@@ -151,8 +149,11 @@ class VideoView extends GetView<VideoController> {
       onTap: () => Get.toNamed(AppRoutes.playVideoView, arguments: video),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFF2C2843),
+          color: const Color(0xFFC48FED).withValues(alpha: 0.25),
           borderRadius: BorderRadius.circular(20.r),
+          border: Border.all(
+            color: const Color(0xFFDBC7C7),
+          ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,7 +165,7 @@ class VideoView extends GetView<VideoController> {
                   child: Image.asset(
                     video.thumbnail,
                     width: double.infinity,
-                    height: 180.h,
+                    height: 200.h,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -174,14 +175,14 @@ class VideoView extends GetView<VideoController> {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                     decoration: BoxDecoration(
-                      color: AppTheme.teal2,
-                      borderRadius: BorderRadius.circular(8.r),
+                      color: Color(0xFF04C68C),
+                      borderRadius: BorderRadius.circular(30.r),
                     ),
                     child: Text(
                       video.category.toUpperCase(),
-                      style: GoogleFonts.manrope(
+                      style: GoogleFonts.inter(
                         fontSize: 10.sp,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),
                     ),
@@ -193,16 +194,16 @@ class VideoView extends GetView<VideoController> {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.6),
-                      borderRadius: BorderRadius.circular(6.r),
+                      color: Colors.black.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(28.r),
                     ),
                     child: Row(
                       children: [
-                        Icon(Icons.access_time, color: Colors.white, size: 12.sp),
+                        Icon(Icons.access_time, color: Colors.white, size: 16.sp),
                         SizedBox(width: 4.w),
                         Text(
                           video.duration,
-                          style: GoogleFonts.manrope(
+                          style: GoogleFonts.inter(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w700,
                             color: Colors.white,
@@ -221,8 +222,8 @@ class VideoView extends GetView<VideoController> {
                 children: [
                   Text(
                     video.title,
-                    style: GoogleFonts.manrope(
-                      fontSize: 18.sp,
+                    style: GoogleFonts.inter(
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
                     ),
@@ -230,10 +231,10 @@ class VideoView extends GetView<VideoController> {
                   SizedBox(height: 4.h),
                   Text(
                     video.description,
-                    style: GoogleFonts.manrope(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                      color: const Color(0xFFD7CEC8),
+                    style: GoogleFonts.inter(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xFFC9C9CC),
                     ),
                   ),
                 ],

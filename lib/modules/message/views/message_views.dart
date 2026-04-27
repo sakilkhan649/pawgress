@@ -12,7 +12,7 @@ class MessageViews extends GetView<MessageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528),
+      backgroundColor: const Color(0xFF211134),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -32,7 +32,7 @@ class MessageViews extends GetView<MessageController> {
         ),
         title: Text(
           'Messages',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 20.sp,
             fontWeight: FontWeight.w700,
             color: Colors.white,
@@ -40,10 +40,10 @@ class MessageViews extends GetView<MessageController> {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 16.w),
+            padding: EdgeInsets.only(right: 20.w),
             child: CircleAvatar(
               radius: 18.r,
-              backgroundImage: AssetImage(ImagePaths.onboardingImage),
+              backgroundImage: AssetImage(ImagePaths.massageProfileImage),
             ),
           ),
         ],
@@ -52,7 +52,7 @@ class MessageViews extends GetView<MessageController> {
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: _buildSearchBar(),
           ),
           Expanded(
@@ -73,12 +73,11 @@ class MessageViews extends GetView<MessageController> {
 
   Widget _buildSearchBar() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      height: 50.h,
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 0.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2843).withOpacity(0.5),
+        color: const Color(0xFF2A2141),
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: const Color(0xFF454565)),
+        border: Border.all(color: const Color(0xFF4E8A6B)),
       ),
       child: Row(
         children: [
@@ -89,7 +88,10 @@ class MessageViews extends GetView<MessageController> {
               style: GoogleFonts.manrope(color: Colors.white, fontSize: 14.sp),
               decoration: InputDecoration(
                 hintText: 'Search conversations...',
-                hintStyle: GoogleFonts.manrope(color: const Color(0xFF8B7882), fontSize: 14.sp),
+                hintStyle: GoogleFonts.manrope(
+                  color: const Color(0xFF8B7882),
+                  fontSize: 14.sp,
+                ),
                 border: InputBorder.none,
               ),
             ),
@@ -105,8 +107,9 @@ class MessageViews extends GetView<MessageController> {
       child: Container(
         padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
-          color: const Color(0xFF2C2843),
+          color: const Color(0xFF30264B),
           borderRadius: BorderRadius.circular(16.r),
+          border: Border.all(color: const Color(0xFF493A7C)),
         ),
         child: Row(
           children: [
@@ -114,7 +117,7 @@ class MessageViews extends GetView<MessageController> {
               children: [
                 CircleAvatar(
                   radius: 28.r,
-                  backgroundImage: AssetImage(ImagePaths.onboardingImage),
+                  backgroundImage: AssetImage(ImagePaths.massageProfileImage),
                 ),
                 if (conversation['isOnline'])
                   Positioned(
@@ -124,9 +127,12 @@ class MessageViews extends GetView<MessageController> {
                       width: 14.w,
                       height: 14.w,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF53D49D),
+                        color: const Color(0xFF82C4A8),
                         shape: BoxShape.circle,
-                        border: Border.all(color: const Color(0xFF2C2843), width: 2.w),
+                        border: Border.all(
+                          color: const Color(0xFFFFFFFF),
+                          width: 2.w,
+                        ),
                       ),
                     ),
                   ),
@@ -142,7 +148,7 @@ class MessageViews extends GetView<MessageController> {
                     children: [
                       Text(
                         conversation['name'],
-                        style: GoogleFonts.manrope(
+                        style: GoogleFonts.inter(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
                           color: Colors.white,
@@ -150,10 +156,10 @@ class MessageViews extends GetView<MessageController> {
                       ),
                       Text(
                         conversation['time'],
-                        style: GoogleFonts.manrope(
+                        style: GoogleFonts.inter(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w500,
-                          color: const Color(0xFF8B7882),
+                          color: const Color(0xFF9E9E9E),
                         ),
                       ),
                     ],
@@ -166,10 +172,10 @@ class MessageViews extends GetView<MessageController> {
                           conversation['lastMessage'],
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.manrope(
+                          style: GoogleFonts.inter(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w400,
-                            color: const Color(0xFFD7CEC8),
+                            color: const Color(0xFFC3BDBD),
                           ),
                         ),
                       ),
@@ -178,15 +184,15 @@ class MessageViews extends GetView<MessageController> {
                           margin: EdgeInsets.only(left: 8.w),
                           padding: EdgeInsets.all(6.w),
                           decoration: const BoxDecoration(
-                            color: Color(0xFF53D49D),
+                            color: Color(0xFF82C4A8),
                             shape: BoxShape.circle,
                           ),
                           child: Text(
                             conversation['unreadCount'].toString(),
-                            style: GoogleFonts.manrope(
+                            style: GoogleFonts.inter(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.w800,
-                              color: const Color(0xFF1E1528),
+                              color: const Color(0xFFFFFFFF),
                             ),
                           ),
                         ),

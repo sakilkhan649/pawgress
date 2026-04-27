@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../config/themes/app_theme.dart';
+import 'package:pawgress/config/themes/app_theme.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../controllers/contract_support_controller.dart';
 
@@ -13,7 +12,7 @@ class ContractSupportView extends GetView<ContractSupportController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528), // Background matches image
+      backgroundColor: const Color(0xFF221234), // Background matches image
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -33,8 +32,8 @@ class ContractSupportView extends GetView<ContractSupportController> {
         ),
         title: Text(
           'Contact Support',
-          style: GoogleFonts.manrope(
-            fontSize: 20.sp,
+          style: GoogleFonts.inter(
+            fontSize: 18.sp,
             fontWeight: FontWeight.w700,
             color: Colors.white,
           ),
@@ -42,24 +41,27 @@ class ContractSupportView extends GetView<ContractSupportController> {
         centerTitle: false,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Top Header Card
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 20.w),
+              padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 15.w),
               decoration: BoxDecoration(
                 color: const Color(0xFF2C2843), // Card background
                 borderRadius: BorderRadius.circular(16.r),
+                border: Border.all(
+                  color: const Color(0xFF4C4D4C),
+                ), // Slight border
               ),
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(16.w),
+                    padding: EdgeInsets.all(24.w),
                     decoration: const BoxDecoration(
-                      color: Color(0xFF454565), // Icon background
+                      color: Color(0xFF4B4765), // Icon background
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
@@ -68,11 +70,11 @@ class ContractSupportView extends GetView<ContractSupportController> {
                       size: 32.sp,
                     ),
                   ),
-                  SizedBox(height: 16.h),
+                  SizedBox(height: 29.h),
                   Text(
                     'Email Support',
-                    style: GoogleFonts.manrope(
-                      fontSize: 20.sp,
+                    style: GoogleFonts.inter(
+                      fontSize: 24.sp,
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
                     ),
@@ -81,10 +83,10 @@ class ContractSupportView extends GetView<ContractSupportController> {
                   Text(
                     'Need help? Send us a message and our support\nteam will get back to you shortly.',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.manrope(
-                      fontSize: 13.sp,
+                    style: GoogleFonts.inter(
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w400,
-                      color: const Color(0xFFD7CEC8),
+                      color: Color(0xFFFFFFFF),
                       height: 1.5,
                     ),
                   ),
@@ -99,7 +101,9 @@ class ContractSupportView extends GetView<ContractSupportController> {
               decoration: BoxDecoration(
                 color: const Color(0xFF2C2843), // Card background
                 borderRadius: BorderRadius.circular(16.r),
-                border: Border.all(color: const Color(0xFF454565)), // Slight border
+                border: Border.all(
+                  color: const Color(0xFF4C4D4C),
+                ), // Slight border
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,7 +113,7 @@ class ContractSupportView extends GetView<ContractSupportController> {
                     hintText: 'Type...',
                     controller: controller.subjectController,
                   ),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 30.h),
                   _buildField(
                     label: 'Your Email',
                     hintText: 'john.doe@email.com',
@@ -131,10 +135,9 @@ class ContractSupportView extends GetView<ContractSupportController> {
             // Attachments Section
             Text(
               'ATTACHMENTS',
-              style: GoogleFonts.manrope(
+              style: GoogleFonts.inter(
                 fontSize: 12.sp,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 1.2,
+                fontWeight: FontWeight.w700,
                 color: Colors.white,
               ),
             ),
@@ -146,29 +149,27 @@ class ContractSupportView extends GetView<ContractSupportController> {
                 color: const Color(0xFF2C2843), // Card background
                 borderRadius: BorderRadius.circular(12.r),
                 border: Border.all(
-                  color: const Color(0xFF454565),
-                  style: BorderStyle.solid, // Using solid border as fallback for dashed
+                  color: const Color(0xFF4C4D4C), // Slight border
                 ),
               ),
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(8.w),
-                    decoration: const BoxDecoration(
+                    padding: EdgeInsets.all(20.w),
+                    decoration: BoxDecoration(
                       color: Color(0xFF454565),
                       shape: BoxShape.circle,
+                      border: Border.all(
+                        color: const Color(0xFF4C4D4C),
+                      ), // Slight border
                     ),
-                    child: Icon(
-                      Icons.add,
-                      color: Colors.white,
-                      size: 20.sp,
-                    ),
+                    child: Icon(Icons.add, color: Colors.white, size: 20.sp),
                   ),
                   SizedBox(height: 12.h),
                   Text(
                     'Upload photos or screenshots (Optional)',
-                    style: GoogleFonts.manrope(
-                      fontSize: 13.sp,
+                    style: GoogleFonts.inter(
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
                     ),
@@ -186,7 +187,7 @@ class ContractSupportView extends GetView<ContractSupportController> {
               },
               gradient: AppTheme.secondaryGradient, // Green to blue gradient
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 100.h),
           ],
         ),
       ),
@@ -206,7 +207,7 @@ class ContractSupportView extends GetView<ContractSupportController> {
         Text(
           label,
           style: GoogleFonts.manrope(
-            fontSize: 13.sp,
+            fontSize: 14.sp,
             fontWeight: FontWeight.w500,
             color: Colors.white,
           ),
@@ -216,6 +217,7 @@ class ContractSupportView extends GetView<ContractSupportController> {
           decoration: BoxDecoration(
             color: const Color(0xFF454565), // Inner field background
             borderRadius: BorderRadius.circular(8.r),
+            border: Border.all(color: const Color(0xFF4C4D4C)), // Slight border
           ),
           child: TextFormField(
             controller: controller,
@@ -233,7 +235,10 @@ class ContractSupportView extends GetView<ContractSupportController> {
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD7CEC8),
               ),
-              contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 16.w,
+                vertical: 14.h,
+              ),
               border: InputBorder.none,
             ),
           ),

@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pawgress/config/routes/app_pages.dart';
-
-import '../../../config/themes/app_theme.dart';
 import '../controllers/support_controller.dart';
 
 class SupportView extends GetView<SupportController> {
@@ -13,7 +11,7 @@ class SupportView extends GetView<SupportController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528), // Background matches image
+      backgroundColor: const Color(0xFF221234), // Background matches image
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -33,7 +31,7 @@ class SupportView extends GetView<SupportController> {
         ),
         title: Text(
           'Support',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 20.sp,
             fontWeight: FontWeight.w700,
             color: Colors.white,
@@ -42,19 +40,19 @@ class SupportView extends GetView<SupportController> {
         centerTitle: false,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 50.h),
         child: Container(
           decoration: BoxDecoration(
-            color: const Color(0xFF2C2843), // Card background
+            color: const Color(0xFF382948), // Card background
             borderRadius: BorderRadius.circular(16.r),
-            border: Border.all(color: const Color(0xFF454565)), // Slight border
+            border: Border.all(color: const Color(0xFF2A9483).withValues(alpha: 0.40)), // Slight border
           ),
           child: ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+            contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
             leading: Container(
-              padding: EdgeInsets.all(12.w),
-              decoration: const BoxDecoration(
-                color: Color(0xFF454565), // Icon background
+              padding: EdgeInsets.all(14.w),
+              decoration: BoxDecoration(
+                color: Color(0xFFF2F4F6).withValues(alpha: 0.20), // Icon background
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -65,9 +63,9 @@ class SupportView extends GetView<SupportController> {
             ),
             title: Text(
               'Email Support',
-              style: GoogleFonts.manrope(
+              style: GoogleFonts.inter(
                 fontSize: 16.sp,
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w600,
                 color: Colors.white,
               ),
             ),
@@ -75,17 +73,17 @@ class SupportView extends GetView<SupportController> {
               padding: EdgeInsets.only(top: 4.h),
               child: Text(
                 'support@petcareapp.com',
-                style: GoogleFonts.manrope(
+                style: GoogleFonts.inter(
                   fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                  color: AppTheme.teal2,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF01D086),
                 ),
               ),
             ),
             trailing: Icon(
               Icons.chevron_right_rounded,
-              color: AppTheme.greyBrown,
-              size: 24.sp,
+              color: Color(0xFF6E7A71),
+              size: 28.sp,
             ),
             onTap: () {
               Get.toNamed(AppRoutes.contractSupportView);

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+/// ================= CONTROLLER =================
 class BottomNabBarController extends GetxController {
   var currentIndex = 0.obs;
 

@@ -3,15 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../config/constants/image_paths.dart';
-import '../../../config/themes/app_theme.dart';
-import '../../home/views/home_view.dart';
-import '../../lessons/views/lessons_view.dart';
-import '../../profile/views/profile_view.dart';
-import '../../progress/views/progress_view.dart';
-import '../../schedule/views/schedule_view.dart';
-import '../controllers/bottom_nab_bar_controller.dart';
+import 'package:pawgress/config/constants/image_paths.dart';
+import 'package:pawgress/config/themes/app_theme.dart';
+import 'package:pawgress/modules/home/views/home_view.dart';
+import 'package:pawgress/modules/lessons/views/lessons_view.dart';
+import 'package:pawgress/modules/profile/views/profile_view.dart';
+import 'package:pawgress/modules/progress/views/progress_view.dart';
+import 'package:pawgress/modules/schedule/views/schedule_view.dart';
+import 'package:pawgress/modules/bottom_nab_bar/controllers/bottom_nab_bar_controller.dart';
 
+/// ================= MAIN VIEW =================
 class BottomNabBarView extends GetView<BottomNabBarController> {
   const BottomNabBarView({super.key});
 
@@ -36,15 +37,32 @@ class BottomNabBarView extends GetView<BottomNabBarController> {
   }
 }
 
+/// ================= NAV MODEL =================
+class _NavItem {
+  final String label;
+  final String iconPath;
+
+  _NavItem(this.label, this.iconPath);
+}
+
+/// ================= CUSTOM BOTTOM BAR =================
 class CustomBottomBar extends GetView<BottomNabBarController> {
   const CustomBottomBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final items = [
+      _NavItem("HOME", ImagePaths.homeIcon),
+      _NavItem("LESSONS", ImagePaths.lessonsIcon),
+      _NavItem("PROGRESS", ImagePaths.progressIcon),
+      _NavItem("SCHEDULE", ImagePaths.scheduleIcon),
+      _NavItem("PROFILE", ImagePaths.profileIcon),
+    ];
+
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 8.w),
+      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 6.w),
       decoration: BoxDecoration(
-        color: Color(0xFF211134),
+        color: const Color(0xFF211134),
         borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
         border: Border(
           top: BorderSide(
@@ -55,54 +73,62 @@ class CustomBottomBar extends GetView<BottomNabBarController> {
       ),
       child: SafeArea(
         top: false,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _buildNavItem(0, ImagePaths.homeIcon, 'HOME'),
-            _buildNavItem(1, ImagePaths.lessonsIcon, 'LESSONS'),
-            _buildNavItem(2, ImagePaths.progressIcon, 'PROGRESS'),
-            _buildNavItem(3, ImagePaths.scheduleIcon, 'SCHEDULE'),
-            _buildNavItem(4, ImagePaths.profileIcon, 'PROFILE'),
-          ],
+        child: Obx(
+          () => Row(
+            children: List.generate(items.length, (index) {
+              final isSelected = controller.currentIndex.value == index;
+              final color = isSelected ? AppTheme.teal2 : Colors.grey;
+
+              return Expanded(
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () => controller.changePage(index),
+                    borderRadius: BorderRadius.circular(12.r),
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
+                      decoration: BoxDecoration(
+                        color: isSelected
+                            ? Colors.transparent
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(12.r),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          /// ICON
+                          SvgPicture.asset(
+                            items[index].iconPath,
+                            width: 24.w,
+                            height: 24.w,
+                            colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+                          ),
+                          SizedBox(height: 4.h),
+
+                          /// TEXT
+                          Text(
+                            items[index].label,
+                            style: GoogleFonts.inter(
+                              fontSize: 10.sp,
+                              fontWeight: isSelected
+                                  ? FontWeight.w700
+                                  : FontWeight.w500,
+                              color: color,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            }),
+          ),
         ),
       ),
     );
-  }
-
-  Widget _buildNavItem(int index, String iconPath, String label) {
-    return Obx(() {
-      final isSelected = controller.currentIndex.value == index;
-      final color = isSelected ? AppTheme.teal2 : AppTheme.greyBrown;
-
-      return GestureDetector(
-        onTap: () => controller.changePage(index),
-        behavior: HitTestBehavior.opaque,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SvgPicture.asset(
-                iconPath,
-                width: 24.w,
-                height: 24.w,
-                colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-              ),
-              SizedBox(height: 4.h),
-              Text(
-                label,
-                style: GoogleFonts.inter(
-                  color: color,
-                  fontSize: 10.sp,
-                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                  letterSpacing: 0.5,
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    });
   }
 }

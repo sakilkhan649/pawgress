@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../config/constants/image_paths.dart';
 import '../../../config/themes/app_theme.dart';
 import '../controllers/book_training_controller.dart';
@@ -98,7 +97,7 @@ class BookTrainingView extends GetView<BookTrainingController> {
 
   Widget _buildTrainerList() {
     return SizedBox(
-      height: 100.h,
+      height: 130.h,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: controller.trainers.length,
@@ -115,7 +114,9 @@ class BookTrainingView extends GetView<BookTrainingController> {
                     padding: EdgeInsets.all(isSelected ? 3.w : 0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: isSelected ? Border.all(color: AppTheme.teal2, width: 2.w) : null,
+                      border: isSelected
+                          ? Border.all(color: AppTheme.teal2, width: 2.w)
+                          : null,
                     ),
                     child: CircleAvatar(
                       radius: 30.r,
@@ -125,7 +126,7 @@ class BookTrainingView extends GetView<BookTrainingController> {
                   SizedBox(height: 8.h),
                   Text(
                     trainer['name']!,
-                    style: GoogleFonts.manrope(
+                    style: GoogleFonts.inter(
                       fontSize: 14.sp,
                       fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                       color: isSelected ? AppTheme.teal2 : const Color(0xFF8B7882),

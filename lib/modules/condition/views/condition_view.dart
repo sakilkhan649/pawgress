@@ -17,9 +17,19 @@ class ConditionView extends GetView<ConditionController> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white, size: 24.sp),
-          onPressed: () => Get.back(),
+        leading: Padding(
+          padding: EdgeInsets.only(left: 20.w),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Color(0xFF454565), // Greyish purple
+              shape: BoxShape.circle,
+            ),
+            child: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
+              onPressed: () => Get.back(),
+              padding: EdgeInsets.zero,
+            ),
+          ),
         ),
         title: Text(
           'Terms & Conditions',

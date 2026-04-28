@@ -19,6 +19,24 @@ class ScheduleView extends GetView<ScheduleController> {
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         elevation: 0,
+        leading:
+            (Get.arguments is Map && Get.arguments['showBackButton'] == true)
+            ? Container(
+                margin: EdgeInsets.only(left: 20.w),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: const Color(0xFF4D405C), width: 1),
+                ),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                    size: 20.sp,
+                  ),
+                  onPressed: () => Get.back(),
+                ),
+              )
+            : null,
         title: Text(
           'Schedule',
           style: GoogleFonts.inter(
@@ -76,7 +94,8 @@ class ScheduleView extends GetView<ScheduleController> {
               firstDay: DateTime.utc(2020, 1, 1),
               lastDay: DateTime.utc(2030, 12, 31),
               focusedDay: controller.focusedDay.value,
-              selectedDayPredicate: (day) => isSameDay(controller.selectedDay.value, day),
+              selectedDayPredicate: (day) =>
+                  isSameDay(controller.selectedDay.value, day),
               onDaySelected: controller.onDaySelected,
               calendarFormat: CalendarFormat.month,
               headerStyle: HeaderStyle(
@@ -87,12 +106,28 @@ class ScheduleView extends GetView<ScheduleController> {
                   fontWeight: FontWeight.w700,
                   color: Color(0xFFE5E2E1),
                 ),
-                leftChevronIcon: Icon(Icons.chevron_left, color: Color(0xFFE5E2E1), size: 24.sp),
-                rightChevronIcon: Icon(Icons.chevron_right, color: Color(0xFFE5E2E1), size: 24.sp),
+                leftChevronIcon: Icon(
+                  Icons.chevron_left,
+                  color: Color(0xFFE5E2E1),
+                  size: 24.sp,
+                ),
+                rightChevronIcon: Icon(
+                  Icons.chevron_right,
+                  color: Color(0xFFE5E2E1),
+                  size: 24.sp,
+                ),
               ),
               daysOfWeekStyle: DaysOfWeekStyle(
-                weekdayStyle: GoogleFonts.manrope(color: const Color(0xFF8B7882),fontSize: 12.sp, fontWeight: FontWeight.w600),
-                weekendStyle: GoogleFonts.manrope(color: const Color(0xFF8B7882),fontSize: 12.sp, fontWeight: FontWeight.w600),
+                weekdayStyle: GoogleFonts.manrope(
+                  color: const Color(0xFF8B7882),
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+                weekendStyle: GoogleFonts.manrope(
+                  color: const Color(0xFF8B7882),
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               calendarStyle: CalendarStyle(
                 todayDecoration: BoxDecoration(
@@ -105,7 +140,9 @@ class ScheduleView extends GetView<ScheduleController> {
                 ),
                 defaultTextStyle: GoogleFonts.manrope(color: Colors.white),
                 weekendTextStyle: GoogleFonts.manrope(color: Colors.white),
-                outsideTextStyle: GoogleFonts.manrope(color: const Color(0xFF454565)),
+                outsideTextStyle: GoogleFonts.manrope(
+                  color: const Color(0xFF454565),
+                ),
                 markersMaxCount: 1,
                 markerDecoration: BoxDecoration(
                   color: AppTheme.teal2,
@@ -136,7 +173,9 @@ class ScheduleView extends GetView<ScheduleController> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent,
                 shadowColor: Colors.transparent,
-                shape: RoundedRectangleHeader(borderRadius: BorderRadius.circular(16.r)),
+                shape: RoundedRectangleHeader(
+                  borderRadius: BorderRadius.circular(16.r),
+                ),
               ),
               child: Text(
                 'Book New Session',
@@ -178,7 +217,10 @@ class ScheduleView extends GetView<ScheduleController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10.w,
+                    vertical: 4.h,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(20.r),
@@ -205,7 +247,11 @@ class ScheduleView extends GetView<ScheduleController> {
                 SizedBox(height: 8.h),
                 Row(
                   children: [
-                    Icon(Icons.calendar_today_outlined, color: const Color(0xFFC0BAB5), size: 14.sp),
+                    Icon(
+                      Icons.calendar_today_outlined,
+                      color: const Color(0xFFC0BAB5),
+                      size: 14.sp,
+                    ),
                     SizedBox(width: 4.w),
                     Text(
                       session['date'],
@@ -216,7 +262,11 @@ class ScheduleView extends GetView<ScheduleController> {
                       ),
                     ),
                     SizedBox(width: 16.w),
-                    Icon(Icons.access_time, color: const Color(0xFFC0BAB5), size: 14.sp),
+                    Icon(
+                      Icons.access_time,
+                      color: const Color(0xFFC0BAB5),
+                      size: 14.sp,
+                    ),
                     SizedBox(width: 4.w),
                     Text(
                       session['time'],

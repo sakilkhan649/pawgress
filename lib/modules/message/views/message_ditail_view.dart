@@ -17,7 +17,7 @@ class MessageDitailView extends GetView<MessageDitailController> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
-          padding: EdgeInsets.all(8.w),
+          padding: EdgeInsets.only(left: 20.w),
           child: Container(
             decoration: const BoxDecoration(
               color: Color(0xFF454565),

@@ -18,6 +18,7 @@ class ImagePaths {
   static const String documentSendSmsIcon = "assets/icons/document_send_sms_icon.svg";
   static const String completeIcon = "assets/icons/complete_icon.svg";
   static const String hoursIcon = "assets/icons/hours_icon.svg";
+  static const String downloadIcon = "assets/icons/download_icon.svg";
 
   ///<======================Images =======================>
   static const String onboardingImage = "assets/images/dog_image.png";

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../config/constants/image_paths.dart';
 import '../../../config/themes/app_theme.dart';
 import '../controllers/homework_controller.dart';
@@ -13,12 +13,12 @@ class HomeworkView extends GetView<HomeworkController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528),
+      backgroundColor: const Color(0xFF211134),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
-          padding: EdgeInsets.all(8.w),
+          padding: EdgeInsets.only(left: 20.w),
           child: Container(
             decoration: const BoxDecoration(
               color: Color(0xFF454565),
@@ -33,7 +33,7 @@ class HomeworkView extends GetView<HomeworkController> {
         ),
         title: Text(
           'Homework Materials',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 20.sp,
             fontWeight: FontWeight.w700,
             color: Colors.white,
@@ -41,17 +41,17 @@ class HomeworkView extends GetView<HomeworkController> {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 16.w),
+            padding: EdgeInsets.only(right: 20.w),
             child: CircleAvatar(
               radius: 18.r,
-              backgroundImage: AssetImage(ImagePaths.onboardingImage),
+              backgroundImage: AssetImage(ImagePaths.dogProfileImage),
             ),
           ),
         ],
         centerTitle: false,
       ),
       body: ListView.separated(
-        padding: EdgeInsets.all(24.w),
+        padding: EdgeInsets.all(20.w),
         itemCount: controller.homeworks.length,
         separatorBuilder: (context, index) => SizedBox(height: 20.h),
         itemBuilder: (context, index) {
@@ -66,9 +66,9 @@ class HomeworkView extends GetView<HomeworkController> {
     return Container(
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2843),
+        color: const Color(0xFF372848),
         borderRadius: BorderRadius.circular(24.r),
-        border: Border.all(color: const Color(0xFF454565).withOpacity(0.5)),
+        border: Border.all(color: const Color(0xFF827272)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,12 +80,16 @@ class HomeworkView extends GetView<HomeworkController> {
                 width: 50.w,
                 height: 50.w,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF454565).withOpacity(0.5),
+                  color: const Color(0xFF62536F),
                   borderRadius: BorderRadius.circular(14.r),
                 ),
                 child: Icon(
-                  homework['isImportant'] ? Icons.assignment_outlined : Icons.description_outlined,
-                  color: homework['isImportant'] ? Colors.redAccent : Colors.white,
+                  homework['isImportant']
+                      ? Icons.assignment_outlined
+                      : Icons.description_outlined,
+                  color: homework['isImportant']
+                      ? Colors.redAccent
+                      : Colors.white,
                   size: 24.sp,
                 ),
               ),
@@ -96,38 +100,39 @@ class HomeworkView extends GetView<HomeworkController> {
                   children: [
                     Text(
                       homework['title'],
-                      style: GoogleFonts.manrope(
+                      style: GoogleFonts.inter(
                         fontSize: 18.sp,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),
                     ),
                     SizedBox(height: 4.h),
                     Text(
                       homework['description'],
-                      style: GoogleFonts.manrope(
+                      style: GoogleFonts.inter(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
-                        color: const Color(0xFF8B7882),
+                        color: const Color(0xFFC9CACE),
                       ),
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
               ),
               if (homework['isNew'])
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF53D49D).withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(6.r),
-                    border: Border.all(color: const Color(0xFF53D49D).withOpacity(0.5)),
+                    color: const Color(0xFF5D4E6A),
+                    borderRadius: BorderRadius.circular(20.r),
                   ),
                   child: Text(
                     'NEW',
-                    style: GoogleFonts.manrope(
+                    style: GoogleFonts.inter(
                       fontSize: 10.sp,
-                      fontWeight: FontWeight.w800,
-                      color: const Color(0xFF53D49D),
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xFF01F06E),
                     ),
                   ),
                 ),
@@ -136,10 +141,10 @@ class HomeworkView extends GetView<HomeworkController> {
           SizedBox(height: 16.h),
           Text(
             '${homework['date']}  •  ${homework['pages']}  •  ${homework['size']}',
-            style: GoogleFonts.manrope(
+            style: GoogleFonts.inter(
               fontSize: 12.sp,
-              fontWeight: FontWeight.w600,
-              color: const Color(0xFF8B7882),
+              fontWeight: FontWeight.w500,
+              color: const Color(0xFFD1D8E9),
             ),
           ),
           SizedBox(height: 20.h),
@@ -147,30 +152,37 @@ class HomeworkView extends GetView<HomeworkController> {
             children: [
               Expanded(
                 child: Container(
-                  height: 48.h,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 15.w,
+                    vertical: 12.h,
+                  ),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF53D49D),
+                    color: const Color(0xFF77DAA7),
                     borderRadius: BorderRadius.circular(30.r),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFF53D49D).withOpacity(0.2),
+                        color: const Color(0xFF77DAA7).withOpacity(0.2),
                         blurRadius: 15,
                         offset: const Offset(0, 5),
-                      )
+                      ),
                     ],
                   ),
                   child: Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.visibility_outlined, color: const Color(0xFF1E1528), size: 20.sp),
+                        Icon(
+                          Icons.visibility_outlined,
+                          color: const Color(0xFF007146),
+                          size: 20.sp,
+                        ),
                         SizedBox(width: 8.w),
                         Text(
                           'View',
-                          style: GoogleFonts.manrope(
+                          style: GoogleFonts.inter(
                             fontSize: 16.sp,
-                            fontWeight: FontWeight.w800,
-                            color: const Color(0xFF1E1528),
+                            fontWeight: FontWeight.w700,
+                            color: const Color(0xFF007146),
                           ),
                         ),
                       ],
@@ -184,9 +196,17 @@ class HomeworkView extends GetView<HomeworkController> {
                 height: 48.h,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white, width: 1.5.w),
+                  border: Border.all(color: Colors.white, width: 2.w),
                 ),
-                child: Icon(Icons.download_outlined, color: Colors.white, size: 22.sp),
+                child: Center(
+                  child: SvgPicture.asset(
+                    ImagePaths.downloadIcon,
+                    colorFilter: const ColorFilter.mode(
+                      Colors.white,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

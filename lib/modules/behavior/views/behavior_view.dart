@@ -14,12 +14,12 @@ class BehaviorView extends GetView<BehaviorController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1528),
+      backgroundColor: const Color(0xFF211134),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
-          padding: EdgeInsets.all(8.w),
+          padding: EdgeInsets.only(left: 20.w),
           child: Container(
             decoration: const BoxDecoration(
               color: Color(0xFF454565),
@@ -34,7 +34,7 @@ class BehaviorView extends GetView<BehaviorController> {
         ),
         title: Text(
           'Behavior Tracking',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 20.sp,
             fontWeight: FontWeight.w700,
             color: Colors.white,
@@ -42,17 +42,17 @@ class BehaviorView extends GetView<BehaviorController> {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 16.w),
+            padding: EdgeInsets.only(right: 20.w),
             child: CircleAvatar(
               radius: 18.r,
-              backgroundImage: AssetImage(ImagePaths.onboardingImage),
+              backgroundImage: AssetImage(ImagePaths.dogProfileImage),
             ),
           ),
         ],
         centerTitle: false,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(24.w),
+        padding: EdgeInsets.all(20.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -70,7 +70,7 @@ class BehaviorView extends GetView<BehaviorController> {
             SizedBox(height: 16.h),
             _buildNotesField(),
             SizedBox(height: 32.h),
-            _buildSaveButton(),
+            _buildSaveButton('Save Log', () {}),
             SizedBox(height: 40.h),
             _buildRecentLogsSection(),
           ],
@@ -85,36 +85,36 @@ class BehaviorView extends GetView<BehaviorController> {
       child: Container(
         padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
-          color: const Color(0xFF2C2843),
+          color: const Color(0xFF372848),
           borderRadius: BorderRadius.circular(16.r),
-          border: Border.all(color: const Color(0xFF454565)),
+          border: Border.all(color: const Color(0xFF01551F).withValues(alpha: 0.80)),
         ),
         child: Row(
           children: [
             Container(
               padding: EdgeInsets.all(10.w),
               decoration: BoxDecoration(
-                color: const Color(0xFF454565).withOpacity(0.3),
+                border: Border.all(color: const Color(0xFF01551F).withValues(alpha: 0.10)),
                 borderRadius: BorderRadius.circular(10.r),
               ),
-              child: Icon(Icons.calendar_today, color: AppTheme.teal2, size: 20.sp),
+              child: Icon(Icons.calendar_today, color: Color(0xFF10B981), size: 20.sp),
             ),
             SizedBox(width: 16.w),
             Obx(() => Text(
                   DateFormat('d/M/yyyy').format(controller.selectedDate.value),
-                  style: GoogleFonts.manrope(
+                  style: GoogleFonts.inter(
                     fontSize: 16.sp,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
                 )),
             const Spacer(),
             Text(
               'Change Date',
-              style: GoogleFonts.manrope(
+              style: GoogleFonts.inter(
                 fontSize: 14.sp,
-                fontWeight: FontWeight.w600,
-                color: const Color(0xFF8B7882),
+                fontWeight: FontWeight.w500,
+                color: Color(0xFF10B981),
               ),
             ),
           ],
@@ -127,7 +127,7 @@ class BehaviorView extends GetView<BehaviorController> {
     showDialog(
       context: context,
       builder: (context) => Dialog(
-        backgroundColor: const Color(0xFF2C2843),
+        backgroundColor: const Color(0xFF403057),
         insetPadding: EdgeInsets.symmetric(horizontal: 24.w),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
         child: Padding(
@@ -159,43 +159,43 @@ class BehaviorView extends GetView<BehaviorController> {
                       titleCentered: false,
                       leftChevronVisible: true,
                       rightChevronVisible: true,
-                      leftChevronIcon: Icon(Icons.chevron_left, color: const Color(0xFF8B7882), size: 20.sp),
-                      rightChevronIcon: Icon(Icons.chevron_right, color: const Color(0xFF8B7882), size: 20.sp),
-                      titleTextStyle: GoogleFonts.manrope(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w800,
+                      leftChevronIcon: Icon(Icons.chevron_left, color: const Color(0xFF8B7882), size: 24.sp),
+                      rightChevronIcon: Icon(Icons.chevron_right, color: const Color(0xFF8B7882), size: 24.sp),
+                      titleTextStyle: GoogleFonts.inter(
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),
-                      headerPadding: EdgeInsets.zero,
+                      headerPadding: EdgeInsets.only(bottom: 24.h),
                       leftChevronPadding: EdgeInsets.zero,
                       rightChevronPadding: EdgeInsets.zero,
                       titleTextFormatter: (date, locale) => DateFormat.yMMMM(locale).format(date),
                     ),
                     calendarStyle: CalendarStyle(
-                      defaultTextStyle: GoogleFonts.manrope(
+                      defaultTextStyle: GoogleFonts.inter(
                         color: Colors.white,
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
                       ),
-                      weekendTextStyle: GoogleFonts.manrope(
+                      weekendTextStyle: GoogleFonts.inter(
                         color: Colors.white,
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
                       ),
-                      outsideTextStyle: GoogleFonts.manrope(
-                        color: const Color(0xFF454565),
+                      outsideTextStyle: GoogleFonts.inter(
+                        color: const Color(0xFF8B7882).withValues(alpha: 0.5),
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
                       ),
-                      selectedTextStyle: GoogleFonts.manrope(
+                      selectedTextStyle: GoogleFonts.inter(
                         color: Colors.white,
                         fontSize: 16.sp,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w700,
                       ),
-                      todayTextStyle: GoogleFonts.manrope(
+                      todayTextStyle: GoogleFonts.inter(
                         color: Colors.white,
                         fontSize: 16.sp,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w700,
                       ),
                       selectedDecoration: const BoxDecoration(
                         color: Colors.transparent,
@@ -213,15 +213,15 @@ class BehaviorView extends GetView<BehaviorController> {
                     ),
                     daysOfWeekStyle: DaysOfWeekStyle(
                       dowTextFormatter: (date, locale) => DateFormat.E(locale).format(date)[0],
-                      weekdayStyle: GoogleFonts.manrope(
+                      weekdayStyle: GoogleFonts.inter(
                         color: const Color(0xFF8B7882),
                         fontSize: 14.sp,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w700,
                       ),
-                      weekendStyle: GoogleFonts.manrope(
+                      weekendStyle: GoogleFonts.inter(
                         color: const Color(0xFF8B7882),
                         fontSize: 14.sp,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     eventLoader: (day) {
@@ -235,7 +235,7 @@ class BehaviorView extends GetView<BehaviorController> {
                       markerBuilder: (context, date, events) {
                         if (events.isNotEmpty) {
                           return Positioned(
-                            bottom: 1,
+                            bottom: 6.h,
                             child: Container(
                               width: 4.w,
                               height: 4.w,
@@ -257,21 +257,24 @@ class BehaviorView extends GetView<BehaviorController> {
     );
   }
 
-  Widget _buildSectionHeader(String title, {bool showInfo = false}) {
-    return Row(
+  Widget _buildSectionHeader(String title, {bool showInfo = false, VoidCallback? onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           title,
-          style: GoogleFonts.manrope(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w800,
+          style: GoogleFonts.inter(
+            fontSize: 18.sp,
+            fontWeight: FontWeight.w600,
             color: Colors.white,
           ),
         ),
         if (showInfo)
-          Icon(Icons.info_outline, color: const Color(0xFF53D49D).withOpacity(0.5), size: 20.sp),
+          Icon(Icons.info_outline, color: const Color(0xFF006E2C), size: 24.sp),
       ],
+    ),
     );
   }
 
@@ -286,12 +289,12 @@ class BehaviorView extends GetView<BehaviorController> {
             onTap: () => controller.selectFeeling(feeling['name']),
             child: Container(
               width: 100.w,
-              padding: EdgeInsets.symmetric(vertical: 16.h),
+              padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 2.w),
               decoration: BoxDecoration(
-                color: isSelected ? const Color(0xFFE8F5E9).withOpacity(0.9) : Colors.transparent,
+                color: isSelected ? const Color(0xFFF2F6E3) : Color(0xFF372848),
                 borderRadius: BorderRadius.circular(20.r),
                 border: Border.all(
-                  color: isSelected ? Colors.transparent : const Color(0xFF454565),
+                  color: isSelected ? Color(0xFF372848) : const Color(0xFFF2F6E3).withValues(alpha: 0.60),
                   width: 1.5.w,
                 ),
               ),
@@ -305,10 +308,10 @@ class BehaviorView extends GetView<BehaviorController> {
                   SizedBox(height: 8.h),
                   Text(
                     feeling['name'],
-                    style: GoogleFonts.manrope(
+                    style: GoogleFonts.inter(
                       fontSize: 14.sp,
-                      fontWeight: FontWeight.w700,
-                      color: isSelected ? const Color(0xFF1B5E20) : const Color(0xFFD7CEC8),
+                      fontWeight: FontWeight.w600,
+                      color: isSelected ? const Color(0xFF065F46) : const Color(0xFFE5FFE5),
                     ),
                   ),
                 ],
@@ -330,17 +333,17 @@ class BehaviorView extends GetView<BehaviorController> {
           return GestureDetector(
             onTap: () => controller.toggleTag(tag),
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
               decoration: BoxDecoration(
-                color: isSelected ? const Color(0xFF53D49D) : const Color(0xFF454565),
+                color: isSelected ? const Color(0xFF1FD761) : const Color(0xFF827B8D),
                 borderRadius: BorderRadius.circular(30.r),
               ),
               child: Text(
                 tag,
-                style: GoogleFonts.manrope(
-                  fontSize: 13.sp,
+                style: GoogleFonts.inter(
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
-                  color: isSelected ? const Color(0xFF1E1528) : Colors.white,
+                  color: isSelected ? const Color(0xFF000000) : Colors.white,
                 ),
               ),
             ),
@@ -353,9 +356,9 @@ class BehaviorView extends GetView<BehaviorController> {
   Widget _buildNotesField() {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2843),
+        color: const Color(0xFF372848),
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: const Color(0xFF454565)),
+        border: Border.all(color: const Color(0xFF827272)),
       ),
       child: TextField(
         maxLines: 4,
@@ -370,34 +373,23 @@ class BehaviorView extends GetView<BehaviorController> {
     );
   }
 
-  Widget _buildSaveButton() {
-    return Container(
-      width: double.infinity,
-      height: 56.h,
-      decoration: BoxDecoration(
-        gradient: AppTheme.secondaryGradient,
-        borderRadius: BorderRadius.circular(12.r),
-        boxShadow: [
-          BoxShadow(
-            color: AppTheme.teal2.withOpacity(0.3),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-          )
-        ],
-      ),
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
+  Widget _buildSaveButton(String text, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(vertical: 12.h,horizontal: 20.w),
+        decoration: BoxDecoration(
+          gradient: AppTheme.secondaryGradient,
+          borderRadius: BorderRadius.circular(12.r),
         ),
         child: Text(
-          'Save Log',
-          style: GoogleFonts.manrope(
+          text,
+          style: GoogleFonts.inter(
             fontSize: 16.sp,
-            fontWeight: FontWeight.w800,
-            color: const Color(0xFF1E1528),
+            fontWeight: FontWeight.w700,
+            color: Colors.white,
           ),
         ),
       ),
@@ -410,9 +402,9 @@ class BehaviorView extends GetView<BehaviorController> {
       children: [
         Text(
           'Recent Logs',
-          style: GoogleFonts.manrope(
+          style: GoogleFonts.inter(
             fontSize: 18.sp,
-            fontWeight: FontWeight.w800,
+            fontWeight: FontWeight.w600,
             color: Colors.white,
           ),
         ),
@@ -435,9 +427,9 @@ class BehaviorView extends GetView<BehaviorController> {
     return Container(
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2843),
+        color: const Color(0xFF372848),
         borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(color: const Color(0xFF454565).withOpacity(0.5)),
+        border: Border.all(color: const Color(0xFF057E58)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -445,9 +437,9 @@ class BehaviorView extends GetView<BehaviorController> {
           Row(
             children: [
               Container(
-                padding: EdgeInsets.all(8.w),
+                padding: EdgeInsets.all(10.w),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF454565).withOpacity(0.3),
+                  color: const Color(0xFF52535B),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
@@ -462,18 +454,18 @@ class BehaviorView extends GetView<BehaviorController> {
                 children: [
                   Text(
                     log['feeling'],
-                    style: GoogleFonts.manrope(
-                      fontSize: 16.sp,
+                    style: GoogleFonts.inter(
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
                     ),
                   ),
                   Text(
                     log['time'],
-                    style: GoogleFonts.manrope(
+                    style: GoogleFonts.inter(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w500,
-                      color: const Color(0xFF8B7882),
+                      color: Colors.white,
                     ),
                   ),
                 ],
@@ -485,17 +477,17 @@ class BehaviorView extends GetView<BehaviorController> {
             spacing: 8.w,
             children: (log['tags'] as List<String>).map((tag) {
               return Container(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF454565),
-                  borderRadius: BorderRadius.circular(6.r),
+                  color: const Color(0xFF26A72A).withOpacity(0.60),
+                  borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Text(
                   tag,
-                  style: GoogleFonts.manrope(
+                  style: GoogleFonts.inter(
                     fontSize: 10.sp,
                     fontWeight: FontWeight.w800,
-                    color: Colors.white.withOpacity(0.7),
+                    color: Colors.white,
                   ),
                 ),
               );
@@ -504,10 +496,10 @@ class BehaviorView extends GetView<BehaviorController> {
           SizedBox(height: 16.h),
           Text(
             log['notes'],
-            style: GoogleFonts.manrope(
+            style: GoogleFonts.inter(
               fontSize: 14.sp,
               fontWeight: FontWeight.w400,
-              color: const Color(0xFFD7CEC8),
+              color: Colors.white,
               height: 1.5,
             ),
           ),

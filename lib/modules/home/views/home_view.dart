@@ -127,18 +127,31 @@ class HomeView extends GetView<HomeController> {
               _buildSectionHeader(
                 title: "Today's Tasks",
                 actionText: 'View All',
+                onTap: () {
+                  Get.toNamed(AppRoutes.lessonView, arguments: {'showBackButton': true});
+                },
               ),
               SizedBox(height: 18.h),
-              _buildTaskCard(
-                icon: Icons.record_voice_over_outlined,
-                title: 'Practice "Sit" command',
-                subtitle: '10 repetitions',
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.lessonView, arguments: {'showBackButton': true});
+                },
+                child: _buildTaskCard(
+                  icon: Icons.record_voice_over_outlined,
+                  title: 'Practice "Sit" command',
+                  subtitle: '10 repetitions',
+                ),
               ),
               SizedBox(height: 12.h),
-              _buildTaskCard(
-                icon: Icons.favorite_border,
-                title: 'Reward positive behavior',
-                subtitle: 'Throughout the day',
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.lessonView, arguments: {'showBackButton': true});
+                },
+                child: _buildTaskCard(
+                  icon: Icons.favorite_border,
+                  title: 'Reward positive behavior',
+                  subtitle: 'Throughout the day',
+                ),
               ),
               SizedBox(height: 32.h),
 
@@ -146,6 +159,9 @@ class HomeView extends GetView<HomeController> {
               _buildSectionHeader(
                 title: "Upcoming Sessions",
                 actionText: 'View Calendar',
+                onTap: () {
+                  Get.toNamed(AppRoutes.scheduleView, arguments: {'showBackButton': true});
+                },
               ),
               SizedBox(height: 16.h),
               _buildSessionCard(
@@ -292,6 +308,7 @@ class HomeView extends GetView<HomeController> {
   Widget _buildSectionHeader({
     required String title,
     required String actionText,
+    required VoidCallback onTap,
   }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -304,12 +321,15 @@ class HomeView extends GetView<HomeController> {
             color: Colors.white,
           ),
         ),
-        Text(
-          actionText,
-          style: GoogleFonts.inter(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFF01E378),
+        GestureDetector(
+          onTap: onTap,
+          child: Text(
+            actionText,
+            style: GoogleFonts.inter(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF01E378),
+            ),
           ),
         ),
       ],

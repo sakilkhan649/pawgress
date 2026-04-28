@@ -16,36 +16,67 @@ class LessonsView extends GetView<LessonsController> {
       backgroundColor: const Color(0xFF211134),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w,),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 24.h),
-              Text(
-                'Training Lessons',
-                style: GoogleFonts.inter(
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (Get.arguments is Map && Get.arguments['showBackButton'] == true) ...[
+                    Container(
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF454565), // Greyish purple
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                          size: 20.sp,
+                        ),
+                        onPressed: () => Get.back(),
+                        padding: EdgeInsets.zero,
+                      ),
+                    ),
+                    SizedBox(width: 10.w),
+                  ],
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Training Lessons',
+                        style: GoogleFonts.inter(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Continue your dog\'s learning journey',
+                        maxLines: 2,
+                        style: GoogleFonts.inter(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: const Color(0xFFECEDEE),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              SizedBox(height: 8.h),
-              Text(
-                'Continue your dog\'s learning journey',
-                maxLines: 2,
-                style: GoogleFonts.inter(
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w400,
-                  color: const Color(0xFFECEDEE),
-                ),
-              ),
+
               SizedBox(height: 24.h),
               _buildCategoryTabs(),
               Expanded(
                 child: Obx(
                   () => ListView.separated(
                     itemCount: controller.filteredLessons.length,
-                    separatorBuilder: (context, index) => SizedBox(height: 16.h),
+                    separatorBuilder: (context, index) =>
+                        SizedBox(height: 16.h),
                     itemBuilder: (context, index) {
                       final lesson = controller.filteredLessons[index];
                       return _buildLessonCard(lesson);
@@ -67,33 +98,31 @@ class LessonsView extends GetView<LessonsController> {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: categories.map((category) {
-          return Obx(
-            () {
-              final isSelected = controller.selectedCategory.value == category;
-              return GestureDetector(
-                onTap: () => controller.selectCategory(category),
-                child: Container(
-                  margin: EdgeInsets.only(right: 12.w),
-                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(
-                      color: isSelected ? Colors.transparent : Color(0xFF05C58D),
-                    ),
-                    gradient: isSelected ? AppTheme.secondaryGradient : null,
+          return Obx(() {
+            final isSelected = controller.selectedCategory.value == category;
+            return GestureDetector(
+              onTap: () => controller.selectCategory(category),
+              child: Container(
+                margin: EdgeInsets.only(right: 12.w),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.r),
+                  border: Border.all(
+                    color: isSelected ? Colors.transparent : Color(0xFF05C58D),
                   ),
-                  child: Text(
-                    category,
-                    style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                      color: isSelected ? Colors.white :  Color(0xFF05C58D),
-                    ),
+                  gradient: isSelected ? AppTheme.secondaryGradient : null,
+                ),
+                child: Text(
+                  category,
+                  style: GoogleFonts.inter(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
+                    color: isSelected ? Colors.white : Color(0xFF05C58D),
                   ),
                 ),
-              );
-            },
-          );
+              ),
+            );
+          });
         }).toList(),
       ),
     );

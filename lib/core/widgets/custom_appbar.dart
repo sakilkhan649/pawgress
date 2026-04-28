@@ -37,14 +37,24 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: elevation,
       centerTitle: centerTitle,
       leading: showBackButton
-          ? IconButton(
-        icon: Icon(
-          CupertinoIcons.back,
-          color: backButtonColor ?? AppTheme.secondaryColor,
-          size: 24.sp,
-        ),
-        onPressed: onBackPressed ?? () => Get.back(),
-      )
+          ? Padding(
+              padding: EdgeInsets.only(left: 10.w),
+              child: GestureDetector(
+                onTap: onBackPressed ?? () => Get.back(),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF454565),
+                    shape: BoxShape.circle,
+                  ),
+                  padding: EdgeInsets.all(8.w),
+                  child: Icon(
+                    Icons.arrow_back,
+                    color: backButtonColor ?? Colors.white,
+                    size: 20.sp,
+                  ),
+                ),
+              ),
+            )
           : null,
       title: title != null
           ? Text(

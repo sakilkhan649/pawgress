@@ -17,16 +17,16 @@ class BookTrainingView extends GetView<BookTrainingController> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
-          padding: EdgeInsets.all(8.w),
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Color(0xFF454565),
-              shape: BoxShape.circle,
-            ),
-            child: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
-              onPressed: () => Get.back(),
-              padding: EdgeInsets.zero,
+          padding: EdgeInsets.only(left: 20.w),
+          child: GestureDetector(
+            onTap: () => Get.back(),
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Color(0xFF454565),
+                shape: BoxShape.circle,
+              ),
+              padding: EdgeInsets.all(10.w),
+              child: Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
             ),
           ),
         ),

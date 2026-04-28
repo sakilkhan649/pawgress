@@ -19,15 +19,15 @@ class LessonPlayView extends GetView<LessonPlayController> {
         elevation: 0,
         leading: Padding(
           padding: EdgeInsets.only(left: 20.w),
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Color(0xFF454565),
-              shape: BoxShape.circle,
-            ),
-            child: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
-              onPressed: () => Get.back(),
-              padding: EdgeInsets.zero,
+          child: GestureDetector(
+            onTap: () => Get.back(),
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Color(0xFF454565),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
+              padding: EdgeInsets.all(10.w),
             ),
           ),
         ),
@@ -43,7 +43,8 @@ class LessonPlayView extends GetView<LessonPlayController> {
       ),
       body: Obx(() {
         final lesson = controller.currentLesson.value;
-        if (lesson == null) return const Center(child: CircularProgressIndicator());
+        if (lesson == null)
+          return const Center(child: CircularProgressIndicator());
 
         return SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
@@ -70,13 +71,20 @@ class LessonPlayView extends GetView<LessonPlayController> {
                       color: Colors.white.withOpacity(0.8),
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(Icons.play_arrow, color: AppTheme.teal2, size: 32.sp),
+                    child: Icon(
+                      Icons.play_arrow,
+                      color: AppTheme.teal2,
+                      size: 32.sp,
+                    ),
                   ),
                   Positioned(
                     top: 16.h,
                     right: 16.w,
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 12.w,
+                        vertical: 6.h,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.black.withOpacity(0.8),
                         borderRadius: BorderRadius.circular(20.r),
@@ -144,7 +152,11 @@ class LessonPlayView extends GetView<LessonPlayController> {
                               color: Color(0xFFF2F4F6),
                               shape: BoxShape.circle,
                             ),
-                            child: Icon(Icons.remove, color: const Color(0xFF2C2843), size: 24.sp),
+                            child: Icon(
+                              Icons.remove,
+                              color: const Color(0xFF2C2843),
+                              size: 24.sp,
+                            ),
                           ),
                         ),
                         Column(
@@ -175,7 +187,11 @@ class LessonPlayView extends GetView<LessonPlayController> {
                               color: Color(0xFF08C290),
                               shape: BoxShape.circle,
                             ),
-                            child: Icon(Icons.add, color: Colors.white, size: 24.sp),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: 24.sp,
+                            ),
                           ),
                         ),
                       ],
@@ -208,7 +224,9 @@ class LessonPlayView extends GetView<LessonPlayController> {
                       child: LinearProgressIndicator(
                         value: controller.progress,
                         backgroundColor: const Color(0xFFF2F4F6),
-                        valueColor: AlwaysStoppedAnimation<Color>(AppTheme.teal2),
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          AppTheme.teal2,
+                        ),
                         minHeight: 10.h,
                       ),
                     ),

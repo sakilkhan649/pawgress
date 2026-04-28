@@ -18,15 +18,15 @@ class MessageDitailView extends GetView<MessageDitailController> {
         elevation: 0,
         leading: Padding(
           padding: EdgeInsets.only(left: 20.w),
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Color(0xFF454565),
-              shape: BoxShape.circle,
-            ),
-            child: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
-              onPressed: () => Get.back(),
-              padding: EdgeInsets.zero,
+          child: GestureDetector(
+            onTap: () => Get.back(),
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Color(0xFF454565),
+                shape: BoxShape.circle,
+              ),
+              padding: EdgeInsets.all(10.w),
+              child: Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
             ),
           ),
         ),

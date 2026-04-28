@@ -26,19 +26,19 @@ class LessonsView extends GetView<LessonsController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (Get.arguments is Map && Get.arguments['showBackButton'] == true) ...[
-                    Container(
-                      decoration: const BoxDecoration(
-                        color: Color(0xFF454565), // Greyish purple
-                        shape: BoxShape.circle,
-                      ),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
-                          size: 20.sp,
+                    GestureDetector(
+                      onTap: () => Get.back(),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Color(0xFF454565), // Greyish purple
+                          shape: BoxShape.circle,
                         ),
-                        onPressed: () => Get.back(),
-                        padding: EdgeInsets.zero,
+                        child: Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                            size: 20.sp,
+                        ),
+                        padding: EdgeInsets.all(10.w),
                       ),
                     ),
                     SizedBox(width: 10.w),

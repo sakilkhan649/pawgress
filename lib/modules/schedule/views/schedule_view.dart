@@ -19,21 +19,20 @@ class ScheduleView extends GetView<ScheduleController> {
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         elevation: 0,
-        leading:
-            (Get.arguments is Map && Get.arguments['showBackButton'] == true)
-            ? Container(
-                margin: EdgeInsets.only(left: 20.w),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: const Color(0xFF4D405C), width: 1),
-                ),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                    size: 20.sp,
+        leading: (Get.arguments is Map && Get.arguments['showBackButton'] == true)
+            ? Padding(
+                padding: EdgeInsets.only(left: 20.w),
+                child: GestureDetector(
+                  onTap: () => Get.back(),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF454565),
+                      shape: BoxShape.circle,
+                    ),
+                    padding: EdgeInsets.all(10.w),
+                    child:
+                        Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
                   ),
-                  onPressed: () => Get.back(),
                 ),
               )
             : null,

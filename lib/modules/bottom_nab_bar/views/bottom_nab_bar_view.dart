@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../config/constants/image_paths.dart';
 import '../../../config/themes/app_theme.dart';
 import '../../home/views/home_view.dart';
@@ -76,26 +77,30 @@ class CustomBottomBar extends GetView<BottomNabBarController> {
       return GestureDetector(
         onTap: () => controller.changePage(index),
         behavior: HitTestBehavior.opaque,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SvgPicture.asset(
-              iconPath,
-              width: 24.w,
-              height: 24.w,
-              colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-            ),
-            SizedBox(height: 2.h),
-            Text(
-              label,
-              style: TextStyle(
-                color: color,
-                fontSize: 10.sp,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                letterSpacing: 0.5,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SvgPicture.asset(
+                iconPath,
+                width: 24.w,
+                height: 24.w,
+                colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
               ),
-            ),
-          ],
+              SizedBox(height: 4.h),
+              Text(
+                label,
+                style: GoogleFonts.inter(
+                  color: color,
+                  fontSize: 10.sp,
+                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ],
+          ),
         ),
       );
     });

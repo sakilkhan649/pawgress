@@ -41,7 +41,7 @@ class CustomBottomBar extends GetView<BottomNabBarController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.w),
+      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 8.w),
       decoration: BoxDecoration(
         color: Color(0xFF211134),
         borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
@@ -85,7 +85,7 @@ class CustomBottomBar extends GetView<BottomNabBarController> {
               height: 24.w,
               colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
             ),
-            SizedBox(height: 6.h),
+            SizedBox(height: 2.h),
             Text(
               label,
               style: TextStyle(

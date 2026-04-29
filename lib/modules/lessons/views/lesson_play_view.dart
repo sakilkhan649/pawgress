@@ -25,8 +25,8 @@ class LessonPlayView extends GetView<LessonPlayController> {
                 color: Color(0xFF454565),
                 shape: BoxShape.circle,
               ),
-              child: Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
               padding: EdgeInsets.all(10.w),
+              child: Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
             ),
           ),
         ),
@@ -42,8 +42,9 @@ class LessonPlayView extends GetView<LessonPlayController> {
       ),
       body: Obx(() {
         final lesson = controller.currentLesson.value;
-        if (lesson == null)
+        if (lesson == null) {
           return const Center(child: CircularProgressIndicator());
+        }
 
         return SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),

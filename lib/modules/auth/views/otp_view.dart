@@ -117,8 +117,8 @@ class OtpView extends StatelessWidget {
                       Center(
                         child: Container(
                           padding: EdgeInsets.symmetric(
-                            horizontal: 16.w,
-                            vertical: 10.h,
+                            horizontal: 16.h,
+                            vertical: 10.w,
                           ),
                           decoration: BoxDecoration(
                             color: const Color(0xFF3B3B5B).withValues(alpha: 0.5),
@@ -143,8 +143,8 @@ class OtpView extends StatelessWidget {
                               ),
                               Container(
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: 8.w,
-                                  vertical: 2.h,
+                                  horizontal: 8.h,
+                                  vertical: 2.w,
                                 ),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
@@ -169,8 +169,8 @@ class OtpView extends StatelessWidget {
                       Center(
                         child: Container(
                           padding: EdgeInsets.symmetric(
-                            horizontal: 20.w,
-                            vertical: 8.h,
+                            horizontal: 20.h,
+                            vertical: 8.w,
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20.r),
@@ -204,16 +204,16 @@ class OtpView extends StatelessWidget {
                       // Separator with Paw
                       Row(
                         children: [
-                          Expanded(child: Divider(color: Color(0xFFC97B442E))),
+                          Expanded(child: Divider(color: Color(0xFFC97B44))),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 16.w),
                             child: Icon(
                               Icons.pets,
-                              color: Color(0xFFC97B442E),
+                              color: Color(0xFFC97B44),
                               size: 14.sp,
                             ),
                           ),
-                          Expanded(child: Divider(color: Color(0xFFC97B442E))),
+                          Expanded(child: Divider(color: Color(0xFFC97B44))),
                         ],
                       ),
                       SizedBox(height: 24.h),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pawgress/config/routes/app_pages.dart';
 import '../../../config/constants/image_paths.dart';
 import '../../../config/themes/app_theme.dart';
 import '../controllers/play_video_controller.dart';
@@ -41,9 +42,12 @@ class PlayVideoView extends GetView<PlayVideoController> {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 16.w),
-            child: CircleAvatar(
-              radius: 18.r,
-              backgroundImage: AssetImage(ImagePaths.dogProfileImage),
+            child: GestureDetector(
+              onTap: () => Get.toNamed(AppRoutes.profileView),
+              child: CircleAvatar(
+                radius: 18.r,
+                backgroundImage: AssetImage(ImagePaths.dogProfileImage),
+              ),
             ),
           ),
         ],

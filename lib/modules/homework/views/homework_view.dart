@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pawgress/config/routes/app_pages.dart';
 import '../../../config/constants/image_paths.dart';
 import '../controllers/homework_controller.dart';
 
@@ -41,9 +42,12 @@ class HomeworkView extends GetView<HomeworkController> {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.w),
-            child: CircleAvatar(
-              radius: 18.r,
-              backgroundImage: AssetImage(ImagePaths.dogProfileImage),
+            child: GestureDetector(
+              onTap: () => Get.toNamed(AppRoutes.profileView),
+              child: CircleAvatar(
+                radius: 18.r,
+                backgroundImage: AssetImage(ImagePaths.massageProfileImage),
+              ),
             ),
           ),
         ],

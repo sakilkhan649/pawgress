@@ -33,12 +33,12 @@ class LessonsView extends GetView<LessonsController> {
                           color: Color(0xFF454565), // Greyish purple
                           shape: BoxShape.circle,
                         ),
+                        padding: EdgeInsets.all(10.w),
                         child: Icon(
                             Icons.arrow_back,
                             color: Colors.white,
                             size: 20.sp,
                         ),
-                        padding: EdgeInsets.all(10.w),
                       ),
                     ),
                     SizedBox(width: 10.w),

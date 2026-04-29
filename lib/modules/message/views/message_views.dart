@@ -41,9 +41,12 @@ class MessageViews extends GetView<MessageController> {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.w),
-            child: CircleAvatar(
-              radius: 18.r,
-              backgroundImage: AssetImage(ImagePaths.massageProfileImage),
+            child: GestureDetector(
+              onTap: () => Get.toNamed(AppRoutes.profileView),
+              child: CircleAvatar(
+                radius: 18.r,
+                backgroundImage: AssetImage(ImagePaths.massageProfileImage),
+              ),
             ),
           ),
         ],

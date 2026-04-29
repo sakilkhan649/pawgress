@@ -139,7 +139,7 @@ class LoginView extends GetView<LoginController> {
                         children: [
                           Expanded(
                             child: Divider(
-                              color: Color(0xffDA915D00),
+                              color: Color(0xffDA915D).withValues(alpha: 0.30),
                               thickness: 1,
                             ),
                           ),
@@ -158,7 +158,7 @@ class LoginView extends GetView<LoginController> {
                           ),
                           Expanded(
                             child: Divider(
-                              color: Color(0xffDA915D00),
+                              color: Color(0xffDA915D).withValues(alpha: 0.30),
                               thickness: 1,
                             ),
                           ),

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:pawgress/config/routes/app_pages.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../../../config/constants/image_paths.dart';
 import '../../../config/themes/app_theme.dart';
@@ -43,9 +44,12 @@ class BehaviorView extends GetView<BehaviorController> {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.w),
-            child: CircleAvatar(
-              radius: 18.r,
-              backgroundImage: AssetImage(ImagePaths.dogProfileImage),
+            child: GestureDetector(
+              onTap: () => Get.toNamed(AppRoutes.profileView),
+              child: CircleAvatar(
+                radius: 18.r,
+                backgroundImage: AssetImage(ImagePaths.massageProfileImage),
+              ),
             ),
           ),
         ],

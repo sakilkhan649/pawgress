@@ -43,9 +43,12 @@ class VideoView extends GetView<VideoController> {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 16.w),
-            child: CircleAvatar(
-              radius: 18.r,
-              backgroundImage: AssetImage(ImagePaths.dogProfileImage),
+            child: GestureDetector(
+              onTap: () => Get.toNamed(AppRoutes.profileView),
+              child: CircleAvatar(
+                radius: 18.r,
+                backgroundImage: AssetImage(ImagePaths.dogProfileImage),
+              ),
             ),
           ),
         ],

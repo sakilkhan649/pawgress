@@ -178,7 +178,9 @@ class PrivacyView extends GetView<PrivacyController> {
       decoration: BoxDecoration(
         color: const Color(0xFF372848), // Card background
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: const Color(0xFF9FC17E).withValues(alpha: 0.80)),
+        border: Border.all(
+          color: const Color(0xFF9FC17E).withValues(alpha: 0.80),
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -214,7 +216,4 @@ class PrivacyView extends GetView<PrivacyController> {
       ),
     );
   }
-
-
-
 }

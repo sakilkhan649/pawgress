@@ -43,7 +43,7 @@ class PlayVideoView extends GetView<PlayVideoController> {
           Padding(
             padding: EdgeInsets.only(right: 16.w),
             child: GestureDetector(
-              onTap: () => Get.toNamed(AppRoutes.profileView),
+              onTap: () => Get.toNamed(AppRoutes.profileView, arguments: {'showBackButton': true}),
               child: CircleAvatar(
                 radius: 18.r,
                 backgroundImage: AssetImage(ImagePaths.dogProfileImage),

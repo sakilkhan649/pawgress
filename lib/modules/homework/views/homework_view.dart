@@ -43,7 +43,7 @@ class HomeworkView extends GetView<HomeworkController> {
           Padding(
             padding: EdgeInsets.only(right: 20.w),
             child: GestureDetector(
-              onTap: () => Get.toNamed(AppRoutes.profileView),
+              onTap: () => Get.toNamed(AppRoutes.profileView, arguments: {'showBackButton': true}),
               child: CircleAvatar(
                 radius: 18.r,
                 backgroundImage: AssetImage(ImagePaths.massageProfileImage),

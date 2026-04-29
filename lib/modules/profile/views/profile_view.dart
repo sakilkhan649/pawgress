@@ -13,9 +13,31 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF211134), // Background matched with image
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        leading: (Get.arguments is Map && Get.arguments['showBackButton'] == true)
+            ? Padding(
+                padding: EdgeInsets.only(left: 20.w),
+                child: GestureDetector(
+                  onTap: () => Get.back(),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF454565),
+                      shape: BoxShape.circle,
+                    ),
+                    padding: EdgeInsets.all(10.w),
+                    child:
+                        Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
+                  ),
+                ),
+              )
+            : null,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 70.h),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

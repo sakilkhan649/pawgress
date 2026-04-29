@@ -82,7 +82,7 @@ class PlayVideoView extends GetView<PlayVideoController> {
             width: 70.w,
             height: 70.w,
             decoration: BoxDecoration(
-              color: const Color(0xFF6C5DD3).withOpacity(0.6),
+              color: const Color(0xFF6C5DD3).withValues(alpha: 0.6),
               shape: BoxShape.circle,
             ),
             child: Icon(Icons.play_arrow_rounded, color: Colors.white, size: 40.sp),
@@ -94,7 +94,7 @@ class PlayVideoView extends GetView<PlayVideoController> {
             child: Container(
               padding: EdgeInsets.all(8.w),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.15),
+                color: Colors.white.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(30.r),
               ),
               child: Icon(Icons.fullscreen, color: Colors.white, size: 20.sp),
@@ -111,7 +111,7 @@ class PlayVideoView extends GetView<PlayVideoController> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.transparent, Colors.black.withOpacity(0.8)],
+                  colors: [Colors.transparent, Colors.black.withValues(alpha: 0.8)],
                 ),
               ),
               child: Column(
@@ -123,7 +123,7 @@ class PlayVideoView extends GetView<PlayVideoController> {
                         height: 4.h,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.3),
+                          color: Colors.white.withValues(alpha: 0.3),
                           borderRadius: BorderRadius.circular(2.r),
                         ),
                       ),
@@ -181,7 +181,7 @@ class PlayVideoView extends GetView<PlayVideoController> {
       decoration: BoxDecoration(
         color: const Color(0xFF372848),
         borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(color: const Color(0xFFFFFFFF).withOpacity(0.10)),
+        border: Border.all(color: const Color(0xFFFFFFFF).withValues(alpha: 0.10)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

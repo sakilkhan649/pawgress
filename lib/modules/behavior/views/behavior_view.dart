@@ -479,7 +479,7 @@ class BehaviorView extends GetView<BehaviorController> {
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF26A72A).withOpacity(0.60),
+                  color: const Color(0xFF26A72A).withValues(alpha: 0.60),
                   borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Text(

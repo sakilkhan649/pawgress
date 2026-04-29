@@ -25,7 +25,7 @@ class OtpView extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFF323663),
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: const Color(0xFFFF9B63).withOpacity(0.3)),
+        border: Border.all(color: const Color(0xFFFF9B63).withValues(alpha: 0.3)),
       ),
     );
 
@@ -33,7 +33,7 @@ class OtpView extends StatelessWidget {
       border: Border.all(color: const Color(0xFFFF9B63)),
       boxShadow: [
         BoxShadow(
-          color: const Color(0xFFFF9B63).withOpacity(0.2),
+          color: const Color(0xFFFF9B63).withValues(alpha: 0.2),
           blurRadius: 10.r,
           spreadRadius: 2.r,
         ),
@@ -121,7 +121,7 @@ class OtpView extends StatelessWidget {
                             vertical: 10.h,
                           ),
                           decoration: BoxDecoration(
-                            color: const Color(0xFF3B3B5B).withOpacity(0.5),
+                            color: const Color(0xFF3B3B5B).withValues(alpha: 0.5),
                             borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Row(
@@ -175,7 +175,7 @@ class OtpView extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20.r),
                             border: Border.all(
-                              color: const Color(0xFFFF9B63).withOpacity(0.2),
+                              color: const Color(0xFFFF9B63).withValues(alpha: 0.2),
                             ),
                           ),
                           child: Row(

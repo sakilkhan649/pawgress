@@ -130,7 +130,7 @@ class ScheduleView extends GetView<ScheduleController> {
               ),
               calendarStyle: CalendarStyle(
                 todayDecoration: BoxDecoration(
-                  color: AppTheme.teal2.withOpacity(0.3),
+                  color: AppTheme.teal2.withValues(alpha: 0.3),
                   shape: BoxShape.circle,
                 ),
                 selectedDecoration: BoxDecoration(
@@ -223,7 +223,7 @@ class ScheduleView extends GetView<ScheduleController> {
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(20.r),
-                    border: Border.all(color: AppTheme.teal2.withOpacity(0.5)),
+                    border: Border.all(color: AppTheme.teal2.withValues(alpha: 0.5)),
                   ),
                   child: Text(
                     session['category'],

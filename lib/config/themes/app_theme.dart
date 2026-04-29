@@ -37,12 +37,12 @@ class AppTheme {
     borderRadius: BorderRadius.circular(16.r),
     boxShadow: [
       BoxShadow(
-        color: Colors.black.withOpacity(0.04),
+        color: Colors.black.withValues(alpha: 0.04),
         blurRadius: 20.r,
         offset: Offset(0, 4.h),
       ),
       BoxShadow(
-        color: Colors.black.withOpacity(0.06),
+        color: Colors.black.withValues(alpha: 0.06),
         blurRadius: 3.r,
         offset: Offset(0, 1.h),
       ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../config/constants/image_paths.dart';
 import '../../../config/themes/app_theme.dart';
 import '../controllers/lesson_play_controller.dart';
@@ -68,7 +67,7 @@ class LessonPlayView extends GetView<LessonPlayController> {
                     width: 60.w,
                     height: 60.w,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.8),
+                      color: Colors.white.withValues(alpha: 0.8),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
@@ -86,7 +85,7 @@ class LessonPlayView extends GetView<LessonPlayController> {
                         vertical: 6.h,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.8),
+                        color: Colors.black.withValues(alpha: 0.8),
                         borderRadius: BorderRadius.circular(20.r),
                       ),
                       child: Text(

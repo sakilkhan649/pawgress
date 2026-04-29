@@ -48,7 +48,7 @@ class NotificationView extends GetView<NotificationController> {
             _buildNotificationCard(
               icon: ImagePaths.practiceNotificationIcon,
               iconColor: AppTheme.teal2,
-              iconBgColor: AppTheme.teal2.withOpacity(0.15),
+              iconBgColor: AppTheme.teal2.withValues(alpha: 0.15),
               title: 'Practice "Sit" command',
               subtitle: '10 repetitions',
               time: 'Apr 8, 2026 • 3:00 PM',
@@ -58,7 +58,7 @@ class NotificationView extends GetView<NotificationController> {
             _buildNotificationCard(
               icon: ImagePaths.sessionNotificationIcon,
               iconColor: Colors.redAccent.shade100,
-              iconBgColor: Colors.redAccent.shade100.withOpacity(0.15),
+              iconBgColor: Colors.redAccent.shade100.withValues(alpha: 0.15),
               title: 'Session Booked: Basic\nObedience',
               subtitle: 'Sarah Mitchell at 3:00 PM',
               time: 'Apr 8, 2026 • 12:45 PM',
@@ -67,7 +67,7 @@ class NotificationView extends GetView<NotificationController> {
             _buildNotificationCard(
               icon: ImagePaths.securityNotificationIcon,
               iconColor: Colors.blueAccent.shade100,
-              iconBgColor: Colors.blueAccent.shade100.withOpacity(0.15),
+              iconBgColor: Colors.blueAccent.shade100.withValues(alpha: 0.15),
               title: 'Security Update',
               subtitle: 'Your account security has been\nimproved.',
               time: 'Apr 7, 2026 • 10:00 AM',

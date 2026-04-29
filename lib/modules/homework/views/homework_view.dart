@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../config/constants/image_paths.dart';
-import '../../../config/themes/app_theme.dart';
 import '../controllers/homework_controller.dart';
 
 class HomeworkView extends GetView<HomeworkController> {
@@ -161,7 +160,7 @@ class HomeworkView extends GetView<HomeworkController> {
                     borderRadius: BorderRadius.circular(30.r),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFF77DAA7).withOpacity(0.2),
+                        color: const Color(0xFF77DAA7).withValues(alpha: 0.2),
                         blurRadius: 15,
                         offset: const Offset(0, 5),
                       ),

@@ -107,7 +107,7 @@ class ProgressView extends GetView<ProgressController> {
             drawHorizontalLine: false,
             getDrawingVerticalLine: (value) {
               return FlLine(
-                color: Color(0xFF2A2A40).withOpacity(0.4),
+                color: Color(0xFF2A2A40).withValues(alpha: 0.4),
                 strokeWidth: 1,
               );
             },
@@ -154,15 +154,15 @@ class ProgressView extends GetView<ProgressController> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Color(0xFF1E90FF).withOpacity(0.25),
-                    Color(0xFF1E90FF).withOpacity(0.02),
+                    Color(0xFF1E90FF).withValues(alpha: 0.25),
+                    Color(0xFF1E90FF).withValues(alpha: 0.02),
                   ],
                 ),
               ),
 
               // ✨ glow effect
               shadow: Shadow(
-                color: Color(0xFF1E90FF).withOpacity(0.6),
+                color: Color(0xFF1E90FF).withValues(alpha: 0.6),
                 blurRadius: 12,
               ),
             ),

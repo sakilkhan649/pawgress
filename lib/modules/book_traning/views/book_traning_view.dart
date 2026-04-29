@@ -236,7 +236,7 @@ class BookTrainingView extends GetView<BookTrainingController> {
                   boxShadow: isSelected
                       ? [
                           BoxShadow(
-                            color: AppTheme.teal2.withOpacity(0.3),
+                            color: AppTheme.teal2.withValues(alpha: 0.3),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
                           )

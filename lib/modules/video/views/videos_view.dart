@@ -194,7 +194,7 @@ class VideoView extends GetView<VideoController> {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.8),
+                      color: Colors.black.withValues(alpha: 0.8),
                       borderRadius: BorderRadius.circular(28.r),
                     ),
                     child: Row(

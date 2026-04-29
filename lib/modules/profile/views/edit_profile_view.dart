@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pawgress/config/constants/image_paths.dart';
-
 import '../../../config/themes/app_theme.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../controllers/edit_profile_controller.dart';

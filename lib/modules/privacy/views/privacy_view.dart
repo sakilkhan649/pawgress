@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../config/themes/app_theme.dart';
 import '../controllers/privacy_controller.dart';
 
 class PrivacyView extends GetView<PrivacyController> {
@@ -179,7 +178,7 @@ class PrivacyView extends GetView<PrivacyController> {
       decoration: BoxDecoration(
         color: const Color(0xFF372848), // Card background
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: const Color(0xFF9FC17E).withOpacity(0.80)),
+        border: Border.all(color: const Color(0xFF9FC17E).withValues(alpha: 0.80)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,

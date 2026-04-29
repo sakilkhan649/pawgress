@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-
 import '../../../config/constants/image_paths.dart';
 import '../../../config/routes/app_pages.dart';
-import '../../../config/themes/app_theme.dart';
+
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -46,7 +45,7 @@ class ProfileView extends StatelessWidget {
           center: Alignment.topRight,
           radius: 1.5,
           colors: [
-            const Color(0xFF06C190).withOpacity(0.25), // Greenish glow
+            const Color(0xFF06C190).withValues(alpha: 0.25), // Greenish glow
             const Color(0xFF2C2843),
           ],
           stops: const [0.0, 0.4],
@@ -63,7 +62,7 @@ class ProfileView extends StatelessWidget {
               border: Border.all(color: Colors.white, width: 4),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.white.withOpacity(0.3),
+                  color: Colors.white.withValues(alpha: 0.3),
                   blurRadius: 10,
                   spreadRadius: 2,
                 ),
@@ -260,7 +259,7 @@ class ProfileView extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(
           0xFFFFDAD6,
-        ).withOpacity(0.53), // Brownish muted color
+        ).withValues(alpha: 0.53), // Brownish muted color
         padding: EdgeInsets.symmetric(vertical: 20.h),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.r),

@@ -246,7 +246,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-//Stat card
+//Stat card 
   Widget _buildStatCard({
     required String icon,
     required String value,

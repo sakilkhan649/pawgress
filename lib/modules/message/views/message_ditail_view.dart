@@ -82,21 +82,23 @@ class MessageDitailView extends GetView<MessageDitailController> {
         ),
         centerTitle: false,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.separated(
-              padding: EdgeInsets.all(20.w),
-              itemCount: controller.messages.length,
-              separatorBuilder: (context, index) => SizedBox(height: 16.h),
-              itemBuilder: (context, index) {
-                final message = controller.messages[index];
-                return _buildChatBubble(message);
-              },
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.separated(
+                padding: EdgeInsets.all(20.w),
+                itemCount: controller.messages.length,
+                separatorBuilder: (context, index) => SizedBox(height: 16.h),
+                itemBuilder: (context, index) {
+                  final message = controller.messages[index];
+                  return _buildChatBubble(message);
+                },
+              ),
             ),
-          ),
-          _buildMessageInput(),
-        ],
+            _buildMessageInput(),
+          ],
+        ),
       ),
     );
   }
@@ -149,7 +151,7 @@ class MessageDitailView extends GetView<MessageDitailController> {
 
   Widget _buildMessageInput() {
     return Container(
-      margin: EdgeInsets.all(30.w),
+      margin: EdgeInsets.fromLTRB(30.w, 10.h, 30.w, 20.h),
       padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 1.h),
       decoration: BoxDecoration(
         color: const Color(0xFF2C3150).withValues(alpha: 0.9),

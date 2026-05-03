@@ -197,7 +197,7 @@ class PlayVideoView extends GetView<PlayVideoController> {
                         child: Stack(
                           children: [
                             Container(
-                              height: 8.h, // Slightly larger touch area
+                              height: 4.h, // Slightly larger touch area
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 color: Colors.white.withValues(alpha: 0.3),
@@ -213,7 +213,7 @@ class PlayVideoView extends GetView<PlayVideoController> {
                                             .duration.value.inMilliseconds;
                               }
                               return Container(
-                                height: 8.h,
+                                height: 4.h,
                                 width: constraints.maxWidth * progress,
                                 decoration: BoxDecoration(
                                   color: AppTheme.teal2,

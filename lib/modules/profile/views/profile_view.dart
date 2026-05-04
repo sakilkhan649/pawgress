@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../config/constants/image_paths.dart';
 import '../../../config/routes/app_pages.dart';
 
-
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
 
@@ -17,7 +16,8 @@ class ProfileView extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         automaticallyImplyLeading: false,
-        leading: (Get.arguments is Map && Get.arguments['showBackButton'] == true)
+        leading:
+            (Get.arguments is Map && Get.arguments['showBackButton'] == true)
             ? Padding(
                 padding: EdgeInsets.only(left: 20.w),
                 child: GestureDetector(
@@ -28,8 +28,11 @@ class ProfileView extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     padding: EdgeInsets.all(10.w),
-                    child:
-                        Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                      size: 20.sp,
+                    ),
                   ),
                 ),
               )

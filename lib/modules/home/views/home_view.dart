@@ -128,13 +128,19 @@ class HomeView extends GetView<HomeController> {
                 title: "Today's Tasks",
                 actionText: 'View All',
                 onTap: () {
-                  Get.toNamed(AppRoutes.lessonView, arguments: {'showBackButton': true});
+                  Get.toNamed(
+                    AppRoutes.lessonView,
+                    arguments: {'showBackButton': true},
+                  );
                 },
               ),
               SizedBox(height: 18.h),
               GestureDetector(
                 onTap: () {
-                  Get.toNamed(AppRoutes.lessonView, arguments: {'showBackButton': true});
+                  Get.toNamed(
+                    AppRoutes.lessonView,
+                    arguments: {'showBackButton': true},
+                  );
                 },
                 child: _buildTaskCard(
                   icon: Icons.record_voice_over_outlined,
@@ -145,7 +151,10 @@ class HomeView extends GetView<HomeController> {
               SizedBox(height: 12.h),
               GestureDetector(
                 onTap: () {
-                  Get.toNamed(AppRoutes.lessonView, arguments: {'showBackButton': true});
+                  Get.toNamed(
+                    AppRoutes.lessonView,
+                    arguments: {'showBackButton': true},
+                  );
                 },
                 child: _buildTaskCard(
                   icon: Icons.favorite_border,
@@ -160,7 +169,10 @@ class HomeView extends GetView<HomeController> {
                 title: "Upcoming Sessions",
                 actionText: 'View Calendar',
                 onTap: () {
-                  Get.toNamed(AppRoutes.scheduleView, arguments: {'showBackButton': true});
+                  Get.toNamed(
+                    AppRoutes.scheduleView,
+                    arguments: {'showBackButton': true},
+                  );
                 },
               ),
               SizedBox(height: 16.h),
@@ -246,7 +258,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-//Stat card 
+  //Stat card
   Widget _buildStatCard({
     required String icon,
     required String value,
@@ -304,7 +316,8 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-//Section header
+
+  //Section header
   Widget _buildSectionHeader({
     required String title,
     required String actionText,
@@ -335,7 +348,8 @@ class HomeView extends GetView<HomeController> {
       ],
     );
   }
-//Task Card
+
+  //Task Card
   Widget _buildTaskCard({
     required IconData icon,
     required String title,
@@ -394,7 +408,8 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-//Session Card
+
+  //Session Card
   Widget _buildSessionCard({
     required String tag,
     required String title,
@@ -429,7 +444,9 @@ class HomeView extends GetView<HomeController> {
                   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.r),
-                    border: Border.all(color: AppTheme.teal2.withValues(alpha: 0.5)),
+                    border: Border.all(
+                      color: AppTheme.teal2.withValues(alpha: 0.5),
+                    ),
                   ),
                   child: Text(
                     tag,
@@ -490,7 +507,8 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-//Quick Action Card
+
+  //Quick Action Card
   Widget _buildQuickActionCard({
     required IconData icon,
     required String title,

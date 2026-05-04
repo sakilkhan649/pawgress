@@ -52,10 +52,7 @@ class EditDogInformationView extends GetView<EditDogInformationController> {
               controller: controller.nameController,
             ),
             SizedBox(height: 22.h),
-            _buildField(
-              label: 'AGE',
-              controller: controller.ageController,
-            ),
+            _buildField(label: 'AGE', controller: controller.ageController),
             SizedBox(height: 22.h),
             _buildField(
               label: 'BREED / BRAND',
@@ -109,7 +106,10 @@ class EditDogInformationView extends GetView<EditDogInformationController> {
               color: const Color(0xFFD7CEC8), // Lighter text color
             ),
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 16.w,
+                vertical: 16.h,
+              ),
               border: InputBorder.none,
             ),
           ),

@@ -33,7 +33,7 @@ class SuccessfullView extends StatelessWidget {
                 Container(
                   width: double.infinity,
                   margin: EdgeInsets.symmetric(horizontal: 20.w),
-                 padding: EdgeInsets.fromLTRB(40.w, 73.h, 40.w, 95.h),
+                  padding: EdgeInsets.fromLTRB(40.w, 73.h, 40.w, 95.h),
                   decoration: BoxDecoration(
                     color: const Color(0xFF2C2843),
                     borderRadius: BorderRadius.circular(32.r),
@@ -43,7 +43,7 @@ class SuccessfullView extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       SizedBox(height: 16.h),
-                      
+
                       // Check Icon Circle
                       Container(
                         width: 128.w,
@@ -71,7 +71,7 @@ class SuccessfullView extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10.h),
-                      
+
                       // Success Text
                       Text(
                         'Password Created Successfully',
@@ -83,7 +83,7 @@ class SuccessfullView extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 29.h),
-                      
+
                       // Continue to Login Button
                       CustomButton(
                         text: 'Back to Login',

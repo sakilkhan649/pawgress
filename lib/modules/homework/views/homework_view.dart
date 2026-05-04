@@ -43,7 +43,10 @@ class HomeworkView extends GetView<HomeworkController> {
           Padding(
             padding: EdgeInsets.only(right: 20.w),
             child: GestureDetector(
-              onTap: () => Get.toNamed(AppRoutes.profileView, arguments: {'showBackButton': true}),
+              onTap: () => Get.toNamed(
+                AppRoutes.profileView,
+                arguments: {'showBackButton': true},
+              ),
               child: CircleAvatar(
                 radius: 18.r,
                 backgroundImage: AssetImage(ImagePaths.massageProfileImage),
@@ -125,7 +128,10 @@ class HomeworkView extends GetView<HomeworkController> {
               ),
               if (homework['isNew'])
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10.w,
+                    vertical: 6.h,
+                  ),
                   decoration: BoxDecoration(
                     color: const Color(0xFF5D4E6A),
                     borderRadius: BorderRadius.circular(20.r),

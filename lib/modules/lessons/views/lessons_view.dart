@@ -25,7 +25,8 @@ class LessonsView extends GetView<LessonsController> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (Get.arguments is Map && Get.arguments['showBackButton'] == true) ...[
+                  if (Get.arguments is Map &&
+                      Get.arguments['showBackButton'] == true) ...[
                     GestureDetector(
                       onTap: () => Get.back(),
                       child: Container(
@@ -35,9 +36,9 @@ class LessonsView extends GetView<LessonsController> {
                         ),
                         padding: EdgeInsets.all(10.w),
                         child: Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                            size: 20.sp,
+                          Icons.arrow_back,
+                          color: Colors.white,
+                          size: 20.sp,
                         ),
                       ),
                     ),

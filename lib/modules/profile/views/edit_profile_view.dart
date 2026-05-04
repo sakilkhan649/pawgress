@@ -61,7 +61,9 @@ class EditProfileView extends GetView<EditProfileController> {
                           radius: 50.r,
                           backgroundColor: const Color(0xFF3B3B5B),
                           // A placeholder for the user's photo
-                          backgroundImage: AssetImage(ImagePaths.editProfileImage),
+                          backgroundImage: AssetImage(
+                            ImagePaths.editProfileImage,
+                          ),
                         ),
                       ),
                       Positioned(
@@ -72,7 +74,10 @@ class EditProfileView extends GetView<EditProfileController> {
                           decoration: BoxDecoration(
                             color: const Color(0xFF006E2C),
                             shape: BoxShape.circle,
-                            border: Border.all(color: const Color(0xFFFFFFFF), width: 4.w),
+                            border: Border.all(
+                              color: const Color(0xFFFFFFFF),
+                              width: 4.w,
+                            ),
                           ),
                           child: Icon(
                             Icons.camera_alt_outlined,
@@ -162,7 +167,10 @@ class EditProfileView extends GetView<EditProfileController> {
               color: const Color(0xFFD7CEC8), // Lighter text color
             ),
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 16.w,
+                vertical: 16.h,
+              ),
               border: InputBorder.none,
             ),
           ),

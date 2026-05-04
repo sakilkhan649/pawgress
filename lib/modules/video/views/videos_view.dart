@@ -44,7 +44,10 @@ class VideoView extends GetView<VideoController> {
           Padding(
             padding: EdgeInsets.only(right: 16.w),
             child: GestureDetector(
-              onTap: () => Get.toNamed(AppRoutes.profileView, arguments: {'showBackButton': true}),
+              onTap: () => Get.toNamed(
+                AppRoutes.profileView,
+                arguments: {'showBackButton': true},
+              ),
               child: CircleAvatar(
                 radius: 18.r,
                 backgroundImage: AssetImage(ImagePaths.dogProfileImage),
@@ -65,7 +68,12 @@ class VideoView extends GetView<VideoController> {
             child: Obx(() {
               final videos = controller.filteredVideos;
               return ListView.separated(
-                padding: EdgeInsets.only(left: 20.w, right: 20.w,top: 16.h, bottom: 60.h),
+                padding: EdgeInsets.only(
+                  left: 20.w,
+                  right: 20.w,
+                  top: 16.h,
+                  bottom: 60.h,
+                ),
                 itemCount: videos.length,
                 separatorBuilder: (context, index) => SizedBox(height: 16.h),
                 itemBuilder: (context, index) {
@@ -97,7 +105,10 @@ class VideoView extends GetView<VideoController> {
               style: GoogleFonts.manrope(color: Colors.white, fontSize: 14.sp),
               decoration: InputDecoration(
                 hintText: 'Search video...',
-                hintStyle: GoogleFonts.manrope(color: const Color(0xFFDBC4C4), fontSize: 14.sp),
+                hintStyle: GoogleFonts.manrope(
+                  color: const Color(0xFFDBC4C4),
+                  fontSize: 14.sp,
+                ),
                 border: InputBorder.none,
               ),
             ),
@@ -107,7 +118,6 @@ class VideoView extends GetView<VideoController> {
     );
   }
 
-
   Widget _buildFilterChips() {
     final categories = ['All', 'Basic', 'Advanced', 'Behavior'];
     return SingleChildScrollView(
@@ -115,33 +125,31 @@ class VideoView extends GetView<VideoController> {
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Row(
         children: categories.map((category) {
-          return Obx(
-            () {
-              final isSelected = controller.selectedCategory.value == category;
-              return GestureDetector(
-                onTap: () => controller.setCategory(category),
-                child: Container(
-                  margin: EdgeInsets.only(right: 12.w),
-                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(
-                      color: isSelected ? Colors.transparent : Color(0xFF05C58D),
-                    ),
-                    gradient: isSelected ? AppTheme.secondaryGradient : null,
+          return Obx(() {
+            final isSelected = controller.selectedCategory.value == category;
+            return GestureDetector(
+              onTap: () => controller.setCategory(category),
+              child: Container(
+                margin: EdgeInsets.only(right: 12.w),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.r),
+                  border: Border.all(
+                    color: isSelected ? Colors.transparent : Color(0xFF05C58D),
                   ),
-                  child: Text(
-                    category,
-                    style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: isSelected ? Colors.white : Color(0xFF05C58D),
-                    ),
+                  gradient: isSelected ? AppTheme.secondaryGradient : null,
+                ),
+                child: Text(
+                  category,
+                  style: GoogleFonts.inter(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                    color: isSelected ? Colors.white : Color(0xFF05C58D),
                   ),
                 ),
-              );
-            },
-          );
+              ),
+            );
+          });
         }).toList(),
       ),
     );
@@ -154,9 +162,7 @@ class VideoView extends GetView<VideoController> {
         decoration: BoxDecoration(
           color: const Color(0xFFC48FED).withValues(alpha: 0.25),
           borderRadius: BorderRadius.circular(20.r),
-          border: Border.all(
-            color: const Color(0xFFDBC7C7),
-          ),
+          border: Border.all(color: const Color(0xFFDBC7C7)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,7 +170,9 @@ class VideoView extends GetView<VideoController> {
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(20.r),
+                  ),
                   child: Image.asset(
                     video.thumbnail,
                     width: double.infinity,
@@ -176,7 +184,10 @@ class VideoView extends GetView<VideoController> {
                   top: 12.h,
                   left: 12.w,
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10.w,
+                      vertical: 4.h,
+                    ),
                     decoration: BoxDecoration(
                       color: Color(0xFF04C68C),
                       borderRadius: BorderRadius.circular(30.r),
@@ -195,14 +206,21 @@ class VideoView extends GetView<VideoController> {
                   bottom: 12.h,
                   right: 12.w,
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 8.w,
+                      vertical: 4.h,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.black.withValues(alpha: 0.8),
                       borderRadius: BorderRadius.circular(28.r),
                     ),
                     child: Row(
                       children: [
-                        Icon(Icons.access_time, color: Colors.white, size: 16.sp),
+                        Icon(
+                          Icons.access_time,
+                          color: Colors.white,
+                          size: 16.sp,
+                        ),
                         SizedBox(width: 4.w),
                         Text(
                           video.duration,

@@ -67,53 +67,63 @@ class NewPasswordView extends GetView<NewPasswordController> {
                         // Password Field
                         _buildLabel('NEW PASSWORD'),
                         SizedBox(height: 8.h),
-                        Obx(() => CustomTextField(
-                          label: '',
-                          isLabelVisible: false,
-                          hintText: '',
-                          controller: controller.passwordController,
-                          obscureText: controller.isPasswordHidden.value,
-                          validator: Validators.password,
-                          fillColior: const Color(0xFF3B3B5B), // Text field background
-                          suffixIcon: GestureDetector(
-                            onTap: controller.togglePasswordVisibility,
-                            child: Padding(
-                              padding: EdgeInsets.only(right: 8.w),
-                              child: Icon(
-                                controller.isPasswordHidden.value
-                                    ? Icons.visibility_off_outlined
-                                    : Icons.visibility_outlined,
-                                color: const Color(0xFF8E8E93),
+                        Obx(
+                          () => CustomTextField(
+                            label: '',
+                            isLabelVisible: false,
+                            hintText: '',
+                            controller: controller.passwordController,
+                            obscureText: controller.isPasswordHidden.value,
+                            validator: Validators.password,
+                            fillColior: const Color(
+                              0xFF3B3B5B,
+                            ), // Text field background
+                            suffixIcon: GestureDetector(
+                              onTap: controller.togglePasswordVisibility,
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 8.w),
+                                child: Icon(
+                                  controller.isPasswordHidden.value
+                                      ? Icons.visibility_off_outlined
+                                      : Icons.visibility_outlined,
+                                  color: const Color(0xFF8E8E93),
+                                ),
                               ),
                             ),
                           ),
-                        )),
+                        ),
                         SizedBox(height: 16.h),
 
                         // Confirm Password Field
                         _buildLabel('CONFIRM PASSWORD'),
                         SizedBox(height: 8.h),
-                        Obx(() => CustomTextField(
-                          label: '',
-                          isLabelVisible: false,
-                          hintText: '',
-                          controller: controller.confirmPasswordController,
-                          obscureText: controller.isConfirmPasswordHidden.value,
-                          validator: (val) => Validators.confirmPassword(val, controller.passwordController.text),
-                          fillColior: const Color(0xFF3B3B5B),
-                          suffixIcon: GestureDetector(
-                            onTap: controller.toggleConfirmPasswordVisibility,
-                            child: Padding(
-                              padding: EdgeInsets.only(right: 8.w),
-                              child: Icon(
-                                controller.isConfirmPasswordHidden.value
-                                    ? Icons.visibility_off_outlined
-                                    : Icons.visibility_outlined,
-                                color: const Color(0xFF8E8E93),
+                        Obx(
+                          () => CustomTextField(
+                            label: '',
+                            isLabelVisible: false,
+                            hintText: '',
+                            controller: controller.confirmPasswordController,
+                            obscureText:
+                                controller.isConfirmPasswordHidden.value,
+                            validator: (val) => Validators.confirmPassword(
+                              val,
+                              controller.passwordController.text,
+                            ),
+                            fillColior: const Color(0xFF3B3B5B),
+                            suffixIcon: GestureDetector(
+                              onTap: controller.toggleConfirmPasswordVisibility,
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 8.w),
+                                child: Icon(
+                                  controller.isConfirmPasswordHidden.value
+                                      ? Icons.visibility_off_outlined
+                                      : Icons.visibility_outlined,
+                                  color: const Color(0xFF8E8E93),
+                                ),
                               ),
                             ),
                           ),
-                        )),
+                        ),
                         SizedBox(height: 40.h),
 
                         // Confirm Button

@@ -73,17 +73,19 @@ class PorgotPasswordView extends GetView<PorgotPasswordController> {
                           hintText: 'your@email.com',
                           controller: controller.emailController,
                           validator: Validators.email,
-                          fillColior: const Color(0xFF3B3B5B), // Text field background
+                          fillColior: const Color(
+                            0xFF3B3B5B,
+                          ), // Text field background
                           keyboardType: TextInputType.emailAddress,
                         ),
                         SizedBox(height: 45.h),
-                        
+
                         // Confirm Button
                         CustomButton(
                           text: 'Confirm',
                           onPressed: () {
                             // if (controller.formKey.currentState!.validate()) {
-                              Get.toNamed(AppRoutes.otp);
+                            Get.toNamed(AppRoutes.otp);
                             // }
                           },
                           gradient: AppTheme.secondaryGradient,

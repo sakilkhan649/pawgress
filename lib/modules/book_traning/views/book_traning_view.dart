@@ -120,7 +120,9 @@ class BookTrainingView extends GetView<BookTrainingController> {
                     ),
                     child: CircleAvatar(
                       radius: 30.r,
-                      backgroundImage: AssetImage(ImagePaths.trainerProfileImage),
+                      backgroundImage: AssetImage(
+                        ImagePaths.trainerProfileImage,
+                      ),
                     ),
                   ),
                   SizedBox(height: 8.h),
@@ -128,8 +130,12 @@ class BookTrainingView extends GetView<BookTrainingController> {
                     trainer['name']!,
                     style: GoogleFonts.inter(
                       fontSize: 14.sp,
-                      fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                      color: isSelected ? AppTheme.teal2 : const Color(0xFF8B7882),
+                      fontWeight: isSelected
+                          ? FontWeight.w700
+                          : FontWeight.w500,
+                      color: isSelected
+                          ? AppTheme.teal2
+                          : const Color(0xFF8B7882),
                     ),
                   ),
                 ],
@@ -239,7 +245,7 @@ class BookTrainingView extends GetView<BookTrainingController> {
                             color: AppTheme.teal2.withValues(alpha: 0.3),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
-                          )
+                          ),
                         ]
                       : null,
                 ),
@@ -250,7 +256,9 @@ class BookTrainingView extends GetView<BookTrainingController> {
                       style: GoogleFonts.manrope(
                         fontSize: 10.sp,
                         fontWeight: FontWeight.w700,
-                        color: isSelected ? const Color(0xFF1E1528) : const Color(0xFF8B7882),
+                        color: isSelected
+                            ? const Color(0xFF1E1528)
+                            : const Color(0xFF8B7882),
                       ),
                     ),
                     SizedBox(height: 8.h),
@@ -259,7 +267,9 @@ class BookTrainingView extends GetView<BookTrainingController> {
                       style: GoogleFonts.manrope(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w800,
-                        color: isSelected ? const Color(0xFF1E1528) : Colors.white,
+                        color: isSelected
+                            ? const Color(0xFF1E1528)
+                            : Colors.white,
                       ),
                     ),
                   ],
@@ -402,12 +412,13 @@ class BookTrainingView extends GetView<BookTrainingController> {
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: ElevatedButton(
-        onPressed: () {
-        },
+        onPressed: () {},
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.r),
+          ),
         ),
         child: Text(
           'CONFIRM BOOKING',

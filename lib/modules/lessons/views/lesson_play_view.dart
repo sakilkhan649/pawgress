@@ -16,9 +16,7 @@ class LessonPlayView extends GetView<LessonPlayController> {
       if (controller.isFullscreen.value) {
         return Scaffold(
           backgroundColor: Colors.black,
-          body: Center(
-            child: _buildVideoPlayer(),
-          ),
+          body: Center(child: _buildVideoPlayer()),
         );
       }
 
@@ -212,12 +210,14 @@ class LessonPlayView extends GetView<LessonPlayController> {
         height: controller.isFullscreen.value ? 1.sh : 218.h,
         decoration: BoxDecoration(
           color: Colors.black,
-          borderRadius:
-              controller.isFullscreen.value ? null : BorderRadius.circular(20.r),
+          borderRadius: controller.isFullscreen.value
+              ? null
+              : BorderRadius.circular(20.r),
         ),
         child: ClipRRect(
-          borderRadius:
-              controller.isFullscreen.value ? BorderRadius.zero : BorderRadius.circular(20.r),
+          borderRadius: controller.isFullscreen.value
+              ? BorderRadius.zero
+              : BorderRadius.circular(20.r),
           child: Stack(
             alignment: Alignment.center,
             children: [
@@ -248,9 +248,7 @@ class LessonPlayView extends GetView<LessonPlayController> {
               if (controller.isInitialized.value)
                 GestureDetector(
                   onTap: () => controller.togglePlay(),
-                  child: Container(
-                    color: Colors.transparent,
-                  ),
+                  child: Container(color: Colors.transparent),
                 ),
               // Play/Pause Button
               if (controller.isInitialized.value)
@@ -309,52 +307,61 @@ class LessonPlayView extends GetView<LessonPlayController> {
                   child: Column(
                     children: [
                       // Progress Bar
-                      LayoutBuilder(builder: (context, constraints) {
-                        return GestureDetector(
-                          onHorizontalDragUpdate: (details) {
-                            final progress = (details.localPosition.dx /
-                                    constraints.maxWidth)
-                                .clamp(0.0, 1.0);
-                            controller.seekToProgress(progress);
-                          },
-                          onTapDown: (details) {
-                            final progress = (details.localPosition.dx /
-                                    constraints.maxWidth)
-                                .clamp(0.0, 1.0);
-                            controller.seekToProgress(progress);
-                          },
-                          child: Stack(
-                            children: [
-                              Container(
-                                height: 4.h, // Slightly larger touch area
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withValues(alpha: 0.3),
-                                  borderRadius: BorderRadius.circular(4.r),
-                                ),
-                              ),
-                              Obx(() {
-                                double progress = 0;
-                                if (controller.duration.value.inMilliseconds >
-                                    0) {
-                                  progress = controller
-                                          .position.value.inMilliseconds /
-                                      controller
-                                          .duration.value.inMilliseconds;
-                                }
-                                return Container(
-                                  height: 4.h,
-                                  width: constraints.maxWidth * progress,
+                      LayoutBuilder(
+                        builder: (context, constraints) {
+                          return GestureDetector(
+                            onHorizontalDragUpdate: (details) {
+                              final progress =
+                                  (details.localPosition.dx /
+                                          constraints.maxWidth)
+                                      .clamp(0.0, 1.0);
+                              controller.seekToProgress(progress);
+                            },
+                            onTapDown: (details) {
+                              final progress =
+                                  (details.localPosition.dx /
+                                          constraints.maxWidth)
+                                      .clamp(0.0, 1.0);
+                              controller.seekToProgress(progress);
+                            },
+                            child: Stack(
+                              children: [
+                                Container(
+                                  height: 4.h, // Slightly larger touch area
+                                  width: double.infinity,
                                   decoration: BoxDecoration(
-                                    color: AppTheme.teal2,
+                                    color: Colors.white.withValues(alpha: 0.3),
                                     borderRadius: BorderRadius.circular(4.r),
                                   ),
-                                );
-                              }),
-                            ],
-                          ),
-                        );
-                      }),
+                                ),
+                                Obx(() {
+                                  double progress = 0;
+                                  if (controller.duration.value.inMilliseconds >
+                                      0) {
+                                    progress =
+                                        controller
+                                            .position
+                                            .value
+                                            .inMilliseconds /
+                                        controller
+                                            .duration
+                                            .value
+                                            .inMilliseconds;
+                                  }
+                                  return Container(
+                                    height: 4.h,
+                                    width: constraints.maxWidth * progress,
+                                    decoration: BoxDecoration(
+                                      color: AppTheme.teal2,
+                                      borderRadius: BorderRadius.circular(4.r),
+                                    ),
+                                  );
+                                }),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
                       SizedBox(height: 12.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -428,26 +435,41 @@ class LessonPlayView extends GetView<LessonPlayController> {
                                             ),
                                             SizedBox(height: 20.h),
                                             ListTile(
-                                              leading: const Icon(Icons.speed,
-                                                  color: Colors.white),
-                                              title: Text('Playback Speed',
-                                                  style: GoogleFonts.inter(
-                                                      color: Colors.white)),
-                                              trailing: Text('1.0x',
-                                                  style: GoogleFonts.inter(
-                                                      color: Colors.white)),
+                                              leading: const Icon(
+                                                Icons.speed,
+                                                color: Colors.white,
+                                              ),
+                                              title: Text(
+                                                'Playback Speed',
+                                                style: GoogleFonts.inter(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              trailing: Text(
+                                                '1.0x',
+                                                style: GoogleFonts.inter(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
                                               onTap: () => Get.back(),
                                             ),
                                             ListTile(
                                               leading: const Icon(
-                                                  Icons.high_quality,
-                                                  color: Colors.white),
-                                              title: Text('Quality',
-                                                  style: GoogleFonts.inter(
-                                                      color: Colors.white)),
-                                              trailing: Text('Auto',
-                                                  style: GoogleFonts.inter(
-                                                      color: Colors.white)),
+                                                Icons.high_quality,
+                                                color: Colors.white,
+                                              ),
+                                              title: Text(
+                                                'Quality',
+                                                style: GoogleFonts.inter(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              trailing: Text(
+                                                'Auto',
+                                                style: GoogleFonts.inter(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
                                               onTap: () => Get.back(),
                                             ),
                                           ],

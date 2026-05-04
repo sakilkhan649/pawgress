@@ -39,9 +39,7 @@ class LoginView extends GetView<LoginController> {
                   decoration: BoxDecoration(
                     color: const Color(0xFF302B4A), // Card background
                     borderRadius: BorderRadius.circular(32.r),
-                    border: Border.all(
-                      color: Color(0xFF6D6767),
-                    ),
+                    border: Border.all(color: Color(0xFF6D6767)),
                   ),
                   child: Form(
                     key: controller.formKey,
@@ -68,7 +66,7 @@ class LoginView extends GetView<LoginController> {
                           ),
                         ),
                         SizedBox(height: 24.h),
-            
+
                         // Email Field
                         _buildLabel('EMAIL'),
                         SizedBox(height: 8.h),
@@ -81,32 +79,34 @@ class LoginView extends GetView<LoginController> {
                           validator: Validators.email,
                         ),
                         SizedBox(height: 14.h),
-            
+
                         // Password Field
                         _buildLabel('PASSWORD'),
                         SizedBox(height: 8.h),
-                        Obx(() => CustomTextField(
-                          label: '',
-                          isLabelVisible: false,
-                          hintText: "",
-                          controller: controller.passwordController,
-                          obscureText: !controller.isPasswordVisible.value,
-                          validator: Validators.password,
-                          suffixIcon: Padding(
-                            padding: EdgeInsets.only(right: 8.w),
-                            child: GestureDetector(
-                              onTap: controller.togglePasswordVisibility,
-                              child: Icon(
-                                controller.isPasswordVisible.value
-                                    ? Icons.visibility_outlined
-                                    : Icons.visibility_off_outlined,
-                                color: const Color(0xFF8E8E93),
+                        Obx(
+                          () => CustomTextField(
+                            label: '',
+                            isLabelVisible: false,
+                            hintText: "",
+                            controller: controller.passwordController,
+                            obscureText: !controller.isPasswordVisible.value,
+                            validator: Validators.password,
+                            suffixIcon: Padding(
+                              padding: EdgeInsets.only(right: 8.w),
+                              child: GestureDetector(
+                                onTap: controller.togglePasswordVisibility,
+                                child: Icon(
+                                  controller.isPasswordVisible.value
+                                      ? Icons.visibility_outlined
+                                      : Icons.visibility_off_outlined,
+                                  color: const Color(0xFF8E8E93),
+                                ),
                               ),
                             ),
                           ),
-                        )),
+                        ),
                         SizedBox(height: 8.h),
-            
+
                         // Forgot Password
                         Align(
                           alignment: Alignment.centerRight,
@@ -130,7 +130,7 @@ class LoginView extends GetView<LoginController> {
                           ),
                         ),
                         SizedBox(height: 20.h),
-            
+
                         // Login Button
                         CustomButton(
                           text: 'Log In',
@@ -138,18 +138,20 @@ class LoginView extends GetView<LoginController> {
                             // if (controller.formKey.currentState!.validate()) {
                             //   Get.toNamed(AppRoutes.bottomNavigation);
                             // }
-                             Get.toNamed(AppRoutes.bottomNavigation);
+                            Get.toNamed(AppRoutes.bottomNavigation);
                           },
                           gradient: AppTheme.secondaryGradient,
                         ),
                         SizedBox(height: 16.h),
-            
+
                         // Or Continue With
                         Row(
                           children: [
                             Expanded(
                               child: Divider(
-                                color: Color(0xffDA915D).withValues(alpha: 0.30),
+                                color: Color(
+                                  0xffDA915D,
+                                ).withValues(alpha: 0.30),
                                 thickness: 1,
                               ),
                             ),
@@ -168,14 +170,16 @@ class LoginView extends GetView<LoginController> {
                             ),
                             Expanded(
                               child: Divider(
-                                color: Color(0xffDA915D).withValues(alpha: 0.30),
+                                color: Color(
+                                  0xffDA915D,
+                                ).withValues(alpha: 0.30),
                                 thickness: 1,
                               ),
                             ),
                           ],
                         ),
                         SizedBox(height: 20.h),
-            
+
                         // Social Buttons
                         Row(
                           children: [
@@ -197,7 +201,7 @@ class LoginView extends GetView<LoginController> {
                           ],
                         ),
                         SizedBox(height: 24.h),
-            
+
                         // Sign Up Text
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

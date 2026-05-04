@@ -66,7 +66,12 @@ class CustomBottomBar extends GetView<BottomNabBarController> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
         border: Border(
           top: BorderSide(
-            color: const Color.fromARGB(255, 141, 139, 145).withValues(alpha: 0.20),
+            color: const Color.fromARGB(
+              255,
+              141,
+              139,
+              145,
+            ).withValues(alpha: 0.20),
             width: 1,
           ),
         ),
@@ -104,7 +109,10 @@ class CustomBottomBar extends GetView<BottomNabBarController> {
                             items[index].iconPath,
                             width: 24.w,
                             height: 24.w,
-                            colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+                            colorFilter: ColorFilter.mode(
+                              color,
+                              BlendMode.srcIn,
+                            ),
                           ),
                           SizedBox(height: 4.h),
 

@@ -86,7 +86,10 @@ class SignupView extends GetView<SignupController> {
                   label: "Dog's Name",
                   hintText: 'e.g. Max, Bella...',
                   controller: controller.dogNameController,
-                  validator: (val) => Validators.required(val, message: "Dog's name is required"),
+                  validator: (val) => Validators.required(
+                    val,
+                    message: "Dog's name is required",
+                  ),
                   fillColior: const Color(0xFF3B3B5B),
                   prefixIcon: const Icon(
                     Icons.pets_outlined,
@@ -131,7 +134,10 @@ class SignupView extends GetView<SignupController> {
                     hintText: '',
                     controller: controller.confirmPasswordController,
                     obscureText: controller.isConfirmPasswordHidden.value,
-                    validator: (val) => Validators.confirmPassword(val, controller.passwordController.text),
+                    validator: (val) => Validators.confirmPassword(
+                      val,
+                      controller.passwordController.text,
+                    ),
                     fillColior: const Color(0xFF3B3B5B),
                     suffixIcon: GestureDetector(
                       onTap: controller.toggleConfirmPasswordVisibility,

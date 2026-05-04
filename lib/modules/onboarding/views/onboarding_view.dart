@@ -135,7 +135,7 @@ class OnboardingView extends GetView<OnboardingController> {
                                     : 'Next',
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w700,
-                                color:AppTheme.textColor,
+                                color: AppTheme.textColor,
                               ),
                               SizedBox(width: 8.w),
                               const Icon(

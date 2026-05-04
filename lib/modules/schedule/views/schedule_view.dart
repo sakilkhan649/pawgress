@@ -19,7 +19,8 @@ class ScheduleView extends GetView<ScheduleController> {
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         elevation: 0,
-        leading: (Get.arguments is Map && Get.arguments['showBackButton'] == true)
+        leading:
+            (Get.arguments is Map && Get.arguments['showBackButton'] == true)
             ? Padding(
                 padding: EdgeInsets.only(left: 20.w),
                 child: GestureDetector(
@@ -30,8 +31,11 @@ class ScheduleView extends GetView<ScheduleController> {
                       shape: BoxShape.circle,
                     ),
                     padding: EdgeInsets.all(10.w),
-                    child:
-                        Icon(Icons.arrow_back, color: Colors.white, size: 20.sp),
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                      size: 20.sp,
+                    ),
                   ),
                 ),
               )
@@ -223,7 +227,9 @@ class ScheduleView extends GetView<ScheduleController> {
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(20.r),
-                    border: Border.all(color: AppTheme.teal2.withValues(alpha: 0.5)),
+                    border: Border.all(
+                      color: AppTheme.teal2.withValues(alpha: 0.5),
+                    ),
                   ),
                   child: Text(
                     session['category'],

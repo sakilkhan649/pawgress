@@ -45,7 +45,10 @@ class BehaviorView extends GetView<BehaviorController> {
           Padding(
             padding: EdgeInsets.only(right: 20.w),
             child: GestureDetector(
-              onTap: () => Get.toNamed(AppRoutes.profileView, arguments: {'showBackButton': true}),
+              onTap: () => Get.toNamed(
+                AppRoutes.profileView,
+                arguments: {'showBackButton': true},
+              ),
               child: CircleAvatar(
                 radius: 18.r,
                 backgroundImage: AssetImage(ImagePaths.massageProfileImage),
@@ -91,27 +94,37 @@ class BehaviorView extends GetView<BehaviorController> {
         decoration: BoxDecoration(
           color: const Color(0xFF372848),
           borderRadius: BorderRadius.circular(16.r),
-          border: Border.all(color: const Color(0xFF01551F).withValues(alpha: 0.80)),
+          border: Border.all(
+            color: const Color(0xFF01551F).withValues(alpha: 0.80),
+          ),
         ),
         child: Row(
           children: [
             Container(
               padding: EdgeInsets.all(10.w),
               decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xFF01551F).withValues(alpha: 0.10)),
+                border: Border.all(
+                  color: const Color(0xFF01551F).withValues(alpha: 0.10),
+                ),
                 borderRadius: BorderRadius.circular(10.r),
               ),
-              child: Icon(Icons.calendar_today, color: Color(0xFF10B981), size: 20.sp),
+              child: Icon(
+                Icons.calendar_today,
+                color: Color(0xFF10B981),
+                size: 20.sp,
+              ),
             ),
             SizedBox(width: 16.w),
-            Obx(() => Text(
-                  DateFormat('d/M/yyyy').format(controller.selectedDate.value),
-                  style: GoogleFonts.inter(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                )),
+            Obx(
+              () => Text(
+                DateFormat('d/M/yyyy').format(controller.selectedDate.value),
+                style: GoogleFonts.inter(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+            ),
             const Spacer(),
             Text(
               'Change Date',
@@ -133,7 +146,9 @@ class BehaviorView extends GetView<BehaviorController> {
       builder: (context) => Dialog(
         backgroundColor: const Color(0xFF403057),
         insetPadding: EdgeInsets.symmetric(horizontal: 24.w),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.r),
+        ),
         child: Padding(
           padding: EdgeInsets.fromLTRB(24.w, 16.h, 24.w, 24.h),
           child: Column(
@@ -149,111 +164,124 @@ class BehaviorView extends GetView<BehaviorController> {
                 ),
               ),
               SizedBox(height: 8.h),
-              Obx(() => TableCalendar(
-                    firstDay: DateTime.utc(2020, 1, 1),
-                    lastDay: DateTime.utc(2030, 12, 31),
-                    focusedDay: controller.focusedDate.value,
-                    selectedDayPredicate: (day) => isSameDay(controller.selectedDate.value, day),
-                    onDaySelected: (selectedDay, focusedDay) {
-                      controller.updateDate(selectedDay);
-                      controller.updateFocusedDate(focusedDay);
-                    },
-                    headerStyle: HeaderStyle(
-                      formatButtonVisible: false,
-                      titleCentered: false,
-                      leftChevronVisible: true,
-                      rightChevronVisible: true,
-                      leftChevronIcon: Icon(Icons.chevron_left, color: const Color(0xFF8B7882), size: 24.sp),
-                      rightChevronIcon: Icon(Icons.chevron_right, color: const Color(0xFF8B7882), size: 24.sp),
-                      titleTextStyle: GoogleFonts.inter(
-                        fontSize: 22.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                      ),
-                      headerPadding: EdgeInsets.only(bottom: 24.h),
-                      leftChevronPadding: EdgeInsets.zero,
-                      rightChevronPadding: EdgeInsets.zero,
-                      titleTextFormatter: (date, locale) => DateFormat.yMMMM(locale).format(date),
+              Obx(
+                () => TableCalendar(
+                  firstDay: DateTime.utc(2020, 1, 1),
+                  lastDay: DateTime.utc(2030, 12, 31),
+                  focusedDay: controller.focusedDate.value,
+                  selectedDayPredicate: (day) =>
+                      isSameDay(controller.selectedDate.value, day),
+                  onDaySelected: (selectedDay, focusedDay) {
+                    controller.updateDate(selectedDay);
+                    controller.updateFocusedDate(focusedDay);
+                  },
+                  headerStyle: HeaderStyle(
+                    formatButtonVisible: false,
+                    titleCentered: false,
+                    leftChevronVisible: true,
+                    rightChevronVisible: true,
+                    leftChevronIcon: Icon(
+                      Icons.chevron_left,
+                      color: const Color(0xFF8B7882),
+                      size: 24.sp,
                     ),
-                    calendarStyle: CalendarStyle(
-                      defaultTextStyle: GoogleFonts.inter(
-                        color: Colors.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      weekendTextStyle: GoogleFonts.inter(
-                        color: Colors.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      outsideTextStyle: GoogleFonts.inter(
-                        color: const Color(0xFF8B7882).withValues(alpha: 0.5),
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      selectedTextStyle: GoogleFonts.inter(
-                        color: Colors.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      todayTextStyle: GoogleFonts.inter(
-                        color: Colors.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      selectedDecoration: const BoxDecoration(
-                        color: Colors.transparent,
-                        shape: BoxShape.circle,
-                      ),
-                      todayDecoration: const BoxDecoration(
-                        color: Colors.transparent,
-                        shape: BoxShape.circle,
-                      ),
-                      markersMaxCount: 1,
-                      markerDecoration: const BoxDecoration(
-                        color: Color(0xFF53D49D),
-                        shape: BoxShape.circle,
-                      ),
+                    rightChevronIcon: Icon(
+                      Icons.chevron_right,
+                      color: const Color(0xFF8B7882),
+                      size: 24.sp,
                     ),
-                    daysOfWeekStyle: DaysOfWeekStyle(
-                      dowTextFormatter: (date, locale) => DateFormat.E(locale).format(date)[0],
-                      weekdayStyle: GoogleFonts.inter(
-                        color: const Color(0xFF8B7882),
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      weekendStyle: GoogleFonts.inter(
-                        color: const Color(0xFF8B7882),
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w700,
-                      ),
+                    titleTextStyle: GoogleFonts.inter(
+                      fontSize: 22.sp,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
                     ),
-                    eventLoader: (day) {
-                      // Mock events for 17th and 19th as per image
-                      if (day.day == 17 || day.day == 19) {
-                        return [day];
-                      }
-                      return [];
-                    },
-                    calendarBuilders: CalendarBuilders(
-                      markerBuilder: (context, date, events) {
-                        if (events.isNotEmpty) {
-                          return Positioned(
-                            bottom: 6.h,
-                            child: Container(
-                              width: 4.w,
-                              height: 4.w,
-                              decoration: const BoxDecoration(
-                                color: Color(0xFF53D49D),
-                                shape: BoxShape.circle,
-                              ),
+                    headerPadding: EdgeInsets.only(bottom: 24.h),
+                    leftChevronPadding: EdgeInsets.zero,
+                    rightChevronPadding: EdgeInsets.zero,
+                    titleTextFormatter: (date, locale) =>
+                        DateFormat.yMMMM(locale).format(date),
+                  ),
+                  calendarStyle: CalendarStyle(
+                    defaultTextStyle: GoogleFonts.inter(
+                      color: Colors.white,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    weekendTextStyle: GoogleFonts.inter(
+                      color: Colors.white,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    outsideTextStyle: GoogleFonts.inter(
+                      color: const Color(0xFF8B7882).withValues(alpha: 0.5),
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    selectedTextStyle: GoogleFonts.inter(
+                      color: Colors.white,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    todayTextStyle: GoogleFonts.inter(
+                      color: Colors.white,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    selectedDecoration: const BoxDecoration(
+                      color: Colors.transparent,
+                      shape: BoxShape.circle,
+                    ),
+                    todayDecoration: const BoxDecoration(
+                      color: Colors.transparent,
+                      shape: BoxShape.circle,
+                    ),
+                    markersMaxCount: 1,
+                    markerDecoration: const BoxDecoration(
+                      color: Color(0xFF53D49D),
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  daysOfWeekStyle: DaysOfWeekStyle(
+                    dowTextFormatter: (date, locale) =>
+                        DateFormat.E(locale).format(date)[0],
+                    weekdayStyle: GoogleFonts.inter(
+                      color: const Color(0xFF8B7882),
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    weekendStyle: GoogleFonts.inter(
+                      color: const Color(0xFF8B7882),
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  eventLoader: (day) {
+                    // Mock events for 17th and 19th as per image
+                    if (day.day == 17 || day.day == 19) {
+                      return [day];
+                    }
+                    return [];
+                  },
+                  calendarBuilders: CalendarBuilders(
+                    markerBuilder: (context, date, events) {
+                      if (events.isNotEmpty) {
+                        return Positioned(
+                          bottom: 6.h,
+                          child: Container(
+                            width: 4.w,
+                            height: 4.w,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF53D49D),
+                              shape: BoxShape.circle,
                             ),
-                          );
-                        }
-                        return null;
-                      },
-                    ),
-                  )),
+                          ),
+                        );
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -261,24 +289,32 @@ class BehaviorView extends GetView<BehaviorController> {
     );
   }
 
-  Widget _buildSectionHeader(String title, {bool showInfo = false, VoidCallback? onTap}) {
+  Widget _buildSectionHeader(
+    String title, {
+    bool showInfo = false,
+    VoidCallback? onTap,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: GoogleFonts.inter(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w600,
-            color: Colors.white,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: GoogleFonts.inter(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
           ),
-        ),
-        if (showInfo)
-          Icon(Icons.info_outline, color: const Color(0xFF006E2C), size: 24.sp),
-      ],
-    ),
+          if (showInfo)
+            Icon(
+              Icons.info_outline,
+              color: const Color(0xFF006E2C),
+              size: 24.sp,
+            ),
+        ],
+      ),
     );
   }
 
@@ -288,7 +324,8 @@ class BehaviorView extends GetView<BehaviorController> {
       runSpacing: 12.h,
       children: controller.feelings.map((feeling) {
         return Obx(() {
-          final isSelected = controller.selectedFeeling.value == feeling['name'];
+          final isSelected =
+              controller.selectedFeeling.value == feeling['name'];
           return GestureDetector(
             onTap: () => controller.selectFeeling(feeling['name']),
             child: Container(
@@ -298,7 +335,9 @@ class BehaviorView extends GetView<BehaviorController> {
                 color: isSelected ? const Color(0xFFF2F6E3) : Color(0xFF372848),
                 borderRadius: BorderRadius.circular(20.r),
                 border: Border.all(
-                  color: isSelected ? Color(0xFF372848) : const Color(0xFFF2F6E3).withValues(alpha: 0.60),
+                  color: isSelected
+                      ? Color(0xFF372848)
+                      : const Color(0xFFF2F6E3).withValues(alpha: 0.60),
                   width: 1.5.w,
                 ),
               ),
@@ -306,7 +345,9 @@ class BehaviorView extends GetView<BehaviorController> {
                 children: [
                   Icon(
                     _getIconData(feeling['icon']),
-                    color: isSelected ? const Color(0xFF53D49D) : Color(feeling['color']),
+                    color: isSelected
+                        ? const Color(0xFF53D49D)
+                        : Color(feeling['color']),
                     size: 28.sp,
                   ),
                   SizedBox(height: 8.h),
@@ -315,7 +356,9 @@ class BehaviorView extends GetView<BehaviorController> {
                     style: GoogleFonts.inter(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w600,
-                      color: isSelected ? const Color(0xFF065F46) : const Color(0xFFE5FFE5),
+                      color: isSelected
+                          ? const Color(0xFF065F46)
+                          : const Color(0xFFE5FFE5),
                     ),
                   ),
                 ],
@@ -339,7 +382,9 @@ class BehaviorView extends GetView<BehaviorController> {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
               decoration: BoxDecoration(
-                color: isSelected ? const Color(0xFF1FD761) : const Color(0xFF827B8D),
+                color: isSelected
+                    ? const Color(0xFF1FD761)
+                    : const Color(0xFF827B8D),
                 borderRadius: BorderRadius.circular(30.r),
               ),
               child: Text(
@@ -383,7 +428,7 @@ class BehaviorView extends GetView<BehaviorController> {
       child: Container(
         width: double.infinity,
         alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(vertical: 12.h,horizontal: 20.w),
+        padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
         decoration: BoxDecoration(
           gradient: AppTheme.secondaryGradient,
           borderRadius: BorderRadius.circular(12.r),
@@ -447,7 +492,9 @@ class BehaviorView extends GetView<BehaviorController> {
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
-                  log['feeling'] == 'Calm' ? Icons.sentiment_satisfied_alt : Icons.favorite_border,
+                  log['feeling'] == 'Calm'
+                      ? Icons.sentiment_satisfied_alt
+                      : Icons.favorite_border,
                   color: Color(log['color']),
                   size: 24.sp,
                 ),

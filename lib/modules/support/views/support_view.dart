@@ -45,21 +45,24 @@ class SupportView extends GetView<SupportController> {
           decoration: BoxDecoration(
             color: const Color(0xFF382948), // Card background
             borderRadius: BorderRadius.circular(16.r),
-            border: Border.all(color: const Color(0xFF2A9483).withValues(alpha: 0.40)), // Slight border
+            border: Border.all(
+              color: const Color(0xFF2A9483).withValues(alpha: 0.40),
+            ), // Slight border
           ),
           child: ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 12.w,
+              vertical: 12.h,
+            ),
             leading: Container(
               padding: EdgeInsets.all(14.w),
               decoration: BoxDecoration(
-                color: Color(0xFFF2F4F6).withValues(alpha: 0.20), // Icon background
+                color: Color(
+                  0xFFF2F4F6,
+                ).withValues(alpha: 0.20), // Icon background
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                Icons.mail_outline,
-                color: Colors.white,
-                size: 24.sp,
-              ),
+              child: Icon(Icons.mail_outline, color: Colors.white, size: 24.sp),
             ),
             title: Text(
               'Email Support',

@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pawgress/config/constants/image_paths.dart';
 import 'package:pawgress/config/routes/app_pages.dart';
 import 'package:pawgress/config/themes/app_theme.dart';
+import 'package:pawgress/core/utils/validetors.dart';
 import 'package:pawgress/core/widgets/custom_button.dart';
 import 'package:pawgress/core/widgets/custom_text_field.dart';
 import 'package:pawgress/modules/auth/controllers/login_controller.dart';
@@ -42,180 +43,190 @@ class LoginView extends GetView<LoginController> {
                       color: Color(0xFF6D6767),
                     ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Welcome back 👋',
-                        style: GoogleFonts.manrope(
-                          fontSize: 26.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(height: 12.h),
-                      Text(
-                        'Sign in to continue your training journey',
-                        style: GoogleFonts.manrope(
-                          fontSize: 13.sp,
-                          fontWeight: FontWeight.w500,
-                          color: const Color(
-                            0xFFD7CEC8,
-                          ), // AppTheme.textLightColor
-                        ),
-                      ),
-                      SizedBox(height: 24.h),
-          
-                      // Email Field
-                      _buildLabel('EMAIL'),
-                      SizedBox(height: 8.h),
-                      CustomTextField(
-                        label: '',
-                        isLabelVisible: false,
-                        hintText: 'your@email.com',
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                      SizedBox(height: 14.h),
-          
-                      // Password Field
-                      _buildLabel('PASSWORD'),
-                      SizedBox(height: 8.h),
-                      Obx(() => CustomTextField(
-                        label: '',
-                        isLabelVisible: false,
-                        hintText: "",
-                        obscureText: !controller.isPasswordVisible.value,
-                        suffixIcon: Padding(
-                          padding: EdgeInsets.only(right: 8.w),
-                          child: GestureDetector(
-                            onTap: controller.togglePasswordVisibility,
-                            child: Icon(
-                              controller.isPasswordVisible.value
-                                  ? Icons.visibility_outlined
-                                  : Icons.visibility_off_outlined,
-                              color: const Color(0xFF8E8E93),
-                            ),
+                  child: Form(
+                    key: controller.formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Welcome back 👋',
+                          style: GoogleFonts.manrope(
+                            fontSize: 26.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
                           ),
                         ),
-                      )),
-                      SizedBox(height: 8.h),
-          
-                      // Forgot Password
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: () {
-                            Get.toNamed(AppRoutes.forgotPassword);
-                          },
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                            minimumSize: Size.zero,
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          ),
-                          child: Text(
-                            'Forgot Password?',
-                            style: GoogleFonts.manrope(
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xff01D086),
-                            ),
+                        SizedBox(height: 12.h),
+                        Text(
+                          'Sign in to continue your training journey',
+                          style: GoogleFonts.manrope(
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w500,
+                            color: const Color(
+                              0xFFD7CEC8,
+                            ), // AppTheme.textLightColor
                           ),
                         ),
-                      ),
-                      SizedBox(height: 20.h),
-          
-                      // Login Button
-                      CustomButton(
-                        text: 'Log In',
-                        onPressed: () {
-                          Get.toNamed(AppRoutes.bottomNavigation);
-                        },
-                        gradient: AppTheme.secondaryGradient,
-                      ),
-                      SizedBox(height: 16.h),
-          
-                      // Or Continue With
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Divider(
-                              color: Color(0xffDA915D).withValues(alpha: 0.30),
-                              thickness: 1,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16.w),
-                            child: Text(
-                              'OR CONTINUE WITH',
-                              style: GoogleFonts.manrope(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(
-                                  0xFFBCBCBC,
-                                ), // AppTheme.greyBrown
+                        SizedBox(height: 24.h),
+            
+                        // Email Field
+                        _buildLabel('EMAIL'),
+                        SizedBox(height: 8.h),
+                        CustomTextField(
+                          label: '',
+                          isLabelVisible: false,
+                          hintText: 'your@email.com',
+                          controller: controller.emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          validator: Validators.email,
+                        ),
+                        SizedBox(height: 14.h),
+            
+                        // Password Field
+                        _buildLabel('PASSWORD'),
+                        SizedBox(height: 8.h),
+                        Obx(() => CustomTextField(
+                          label: '',
+                          isLabelVisible: false,
+                          hintText: "",
+                          controller: controller.passwordController,
+                          obscureText: !controller.isPasswordVisible.value,
+                          validator: Validators.password,
+                          suffixIcon: Padding(
+                            padding: EdgeInsets.only(right: 8.w),
+                            child: GestureDetector(
+                              onTap: controller.togglePasswordVisibility,
+                              child: Icon(
+                                controller.isPasswordVisible.value
+                                    ? Icons.visibility_outlined
+                                    : Icons.visibility_off_outlined,
+                                color: const Color(0xFF8E8E93),
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: Divider(
-                              color: Color(0xffDA915D).withValues(alpha: 0.30),
-                              thickness: 1,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20.h),
-          
-                      // Social Buttons
-                      Row(
-                        children: [
-                          Expanded(
-                            child: _SocialButton(
-                              iconPath: ImagePaths.appleIcon,
-                              label: 'Apple',
-                              onPressed: () {},
-                            ),
-                          ),
-                          SizedBox(width: 16.w),
-                          Expanded(
-                            child: _SocialButton(
-                              iconPath: ImagePaths.googleIcon,
-                              label: 'Google',
-                              onPressed: () {},
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 24.h),
-          
-                      // Sign Up Text
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Don't have an account? ",
-                            style: GoogleFonts.manrope(
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.w500,
-                              color: const Color(0xFF9E7B60), // greyBrown
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.toNamed(AppRoutes.signUp);
+                        )),
+                        SizedBox(height: 8.h),
+            
+                        // Forgot Password
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () {
+                              Get.toNamed(AppRoutes.forgotPassword);
                             },
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              minimumSize: Size.zero,
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            ),
                             child: Text(
-                              ' Sign Up',
+                              'Forgot Password?',
                               style: GoogleFonts.manrope(
                                 fontSize: 13.sp,
-                                fontWeight: FontWeight.w700,
-                                color: Color(0xff02CD89),
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xff01D086),
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                        SizedBox(height: 20.h),
+            
+                        // Login Button
+                        CustomButton(
+                          text: 'Log In',
+                          onPressed: () {
+                            // if (controller.formKey.currentState!.validate()) {
+                            //   Get.toNamed(AppRoutes.bottomNavigation);
+                            // }
+                             Get.toNamed(AppRoutes.bottomNavigation);
+                          },
+                          gradient: AppTheme.secondaryGradient,
+                        ),
+                        SizedBox(height: 16.h),
+            
+                        // Or Continue With
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                color: Color(0xffDA915D).withValues(alpha: 0.30),
+                                thickness: 1,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 16.w),
+                              child: Text(
+                                'OR CONTINUE WITH',
+                                style: GoogleFonts.manrope(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: const Color(
+                                    0xFFBCBCBC,
+                                  ), // AppTheme.greyBrown
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                color: Color(0xffDA915D).withValues(alpha: 0.30),
+                                thickness: 1,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 20.h),
+            
+                        // Social Buttons
+                        Row(
+                          children: [
+                            Expanded(
+                              child: _SocialButton(
+                                iconPath: ImagePaths.appleIcon,
+                                label: 'Apple',
+                                onPressed: () {},
+                              ),
+                            ),
+                            SizedBox(width: 16.w),
+                            Expanded(
+                              child: _SocialButton(
+                                iconPath: ImagePaths.googleIcon,
+                                label: 'Google',
+                                onPressed: () {},
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 24.h),
+            
+                        // Sign Up Text
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Don't have an account? ",
+                              style: GoogleFonts.manrope(
+                                fontSize: 13.sp,
+                                fontWeight: FontWeight.w500,
+                                color: const Color(0xFF9E7B60), // greyBrown
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Get.toNamed(AppRoutes.signUp);
+                              },
+                              child: Text(
+                                ' Sign Up',
+                                style: GoogleFonts.manrope(
+                                  fontSize: 13.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color(0xff02CD89),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 80.h),

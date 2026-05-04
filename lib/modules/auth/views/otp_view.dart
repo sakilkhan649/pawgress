@@ -2,46 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pawgress/config/routes/app_pages.dart';
 import 'package:pinput/pinput.dart';
 import 'package:pawgress/config/constants/image_paths.dart';
 import 'package:pawgress/config/themes/app_theme.dart';
+import 'package:pawgress/core/utils/validetors.dart';
 import 'package:pawgress/core/widgets/custom_button.dart';
+import 'package:pawgress/modules/auth/controllers/otp_controller.dart';
+import 'package:pawgress/config/routes/app_pages.dart';
 
-class OtpView extends StatelessWidget {
+class OtpView extends GetView<OtpController> {
   const OtpView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
-      width: 40.w,
-      height: 58.h,
-      textStyle: GoogleFonts.inter(
-        fontSize: 22,
-        color: Colors.white,
+      width: 48.w,
+      height: 52.h,
+      textStyle: GoogleFonts.manrope(
+        fontSize: 22.sp,
         fontWeight: FontWeight.w700,
+        color: Colors.white,
       ),
-      padding: EdgeInsets.all(11.r),
       decoration: BoxDecoration(
-        color: const Color(0xFF323663),
-        borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: const Color(0xFFFF9B63).withValues(alpha: 0.3)),
+        color: const Color(0xFF3B3B5B),
+        borderRadius: BorderRadius.circular(12.r),
+        border: Border.all(color: const Color(0xFF6D6767)),
       ),
     );
 
-    final focusedPinTheme = defaultPinTheme.copyDecorationWith(
-      border: Border.all(color: const Color(0xFFFF9B63)),
-      boxShadow: [
-        BoxShadow(
-          color: const Color(0xFFFF9B63).withValues(alpha: 0.2),
-          blurRadius: 10.r,
-          spreadRadius: 2.r,
-        ),
-      ],
+    final focusedPinTheme = defaultPinTheme.copyWith(
+      decoration: defaultPinTheme.decoration!.copyWith(
+        border: Border.all(color: const Color(0xFFFF9B63)),
+      ),
     );
 
     return Scaffold(
-      backgroundColor: const Color(0xFF221A36),
+      backgroundColor: const Color(0xFF211134), // Deep purple background
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -56,177 +52,126 @@ class OtpView extends StatelessWidget {
                     fit: BoxFit.contain,
                   ),
                 ),
-                SizedBox(height: 10.h),
+                SizedBox(height: 15.h),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 20.w),
-                  padding: EdgeInsets.fromLTRB(24.w, 16.h, 24.w, 31.h),
+                  padding: EdgeInsets.fromLTRB(24.w, 32.h, 24.w, 32.h),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF2C2843),
+                    color: const Color(0xFF302B4A), // Card background
                     borderRadius: BorderRadius.circular(32.r),
                     border: Border.all(color: const Color(0xFF6D6767)),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Verify Your Code',
-                        style: GoogleFonts.inter(
-                          fontSize: 26.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
+                  child: Form(
+                    key: controller.formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Verify Your Code',
+                          style: GoogleFonts.manrope(
+                            fontSize: 26.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 12.h),
-                      Text(
-                        "We've sent a 6-digit verification \ncode to your email/phone",
-                        style: GoogleFonts.inter(
-                          fontSize: 13.sp,
-                          fontWeight: FontWeight.w500,
-                          color: const Color(0xFFDED7D2),
+                        SizedBox(height: 12.h),
+                        Text(
+                          'Enter the 6-digit code we sent to your email',
+                          style: GoogleFonts.manrope(
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w500,
+                            color: const Color(0xFFD7CEC8),
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 32.h),
+                        SizedBox(height: 32.h),
 
-                      // Pinput
-                      Center(
-                        child: Pinput(
-                          length: 6,
-                          defaultPinTheme: defaultPinTheme,
-                          focusedPinTheme: focusedPinTheme,
-                          submittedPinTheme: defaultPinTheme,
-                          showCursor: true,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          cursor: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 1.w,
-                                height: 18.w,
-                                color: const Color(0xFFFF9B63),
-                              ),
-                            ],
+                        // OTP Input
+                        Center(
+                          child: Pinput(
+                            length: 6,
+                            controller: controller.otpController,
+                            defaultPinTheme: defaultPinTheme,
+                            focusedPinTheme: focusedPinTheme,
+                            submittedPinTheme: defaultPinTheme,
+                            showCursor: true,
+                            validator: (val) => Validators.otp(val, length: 6),
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            cursor: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 1.w,
+                                  height: 18.w,
+                                  color: const Color(0xFFFF9B63),
+                                ),
+                              ],
+                            ),
+                            onCompleted: (pin) {
+                              // Handle OTP verification
+                            },
                           ),
-                          onCompleted: (pin) {
-                            // Handle OTP verification
-                          },
                         ),
-                      ),
-                      SizedBox(height: 24.h),
+                        SizedBox(height: 32.h),
 
-                      // Resend Code in Timer
-                      Center(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 16.h,
-                            vertical: 10.w,
-                          ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF3B3B5B).withValues(alpha: 0.5),
-                            borderRadius: BorderRadius.circular(30.r),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.access_time,
-                                color: const Color(0xFFFF9B63),
-                                size: 16.sp,
-                              ),
-                              SizedBox(width: 8.w),
-                              Text(
-                                'Resend code in ',
-                                style: GoogleFonts.manrope(
-                                  fontSize: 13.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: const Color(0xFF01D086),
+                        // Resend Code
+                        Center(
+                          child: GestureDetector(
+                            onTap: () {
+                              // Resend logic
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.refresh,
+                                  color: const Color(0xFFC8A98A),
+                                  size: 16.sp,
                                 ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 8.h,
-                                  vertical: 2.w,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(15.r),
-                                ),
-                                child: Text(
-                                  '00:30',
+                                SizedBox(width: 8.w),
+                                Text(
+                                  'Resend Code',
                                   style: GoogleFonts.manrope(
                                     fontSize: 13.sp,
-                                    fontWeight: FontWeight.w700,
-                                    color: const Color(0xFFA0612E),
+                                    fontWeight: FontWeight.w600,
+                                    color: const Color(0xFFC8A98A),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 14.h),
-
-                      // Resend Code Button
-                      Center(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 20.h,
-                            vertical: 8.w,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.r),
-                            border: Border.all(
-                              color: const Color(0xFFFF9B63).withValues(alpha: 0.2),
+                              ],
                             ),
                           ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.refresh,
-                                color: const Color(0xFFC8A98A),
-                                size: 16.sp,
-                              ),
-                              SizedBox(width: 8.w),
-                              Text(
-                                'Resend Code',
-                                style: GoogleFonts.manrope(
-                                  fontSize: 13.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: const Color(0xFFC8A98A),
-                                ),
-                              ),
-                            ],
-                          ),
                         ),
-                      ),
-                      SizedBox(height: 30.h),
+                        SizedBox(height: 30.h),
 
-                      // Separator with Paw
-                      Row(
-                        children: [
-                          Expanded(child: Divider(color: Color(0xFFC97B44))),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16.w),
-                            child: Icon(
-                              Icons.pets,
-                              color: Color(0xFFC97B44),
-                              size: 14.sp,
+                        // Separator with Paw
+                        Row(
+                          children: [
+                            Expanded(child: Divider(color: Color(0xFFC97B44))),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 16.w),
+                              child: Icon(
+                                Icons.pets,
+                                color: Color(0xFFC97B44),
+                                size: 14.sp,
+                              ),
                             ),
-                          ),
-                          Expanded(child: Divider(color: Color(0xFFC97B44))),
-                        ],
-                      ),
-                      SizedBox(height: 24.h),
+                            Expanded(child: Divider(color: Color(0xFFC97B44))),
+                          ],
+                        ),
+                        SizedBox(height: 24.h),
 
-                      // Verify Button
-                      CustomButton(
-                        text: 'Verify',
-                        onPressed: () {
-                          Get.toNamed(AppRoutes.newPassword);
-                        },
-                        gradient: AppTheme.secondaryGradient,
-                      ),
-                    ],
+                        // Verify Button
+                        CustomButton(
+                          text: 'Verify',
+                          onPressed: () {
+                            // if (controller.formKey.currentState!.validate()) {
+                            //   Get.toNamed(AppRoutes.newPassword);
+                            // }
+                            Get.toNamed(AppRoutes.newPassword);
+                          },
+                          gradient: AppTheme.secondaryGradient,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 40.h),

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:pawgress/config/constants/image_paths.dart';
 import 'package:pawgress/config/routes/app_pages.dart';
 import 'package:pawgress/config/themes/app_theme.dart';
+import 'package:pawgress/core/utils/validetors.dart';
 import 'package:pawgress/core/widgets/custom_button.dart';
 import 'package:pawgress/core/widgets/custom_text_field.dart';
 import 'package:pawgress/modules/auth/controllers/sign_up_controller.dart';
@@ -20,7 +21,8 @@ class SignupView extends GetView<SignupController> {
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
-          child: Center(
+          child: Form(
+            key: controller.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -39,6 +41,8 @@ class SignupView extends GetView<SignupController> {
                 CustomTextField(
                   label: 'Full Name',
                   hintText: 'John Doe',
+                  controller: controller.nameController,
+                  validator: Validators.name,
                   fillColior: const Color(0xFF3B3B5B),
                   prefixIcon: const Icon(
                     Icons.person_outline,
@@ -51,6 +55,8 @@ class SignupView extends GetView<SignupController> {
                 CustomTextField(
                   label: 'Email Address',
                   hintText: 'john@example.com',
+                  controller: controller.emailController,
+                  validator: Validators.email,
                   keyboardType: TextInputType.emailAddress,
                   fillColior: const Color(0xFF3B3B5B),
                   prefixIcon: const Icon(
@@ -64,6 +70,8 @@ class SignupView extends GetView<SignupController> {
                 CustomTextField(
                   label: 'Phone Number',
                   hintText: '+1 (555) 000-0000',
+                  controller: controller.phoneController,
+                  validator: Validators.phone,
                   keyboardType: TextInputType.phone,
                   fillColior: const Color(0xFF3B3B5B),
                   prefixIcon: const Icon(
@@ -77,6 +85,8 @@ class SignupView extends GetView<SignupController> {
                 CustomTextField(
                   label: "Dog's Name",
                   hintText: 'e.g. Max, Bella...',
+                  controller: controller.dogNameController,
+                  validator: (val) => Validators.required(val, message: "Dog's name is required"),
                   fillColior: const Color(0xFF3B3B5B),
                   prefixIcon: const Icon(
                     Icons.pets_outlined,
@@ -90,7 +100,9 @@ class SignupView extends GetView<SignupController> {
                   () => CustomTextField(
                     label: 'Password',
                     hintText: '',
+                    controller: controller.passwordController,
                     obscureText: controller.isPasswordHidden.value,
+                    validator: Validators.password,
                     fillColior: const Color(0xFF3B3B5B),
                     prefixIcon: const Icon(
                       Icons.lock_outline,
@@ -117,7 +129,9 @@ class SignupView extends GetView<SignupController> {
                   () => CustomTextField(
                     label: 'Confirm Password',
                     hintText: '',
+                    controller: controller.confirmPasswordController,
                     obscureText: controller.isConfirmPasswordHidden.value,
+                    validator: (val) => Validators.confirmPassword(val, controller.passwordController.text),
                     fillColior: const Color(0xFF3B3B5B),
                     suffixIcon: GestureDetector(
                       onTap: controller.toggleConfirmPasswordVisibility,
@@ -203,6 +217,13 @@ class SignupView extends GetView<SignupController> {
                 CustomButton(
                   text: '', // Using child
                   onPressed: () {
+                    // if (controller.formKey.currentState!.validate()) {
+                    //   if (!controller.isTermsAccepted.value) {
+                    //     Get.snackbar("Error", "Please accept the terms and conditions");
+                    //     return;
+                    //   }
+                    //   Get.toNamed(AppRoutes.bottomNavigation);
+                    // }
                     Get.toNamed(AppRoutes.bottomNavigation);
                   },
                   gradient: AppTheme.secondaryGradient,

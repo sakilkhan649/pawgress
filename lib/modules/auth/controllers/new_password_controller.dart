@@ -1,6 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NewPasswordController extends GetxController {
+  final formKey = GlobalKey<FormState>();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
   final isPasswordHidden = true.obs;
   final isConfirmPasswordHidden = true.obs;
 
@@ -10,5 +15,12 @@ class NewPasswordController extends GetxController {
 
   void toggleConfirmPasswordVisibility() {
     isConfirmPasswordHidden.value = !isConfirmPasswordHidden.value;
+  }
+
+  @override
+  void onClose() {
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.onClose();
   }
 }

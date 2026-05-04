@@ -65,7 +65,7 @@ class VideoView extends GetView<VideoController> {
             child: Obx(() {
               final videos = controller.filteredVideos;
               return ListView.separated(
-                padding: EdgeInsets.only(left: 20.w, right: 20.w,top: 16.h, bottom: 30.h),
+                padding: EdgeInsets.only(left: 20.w, right: 20.w,top: 16.h, bottom: 60.h),
                 itemCount: videos.length,
                 separatorBuilder: (context, index) => SizedBox(height: 16.h),
                 itemBuilder: (context, index) {

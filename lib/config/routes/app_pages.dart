@@ -6,7 +6,7 @@ import 'package:pawgress/modules/auth/bindings/new_password_binding.dart';
 import 'package:pawgress/modules/auth/views/otp_view.dart';
 import 'package:pawgress/modules/auth/views/successfull_view.dart';
 import 'package:pawgress/modules/auth/bindings/success_binding.dart';
-import 'package:pawgress/modules/auth/views/signup_view.dart';
+import 'package:pawgress/modules/auth/views/sign_up_view.dart';
 import 'package:pawgress/modules/behavior/bindings/behavior_binding.dart';
 import 'package:pawgress/modules/behavior/views/behavior_view.dart';
 import 'package:pawgress/modules/book_traning/views/book_traning_view.dart';

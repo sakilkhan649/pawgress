@@ -26,7 +26,7 @@ class PlayVideoController extends GetxController {
         ? video.videoUrl
         : 'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4';
 
-    print('Initializing video with URL: $url');
+
     videoPlayerController = VideoPlayerController.networkUrl(Uri.parse(url));
 
     try {
@@ -42,7 +42,7 @@ class PlayVideoController extends GetxController {
         position.value = videoPlayerController!.value.position;
       });
     } catch (e) {
-      print('Error initializing video: $e');
+    Get.snackbar('Error', 'Video player error');
     }
   }
 

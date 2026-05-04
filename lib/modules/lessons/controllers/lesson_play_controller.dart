@@ -31,7 +31,6 @@ class LessonPlayController extends GetxController {
     // Using demo video for lessons as well
     const url = 'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4';
 
-    print('Initializing lesson video with URL: $url');
     videoPlayerController = VideoPlayerController.networkUrl(Uri.parse(url));
 
     try {
@@ -46,7 +45,7 @@ class LessonPlayController extends GetxController {
         position.value = videoPlayerController!.value.position;
       });
     } catch (e) {
-      print('Error initializing lesson video: $e');
+      Get.snackbar('Error', 'Video player error');
     }
   }
 

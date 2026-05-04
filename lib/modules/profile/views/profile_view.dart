@@ -338,7 +338,7 @@ class ProfileView extends StatelessWidget {
                   // Yes Button
                   ElevatedButton(
                     onPressed: () {
-                      Get.offAllNamed(AppRoutes.LOGIN);
+                      Get.offAllNamed(AppRoutes.login);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF1982C4), // Blue

@@ -7,7 +7,7 @@ class SplashController extends GetxController {
     super.onReady();
     // 3 seconds delay before navigating to Onboarding
     Future.delayed(const Duration(seconds: 3), () {
-      Get.offAllNamed(AppRoutes.ONBOARDING);
+      Get.offAllNamed(AppRoutes.onboarding);
     });
   }
 }

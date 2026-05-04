@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: AppRoutes.SPLASH, // সঠিক
+          initialRoute: AppRoutes.splash, // সঠিক
           getPages: AppRoutes.pages, // সঠিক
           builder: (context, child) {
             return child ?? const SizedBox.shrink();

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class SignUpController extends GetxController {
+class SignupController extends GetxController {
   final isPasswordHidden = true.obs;
   final isConfirmPasswordHidden = true.obs;
   final isTermsAccepted = false.obs;

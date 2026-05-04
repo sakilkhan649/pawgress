@@ -47,7 +47,7 @@ class OnboardingController extends GetxController {
   }
 
   void skip() {
-    Get.offAllNamed(AppRoutes.LOGIN);
+    Get.offAllNamed(AppRoutes.login);
   }
   
 }

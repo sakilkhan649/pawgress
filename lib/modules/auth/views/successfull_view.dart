@@ -88,7 +88,7 @@ class SuccessfullView extends StatelessWidget {
                       CustomButton(
                         text: 'Back to Login',
                         onPressed: () {
-                          Get.offAllNamed(AppRoutes.LOGIN);
+                          Get.offAllNamed(AppRoutes.login);
                         },
                         gradient: AppTheme.secondaryGradient,
                       ),

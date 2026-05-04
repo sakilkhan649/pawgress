@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
+import 'package:pawgress/modules/auth/bindings/sign_up_binding.dart';
 import 'package:pawgress/modules/auth/views/login_view.dart';
 import 'package:pawgress/modules/auth/views/new_password_view.dart';
 import 'package:pawgress/modules/auth/bindings/new_password_binding.dart';
 import 'package:pawgress/modules/auth/views/otp_view.dart';
 import 'package:pawgress/modules/auth/views/successfull_view.dart';
 import 'package:pawgress/modules/auth/bindings/success_binding.dart';
-import 'package:pawgress/modules/auth/views/signUp_view.dart';
-import 'package:pawgress/modules/auth/bindings/sign_up_binding.dart';
+import 'package:pawgress/modules/auth/views/signup_view.dart';
 import 'package:pawgress/modules/behavior/bindings/behavior_binding.dart';
 import 'package:pawgress/modules/behavior/views/behavior_view.dart';
 import 'package:pawgress/modules/book_traning/views/book_traning_view.dart';
@@ -27,14 +27,11 @@ import 'package:pawgress/modules/message/bindings/message_binding.dart';
 import 'package:pawgress/modules/message/bindings/message_ditail_binding.dart';
 import 'package:pawgress/modules/message/views/message_ditail_view.dart';
 import 'package:pawgress/modules/message/views/message_views.dart';
-import 'package:pawgress/modules/message/controllers/message_controller.dart';
-import 'package:pawgress/modules/message/controllers/message_ditail_controller.dart';
-import 'package:pawgress/modules/notification/views/notification_view.dart';
 import 'package:pawgress/modules/notification/bindings/notification_binding.dart';
+import 'package:pawgress/modules/notification/views/notification_view.dart';
 import 'package:pawgress/modules/onboarding/bindings/onboarding_binding.dart';
 import 'package:pawgress/modules/onboarding/views/onboarding_view.dart';
 import 'package:pawgress/modules/auth/bindings/login_binding.dart';
-import 'package:pawgress/modules/auth/views/otp_view.dart';
 import 'package:pawgress/modules/auth/bindings/otp_binding.dart';
 import 'package:pawgress/modules/auth/views/porgot_password_view.dart';
 import 'package:pawgress/modules/auth/bindings/porgot_password_binding.dart';
@@ -66,10 +63,10 @@ import 'package:pawgress/modules/video/views/videos_view.dart';
 
 class AppRoutes {
   
-  static const SPLASH = '/splash';
-  static const ONBOARDING = '/onboarding';
-  static const LOGIN = '/login';
-  static const OTP = '/otp';
+  static const splash = '/splash';
+  static const onboarding = '/onboarding';
+  static const login = '/login';
+  static const otp = '/otp';
   static const forgotPassword = '/forgot-password';
   static const newPassword = '/new-password';
   static const success = '/success';
@@ -105,27 +102,27 @@ class AppRoutes {
 
   static final List<GetPage> pages = [
     GetPage(
-      name: SPLASH,
+      name: splash,
       page: () => const SplashView(),
       binding: SplashBinding(),
     ),
 
     GetPage(
-      name: ONBOARDING,
+      name: onboarding,
       page: () => const OnboardingView(),
       binding: OnboardingBinding(),
       transition: Transition.fadeIn,
     ),
 
     GetPage(
-      name: LOGIN,
+      name: login,
       page: () => const LoginView(),
       binding: LoginBinding(),
       transition: Transition.fadeIn,
     ),
 
     GetPage(
-      name: OTP,
+      name: otp,
       page: () => const OtpView(),
       binding: OtpBinding(),
       transition: Transition.fadeIn,
@@ -150,8 +147,8 @@ class AppRoutes {
     ),
     GetPage(
       name: signUp,
-      page: () => const SignUpView(),
-      binding: SignUpBinding(),
+      page: () => const SignupView(),
+      binding: SignupBinding(),
       transition: Transition.fadeIn,
     ),
     GetPage(

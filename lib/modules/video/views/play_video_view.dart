@@ -85,7 +85,7 @@ class PlayVideoView extends GetView<PlayVideoController> {
 
   Widget _buildVideoPlayer() {
     return Obx(() {
-      return Container(
+      return SizedBox(
         width: double.infinity,
         height: controller.isFullscreen.value ? 1.sh : 250.h,
         child: Stack(

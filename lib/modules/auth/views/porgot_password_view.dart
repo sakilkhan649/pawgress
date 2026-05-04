@@ -77,7 +77,7 @@ class PorgotPasswordView extends StatelessWidget {
                       CustomButton(
                         text: 'Confirm',
                         onPressed: () {
-                          Get.toNamed(AppRoutes.OTP);
+                          Get.toNamed(AppRoutes.otp);
                         },
                         gradient: AppTheme.secondaryGradient,
                       ),

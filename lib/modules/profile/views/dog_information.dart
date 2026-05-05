@@ -1,8 +1,10 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pawgress/config/routes/app_pages.dart';
 import '../../../config/constants/image_paths.dart';
 import '../controllers/dog_information_controller.dart';
@@ -57,11 +59,17 @@ class DogInformationView extends GetView<DogInformationController> {
                           shape: BoxShape.circle,
                           border: Border.all(color: Colors.white, width: 4.w),
                         ),
-                        child: CircleAvatar(
-                          radius: 50.r,
-                          backgroundColor: const Color(0xFF3B3B5B),
-                          backgroundImage: const AssetImage(
-                            ImagePaths.dogProfileImage,
+                        child: Obx(
+                          () => CircleAvatar(
+                            radius: 50.r,
+                            backgroundColor: const Color(0xFF3B3B5B),
+                            backgroundImage:
+                                controller.selectedDogImagePath.value.isNotEmpty
+                                ? FileImage(
+                                    File(controller.selectedDogImagePath.value),
+                                  )
+                                : const AssetImage(ImagePaths.dogProfileImage)
+                                      as ImageProvider,
                           ),
                         ),
                       ),
@@ -78,22 +86,28 @@ class DogInformationView extends GetView<DogInformationController> {
                               width: 4.w,
                             ),
                           ),
-                          child: Icon(
-                            Icons.camera_alt_outlined,
-                            color: Colors.white,
-                            size: 16.sp,
+                          child: GestureDetector(
+                            onTap: () => _showImagePickerOptions(context),
+                            child: Icon(
+                              Icons.camera_alt_outlined,
+                              color: Colors.white,
+                              size: 16.sp,
+                            ),
                           ),
                         ),
                       ),
                     ],
                   ),
                   SizedBox(height: 12.h),
-                  Text(
-                    'Change Photo',
-                    style: GoogleFonts.manrope(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(0xFF01CD87),
+                  GestureDetector(
+                    onTap: () => _showImagePickerOptions(context),
+                    child: Text(
+                      'Change Photo',
+                      style: GoogleFonts.manrope(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: const Color(0xFF01CD87),
+                      ),
                     ),
                   ),
                 ],
@@ -157,6 +171,107 @@ class DogInformationView extends GetView<DogInformationController> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _showImagePickerOptions(BuildContext context) {
+    Get.bottomSheet(
+      Container(
+        padding: EdgeInsets.symmetric(vertical: 20.h),
+        decoration: BoxDecoration(
+          color: const Color(0xFF211134),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.r),
+            topRight: Radius.circular(20.r),
+          ),
+          border: Border(
+            top: BorderSide(color: const Color(0xFF454565), width: 1.w),
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40.w,
+              height: 4.h,
+              decoration: BoxDecoration(
+                color: Colors.white24,
+                borderRadius: BorderRadius.circular(2.r),
+              ),
+            ),
+            SizedBox(height: 20.h),
+            Text(
+              'Select Dog Image Source',
+              style: GoogleFonts.inter(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(height: 24.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildPickerOption(
+                  icon: Icons.camera_alt_rounded,
+                  label: 'Camera',
+                  onTap: () {
+                    Get.back();
+                    controller.pickImage(ImageSource.camera);
+                  },
+                ),
+                _buildPickerOption(
+                  icon: Icons.photo_library_rounded,
+                  label: 'Gallery',
+                  onTap: () {
+                    Get.back();
+                    controller.pickImage(ImageSource.gallery);
+                  },
+                ),
+              ],
+            ),
+            SizedBox(height: 20.h),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPickerOption({
+    required IconData icon,
+    required String label,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(16.w),
+            decoration: BoxDecoration(
+              color: const Color(0xFF3B3B5B),
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10,
+                  offset: Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Icon(icon, color: const Color(0xFF01CE87), size: 30.sp),
+          ),
+          SizedBox(height: 10.h),
+          Text(
+            label,
+            style: GoogleFonts.inter(
+              fontSize: 14.sp,
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
       ),
     );
   }

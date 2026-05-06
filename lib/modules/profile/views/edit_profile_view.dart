@@ -65,12 +65,11 @@ class EditProfileView extends GetView<EditProfileController> {
                             backgroundColor: const Color(0xFF3B3B5B),
                             backgroundImage:
                                 controller.selectedImagePath.value.isNotEmpty
-                                    ? FileImage(
-                                        File(controller.selectedImagePath.value),
-                                      )
-                                    : AssetImage(
-                                        ImagePaths.editProfileImage,
-                                      ) as ImageProvider,
+                                ? FileImage(
+                                    File(controller.selectedImagePath.value),
+                                  )
+                                : AssetImage(ImagePaths.editProfileImage)
+                                      as ImageProvider,
                           ),
                         ),
                       ),
@@ -149,6 +148,7 @@ class EditProfileView extends GetView<EditProfileController> {
     );
   }
 
+  //Form fields
   Widget _buildField({
     required String label,
     required TextEditingController controller,
@@ -193,6 +193,7 @@ class EditProfileView extends GetView<EditProfileController> {
     );
   }
 
+  //Image picker options
   void _showImagePickerOptions(BuildContext context) {
     Get.bottomSheet(
       Container(
@@ -256,6 +257,7 @@ class EditProfileView extends GetView<EditProfileController> {
     );
   }
 
+  //Image picker options UI
   Widget _buildPickerOption({
     required IconData icon,
     required String label,

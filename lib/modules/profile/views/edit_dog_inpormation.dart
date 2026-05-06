@@ -74,6 +74,7 @@ class EditDogInformationView extends GetView<EditDogInformationController> {
     );
   }
 
+  //form fields
   Widget _buildField({
     required String label,
     required TextEditingController controller,

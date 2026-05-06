@@ -175,6 +175,7 @@ class DogInformationView extends GetView<DogInformationController> {
     );
   }
 
+  // Image picker options
   void _showImagePickerOptions(BuildContext context) {
     Get.bottomSheet(
       Container(
@@ -238,6 +239,7 @@ class DogInformationView extends GetView<DogInformationController> {
     );
   }
 
+  //Image picker options UI
   Widget _buildPickerOption({
     required IconData icon,
     required String label,

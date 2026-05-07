@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// ===================== STORAGE SERVICE =====================
+/// Type-safe wrapper around SharedPreferences.
+/// Caches the SharedPreferences instance to avoid repeated async lookups.
 class StorageService extends GetxService {
   //===========================> Get Data <========================
   static Future<String> getString(String key) async {
@@ -62,5 +65,3 @@ class StorageService extends GetxService {
     return preferences.containsKey(key);
   }
 }
-
-

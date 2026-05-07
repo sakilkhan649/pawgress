@@ -1,213 +1,172 @@
-// import 'package:laundry/config/constants/storage_constants.dart';
-// import 'package:laundry/core/services/api_client.dart';
-// import 'package:laundry/core/services/storage_service.dart';
-// import 'package:laundry/data/repositories/auth_repository.dart';
+// import 'package:custom_project_architecture/config/constants/storage_constants.dart';
+// import 'package:custom_project_architecture/core/services/api_client.dart';
+// import 'package:custom_project_architecture/core/services/storage_service.dart';
+// import 'package:custom_project_architecture/data/repositories/auth_repository.dart';
 // import 'package:dio/dio.dart';
-// import 'package:get/get_core/src/get_main.dart';
-// import 'package:get/get_instance/src/extension_instance.dart';
-// import 'package:get/get_rx/src/rx_types/rx_types.dart';
-// import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
+// import 'package:get/get.dart' hide Response;
 //
+// /// ===================== AUTH SERVICE =====================
+// /// Manages all authentication flows: login, signup, logout,
+// /// password reset, OTP verification, and token persistence.
 // class AuthService extends GetxService {
-//   late AuthRepo _authRepo;
+//   late final AuthRepo _authRepo;
 //
-//   // Reactive state
+//   /// Observable login state — use this in UI bindings
 //   final isLoggedIn = false.obs;
 //
 //   @override
 //   void onInit() {
 //     super.onInit();
-//     // Explicitly find ApiClient to ensure it's initialized before AuthRepo
-//     _authRepo = AuthRepo(apiClient: Get.put(ApiClient()));
-//
-//     // Check initial login state
+//     _authRepo = AuthRepo(apiClient: Get.find<ApiClient>());
 //     _checkLoginStatus();
 //   }
+//
+//   // ──────────────────── AUTH STATE ────────────────────
 //
 //   Future<void> _checkLoginStatus() async {
 //     final token = await StorageService.getString(StorageConstants.bearerToken);
 //     isLoggedIn.value = token.isNotEmpty;
 //   }
 //
-//   Future<AuthService> init() async {
-//     return this;
-//   }
+//   /// Check if user is authenticated
+//   bool get isAuthenticated => isLoggedIn.value;
 //
-//   /// ===================== SIGNUP =====================
+//   // ──────────────────── SIGNUP ────────────────────
+//
 //   Future<Response> signup({
 //     required String name,
 //     required String email,
 //     required String password,
 //     required String phone,
-//     required String address,
+//     required String country,
 //   }) async {
-//     try {
-//       final response = await _authRepo.signup(
-//         name: name,
-//         email: email,
-//         password: password,
-//         phone: phone,
-//         address: address,
-//       );
-//       return response;
-//     } catch (e) {
-//       rethrow;
-//     }
+//     return await _authRepo.signup(
+//       name: name,
+//       email: email,
+//       password: password,
+//       phone: phone,
+//       country: country,
+//     );
 //   }
 //
-//   /// ===================== LOGIN =====================
+//   // ──────────────────── LOGIN ────────────────────
+//
 //   Future<Response> login({
 //     required String email,
 //     required String password,
 //   }) async {
-//     try {
-//       final response = await _authRepo.login(email: email, password: password);
-//       await handleAuthResponse(response);
-//       return response;
-//     } catch (e) {
-//       rethrow;
-//     }
+//     final response = await _authRepo.login(email: email, password: password);
+//     await _saveAuthTokens(response);
+//     return response;
 //   }
 //
-//   /// ===================== LOGOUT =====================
+//   // ──────────────────── LOGOUT ────────────────────
+//
 //   Future<void> logout() async {
 //     try {
 //       await _authRepo.logout();
-//       await _clearLocalAuth();
-//     } catch (e) {
+//     } finally {
 //       await _clearLocalAuth();
 //     }
 //   }
 //
-//   /// ===================== FORGOT PASSWORD =====================
+//   // ──────────────────── FORGOT PASSWORD ────────────────────
+//
 //   Future<Response> forgotPassword(String email) async {
-//     try {
-//       final response = await _authRepo.forgotPassword(email: email);
-//       return response;
-//     } catch (e) {
-//       rethrow;
-//     }
+//     return await _authRepo.forgotPassword(email: email);
 //   }
 //
-//   /// ===================== OTP VERIFY =====================
-//   Future<Response> verifyOtp({required String email, required int otp, bool isForgotPassword = false}) async {
-//     try {
-//       final response = await _authRepo.otpVerify(
-//         email: email,
-//         otp: otp,
-//       );
-//       // If OTP verification logs the user in directly (but not for forgot password):
-//       if (!isForgotPassword) {
-//         await handleAuthResponse(response);
-//       }
-//       return response;
-//     } catch (e) {
-//       rethrow;
+//   // ──────────────────── OTP VERIFY ────────────────────
+//
+//   Future<Response> verifyOtp({
+//     required String email,
+//     required int otp,
+//     bool isForgotPassword = false,
+//   }) async {
+//     final response = await _authRepo.otpVerify(
+//       email: email,
+//       oneTimeCode: otp,
+//     );
+//
+//     // If OTP verification logs the user in directly (not for forgot password)
+//     if (!isForgotPassword) {
+//       await _saveAuthTokens(response);
 //     }
+//     return response;
 //   }
 //
-//   /// ===================== RESEND OTP =====================
+//   // ──────────────────── RESEND OTP ────────────────────
+//
 //   Future<void> resendOtp(String email) async {
-//     try {
-//       await _authRepo.resentOtp(email: email);
-//     } catch (e) {
-//       rethrow;
-//     }
+//     await _authRepo.resentOtp(email: email);
 //   }
 //
-//   /// ===================== RESET PASSWORD =====================
+//   // ──────────────────── RESET PASSWORD ────────────────────
+//
 //   Future<Response> resetPassword({
-//     required String resetToken,
-//     required String password,
-//   }) async {
-//     try {
-//       final response = await _authRepo.resetPassword(
-//         password: password,
-//         resetToken: resetToken,
-//       );
-//       return response;
-//     } catch (e) {
-//       rethrow;
-//     }
-//   }
-//
-//   // /// ===================== SOCIAL LOGIN =====================
-//
-//   // Future<void> signInWithGoogle() async {
-//   //   try {
-//   //     // AuthRepo returns raw map from apiClient.postData, which might be response.data or already nested.
-//   //     // We need to wrap it back into a Response for _handleAuthResponse or refactor _handleAuthResponse.
-//   //     // In AuthRepo, we already call _saveAuthResponse, so here we just need to update state.
-//   //     final response = await _authRepo.signInWithGoogle();
-//   //     await _handleAuthResponse(response);
-//   //     isLoggedIn.value = true;
-//   //   } catch (e) {
-//   //     rethrow;
-//   //   }
-//   // }
-//
-//   // Future<void> signInWithApple() async {
-//   //   try {
-//   //     final response = await _authRepo.signInWithApple();
-//   //     await _handleAuthResponse(response);
-//   //     isLoggedIn.value = true;
-//   //   } catch (e) {
-//   //     rethrow;
-//   //   }
-//   // }
-//
-//   /// ===================== CHANGE PASSWORD =====================
-//   Future<Response> changePassword({
-//     required String oldPassword,
+//     required String token,
 //     required String newPassword,
+//     required String confirmPassword,
 //   }) async {
-//     try {
-//       Response response = await _authRepo.changePassword(
-//         oldPassword: oldPassword,
-//         newPassword: newPassword,
-//       );
-//       return response;
-//     } catch (e) {
-//       rethrow;
-//     }
+//     return await _authRepo.resetPassword(
+//       newPassword: newPassword,
+//       confirmPassword: confirmPassword,
+//     );
 //   }
 //
-//   /// ===================== HELPER METHODS =====================
+//   // ──────────────────── CHANGE PASSWORD ────────────────────
 //
-//   /// Handles successful auth response (Login/Signup)
-//   Future<void> handleAuthResponse(Response response) async {
-//     // Adjust these keys based on your actual API response structure
-//     // Example: { "data": { "accessToken": "...", "refreshToken": "..." } }
+//   Future<Response> changePassword({
+//     required String currentPassword,
+//     required String newPassword,
+//     required String confirmPassword,
+//   }) async {
+//     return await _authRepo.changePassword(
+//       currentPassword: currentPassword,
+//       newPassword: newPassword,
+//       confirmPassword: confirmPassword,
+//     );
+//   }
+//
+//   // ──────────────────── TOKEN HELPERS ────────────────────
+//
+//   /// Save auth tokens from API response.
+//   /// Public so controllers can call it after social login etc.
+//   Future<void> _saveAuthTokens(Response response) async {
 //     final data = response.data;
+//     final authData = data is Map ? (data['data'] ?? data) : data;
 //
-//     // Check if data is nested
-//     final authData = data['data'] ?? data;
+//     if (authData is! Map) return;
 //
-//     final String? accessToken = authData['accessToken'] ?? authData['token'];
-//     final String? refreshToken = authData['refreshToken'];
+//     final accessToken = authData['accessToken'] ?? authData['token'];
+//     final refreshToken = authData['refreshToken'];
 //
 //     if (accessToken != null) {
-//       await StorageService.setString(StorageConstants.bearerToken, accessToken);
+//       await StorageService.setString(
+//         StorageConstants.bearerToken,
+//         accessToken.toString(),
+//       );
 //       isLoggedIn.value = true;
 //     }
 //
 //     if (refreshToken != null) {
 //       await StorageService.setString(
 //         StorageConstants.refreshToken,
-//         refreshToken,
+//         refreshToken.toString(),
 //       );
 //     }
 //   }
 //
-//   /// Clears all local auth data
+//   /// Handles successful auth response from external callers
+//   Future<void> handleAuthResponse(Response response) async {
+//     await _saveAuthTokens(response);
+//   }
+//
+//   /// Clear all local auth data
 //   Future<void> _clearLocalAuth() async {
 //     await StorageService.remove(StorageConstants.bearerToken);
 //     await StorageService.remove(StorageConstants.refreshToken);
 //     await StorageService.remove(StorageConstants.userData);
-//
 //     isLoggedIn.value = false;
 //   }
-//
-//   /// Check if user is authenticated
-//   bool get isAuthenticated => isLoggedIn.value;
 // }

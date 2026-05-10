@@ -295,17 +295,17 @@ class BookTrainingView extends GetView<BookTrainingController> {
       itemCount: controller.slots.length,
       itemBuilder: (context, index) {
         final slot = controller.slots[index];
-        final isDisabled = slot == '06:00 PM';
         return Obx(() {
-          final isSelected = controller.selectedSlot.value == slot;
           return GestureDetector(
-            onTap: isDisabled ? null : () => controller.selectSlot(slot),
+            onTap: () => controller.selectSlot(slot),
             child: Opacity(
-              opacity: isDisabled ? 0.4 : 1.0,
+              opacity: controller.selectedSlot.value == slot ? 1.0 : 0.4,
               child: Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: isSelected ? AppTheme.teal2 : const Color(0xFF2C2843),
+                  color: controller.selectedSlot.value == slot
+                      ? AppTheme.teal2
+                      : const Color(0xFF2C2843),
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Text(
@@ -313,7 +313,9 @@ class BookTrainingView extends GetView<BookTrainingController> {
                   style: GoogleFonts.manrope(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w700,
-                    color: isSelected ? const Color(0xFF1E1528) : Colors.white,
+                    color: controller.selectedSlot.value == slot
+                        ? const Color(0xFF1E1528)
+                        : Colors.white,
                   ),
                 ),
               ),

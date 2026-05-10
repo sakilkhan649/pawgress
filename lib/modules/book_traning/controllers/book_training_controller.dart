@@ -32,5 +32,7 @@ class BookTrainingController extends GetxController {
 
   void selectTrainer(int index) => selectedTrainerIndex.value = index;
   void selectDate(int index) => selectedDateIndex.value = index;
-  void selectSlot(String slot) => selectedSlot.value = slot;
+  void selectSlot(String slot) {
+    selectedSlot.value = slot;
+  }
 }

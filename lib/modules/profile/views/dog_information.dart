@@ -178,7 +178,9 @@ class DogInformationView extends GetView<DogInformationController> {
   // Image picker options
   void _showImagePickerOptions(BuildContext context) {
     Get.bottomSheet(
+      isScrollControlled: true,
       Container(
+        height: 500.h,
         padding: EdgeInsets.symmetric(vertical: 20.h),
         decoration: BoxDecoration(
           color: const Color(0xFF211134),

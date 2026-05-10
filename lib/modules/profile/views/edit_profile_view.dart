@@ -196,7 +196,9 @@ class EditProfileView extends GetView<EditProfileController> {
   //Image picker options
   void _showImagePickerOptions(BuildContext context) {
     Get.bottomSheet(
+      isScrollControlled: true,
       Container(
+        height: 500.h,
         padding: EdgeInsets.symmetric(vertical: 20.h),
         decoration: BoxDecoration(
           color: const Color(0xFF211134),
@@ -209,7 +211,6 @@ class EditProfileView extends GetView<EditProfileController> {
           ),
         ),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
             Container(
               width: 40.w,
